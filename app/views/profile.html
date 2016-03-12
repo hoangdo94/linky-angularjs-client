@@ -1,57 +1,186 @@
-<header id="header" class="header header-style" ng-include="'/views/header.html'"></header>
-<div class="container">
-	<div class="feed">
-		
-	</div> <!-- feed -->
-	<div class="follower">
-		<div class="follower-user">
-			<div class="profile-photo">
-				<a href=""><img src="" alt=""></a>
-			</div>
-			<div class="info">
-				<div class="user-name">
-					<a href="">Username</a>
+<div class="container-fluid">
+	<div class="row" id="header-row">
+		<div class="container">
+			<div id="profile">
+				<div id="profile-information">
+					<div id="profile-image"></div>
+					<div id="profile-name">
+						<p>Jessica Tuan</p>
+					</div>
+					<div id="profile-detail">
+						<p>Designer and Developer living in San Diego, USA</p>
+					</div>
+					<div id="profile-webpage">
+						<a href="">jessicatuan.com</a>
+					</div>
+					<div class="container-narrow">
+				        <ul class="nav nav-custom">
+				            <li role="presentation" ng-repeat="cat in categories" ng-class="{'active': (filterValue == cat)}">
+				              <a ng-click="filter(cat)">{{cat}}</a>
+				            </li>
+				        </ul>
+				    </div>
 				</div>
-				<div class="user-info">
-					<div class="user-post">
-						<p>Num of post</p>
-					</div>
-					<div class="user-follower">
-						<p>Num of follower</p>
-					</div>
-					<div class="user-following">
-						<p>Num of following</p>
-					</div>
-				</div>
-			</div>
-			<div class="tick">
-				<span><i class="fa fa-check"></i></span>
 			</div>
 		</div>
-	</div> <!-- follower -->
-	<div class="following">
-		<div class="profile-photo">
-				<a href=""><img src="" alt=""></a>
-			</div>
-			<div class="info">
-				<div class="user-name">
-					<a href="">Username</a>
+	</div>
+
+	<div class="row" id="body-row" ng-if="shown === 'Feeds'">
+		<div class="container">
+			<div class="container-narrow">
+				<div ng-repeat="feed in feeds" class="panel panel-default panel-feed">
+					<div class="panel-body">
+						<div class="media">
+							<div class="media-left">
+								<a href="/#/profile/{{feed.user}}">
+									<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+								</a>
+								<div class="item-addons">
+									{{feed.category}}&nbsp;&nbsp;
+									<a href="/#/" ng-click="showDetails(feed)"><i class="fa fa-search"></i></a>&nbsp;&nbsp;
+									<a href="/#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
+									<a href="{{feed.url}}" target="_blank"><i class="fa fa-share"></i></a>
+								</div>
+							</div>
+							<div class="media-body">
+								<p><a href="/#/profile/{{feed.user}}"><b>{{feed.user}}</b></a></p>
+								<p>{{feed.description}}</p>
+							</div>
+						</div>
+					</div>
+					<div clas="item-preview">
+						<a href="" ng-click="showDetails(feed)">
+							<img class="img-responsive" src="http://placehold.it/1000x300/?text=Preview" alt="preview" />
+						</a>
+					</div>
 				</div>
-				<div class="user-info">
-					<div class="user-post">
-						<p>Num of post</p>
-					</div>
-					<div class="user-follower">
-						<p>Num of follower</p>
-					</div>
-					<div class="user-following">
-						<p>Num of following</p>
-					</div>
-				</div>
-			</div>
-			<div class="tick">
-				<span><i class="fa fa-check"></i></span>
 			</div>
 		</div>
-	</div> <!-- following -->
+	</div>
+	<div class="row" id="followers-row" ng-if="shown === 'Followers'">
+		<div class="container">
+			<div class="container-narrow">
+				<div ng-repeat="follower in followers" class="panel panel-default panel-follower">
+					<div class="panel-body">
+						<div class="media">
+							<div class="media-left">
+								<a href="/#/profile/{{follower.user}}">
+									<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+								</a>
+							</div>
+							<div class="media-body">
+								<p><a href="/#/profile/{{follower.user}}"><b>{{follower.user}}</b></a></p>
+								<p class="user-follow">
+									<span>{{follower.posts}} posts &nbsp;</span>
+									<span>{{follower.followers}} followers &nbsp;</span>
+									<span>{{follower.following}} following &nbsp;</span>
+								</p>
+							</div>
+							<div class="media-right">
+								<button type="button" class="btn btn-success">
+									<span class="glyphicon glyphicon-ok"></span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" id="following-row" ng-if="shown === 'Following'">
+		<div class="container">
+			<div class="container-narrow">
+				<div ng-repeat="follow in following" class="panel panel-default panel-follower">
+					<div class="panel-body">
+						<div class="media">
+							<div class="media-left">
+								<a href="/#/profile/{{follow.user}}">
+									<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+								</a>
+							</div>
+							<div class="media-body">
+								<p><a href="/#/profile/{{follow.user}}"><b>{{follow.user}}</b></a></p>
+								<p class="user-follow">
+									<span>{{follow.posts}} posts &nbsp;</span>
+									<span>{{follow.followers}} followers &nbsp;</span>
+									<span>{{follow.following}} following &nbsp;</span>
+								</p>
+							</div>
+							<div class="media-right">
+								<button type="button" class="btn btn-success">
+									<span class="glyphicon glyphicon-ok"></span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<div id="details-modal" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">
+				<a href="/#/profile/{{current.user}}">
+					<img class="img-circle" src="http://placehold.it/150x150" alt="avatar" width="30px">
+				</a>
+				<a href="/#/profile/{{current.user}}">
+					{{current.user}}
+				</a>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>
+					<img class="img-responsive" src="http://placehold.it/1000x300/?text=Preview" alt="preview" />
+				</p>
+				<p>
+					{{current.description}}
+				</p>
+				<p>
+					1 <a href="/#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
+					<a href="{{current.url}}" target="_blank"><i class="fa fa-share"></i></a>
+					<span class="text-cat pull-right">
+						{{current.category}}
+					</span>
+				</p>
+			</div>
+			<div class="modal-footer">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Leave your comment...">
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="button">Save</button>
+					</span>
+				</div>
+				<!-- /input-group -->
+				<div class="media">
+					<div class="media-left">
+						<a href="/#/profile/{{feed.user}}">
+							<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+						</a>
+					</div>
+					<div class="media-body">
+						<p><a href="/#/profile/{{feed.user}}"><b>Username</b></a></p>
+						<p>comment 1</p>
+					</div>
+				</div>
+				<div class="media">
+					<div class="media-left">
+						<a href="/#/profile/aaaaa">
+							<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+						</a>
+					</div>
+					<div class="media-body">
+						<p><a href="/#/profile/aaaa"><b>Username</b></a></p>
+						<p>comment 2</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+			<!-- /.modal -->

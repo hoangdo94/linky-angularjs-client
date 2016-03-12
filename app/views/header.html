@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#/main"><span><i class="fa fa-chain-broken"></i>&nbsp;Linky</span></a>
+			<a class="navbar-brand" id="logo-header" href="#/main"><span><i class="fa fa-chain-broken"></i>&nbsp;&nbsp;Linky</span></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<ul class="nav navbar-nav navbar-right user-profile">
@@ -10,18 +10,18 @@
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search">
 					<span class="input-group-btn">
-						<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+						<button class="btn btn-default" id="btn-search" type="submit"><i class="fa fa-search"></i></button>
 					</span>
 				</div>
 			</form>
 			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				<a class="dropdown-toggle" id="user-profile-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 					<img class="img-rounded" src="https://placeimg.com/34/34/any" alt=""><span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a>Profile</a></li>
-						<li><a>Setting</a></li>
+						<li><a href="/#/profile/123"><span>&nbsp;<i class="fa fa-info"></i></span>&nbsp;&nbsp;Profile</a></li>
+						<li><a href="/#/setting/123"><span><i class="fa fa-pencil-square-o"></i></span>&nbsp;Setting</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a>Sign out</a></li>
+						<li><a href=""><span><i class="fa fa-sign-out"></i></span>&nbsp;Sign out</a></li>
 					</ul>
 			</li>
 		</ul>
