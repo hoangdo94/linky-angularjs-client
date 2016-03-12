@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name linkyApp.controller:ProfileEditCtrl
+ * @name linkyApp.controller:SettingCtrl
  * @description
- * # ProfileEditCtrl
+ * # SettingCtrl
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('ProfileEditCtrl', function () {
+  .controller('SettingCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

@@ -34,10 +34,10 @@ angular
         controller: 'ProfileCtrl',
         controllerAs: 'profile'
       })
-      .when('/profile-edit/:userId', {
-        templateUrl: 'views/profile-edit.html',
-        controller: 'ProfileEditCtrl',
-        controllerAs: 'profileEdit'
+      .when('/setting/:userId', {
+        templateUrl: 'views/setting.html',
+        controller: 'SettingCtrl',
+        controllerAs: 'setting'
       })
       .otherwise({
         redirectTo: '/'
