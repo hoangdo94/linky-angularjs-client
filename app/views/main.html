@@ -6,11 +6,11 @@
       </div>
       <div id="categories">
         <div class="container-narrow">
-          <ul class="nav nav-tabs nav-custom">
+          <ul class="nav nav-custom">
             <li role="presentation" class="active"><a>All</a></li>
-            <li role="presentation"><a>Technology</a></li>
-            <li role="presentation"><a>Photograpy</a></li>
-            <li role="presentation"><a>Life</a></li>
+            <li role="presentation" ng-repeat="cat in categories">
+              <a>{{cat}}</a>
+            </li>
           </ul>
         </div>
       </div>

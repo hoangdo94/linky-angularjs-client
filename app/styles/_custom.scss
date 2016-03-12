@@ -2,6 +2,28 @@
   margin: 0px 100px;
 }
 
+.nav-custom {
+  li {
+    display: inline-block;
+
+    a {
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: transparent;
+        border-bottom: 4px solid rgba(39, 174, 96, 1);
+      }
+    }
+
+    &.active {
+      a {
+        border-bottom: 4px solid rgba(39, 174, 96, 1);
+      }
+    }
+  }
+}
+
 #header-row {
   background: #333 url('http://placeimg.com/1200/600/nature/grayscale') no-repeat center center fixed;
   -webkit-background-size: cover;
