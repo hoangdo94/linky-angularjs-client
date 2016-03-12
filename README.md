@@ -16,7 +16,7 @@ version 0.15.1.
 - Install `bower` components
 
 		bower install
-- Install `npm` packages
+- Install `node` modules
 
 		npm install
 
