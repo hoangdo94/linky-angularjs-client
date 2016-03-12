@@ -7,16 +7,17 @@
 
   #new-link {
     margin: 100px;
-    background-color: rgba(1, 178, 134, 0.6);
+    background-color: rgba(39, 174, 96, 0.7);
 
     input {
-      background-color: transparent;
+      background-color: rgba(39, 174, 96, 0.9);
+      border-color: rgba(39, 174, 96, 1);
       color: white;
       font-size: 18px;
       width: 100%;
       height: 50px;
+      border-width: 0px 0px 0px 3px;
       padding-left: 20px;
-      border: none;
     }
   }
 }
@@ -39,13 +40,13 @@
 
       &:hover {
         background-color: transparent;
-        border-bottom: 4px solid rgba(1, 178, 134, 1);
+        border-bottom: 4px solid rgba(39, 174, 96, 1);
       }
     }
 
     &.active {
       a {
-        border-bottom: 4px solid rgba(1, 178, 134, 1);
+        border-bottom: 4px solid rgba(39, 174, 96, 1);
       }
     }
   }
@@ -56,37 +57,8 @@
 
   .item-addons {
     position: absolute;;
-    top: 8px;
+    top: 5px;
     right: 20px;
-    color: rgba(1, 178, 134, 1);
-  }
-
-  .item-preview {
-    max-height: 400px;
-  }
-
-  &.ng-animate {
-    transition:0.25s linear all;
-  }
-  &.ng-enter {
-    opacity:0;
-  }
-  &.ng-enter.ng-enter-active {
-    opacity:1;
-  }
-  &.ng-leave {
-    opacity:1;
-  }
-  &.ng-leave.ng-leave-active {
-    opacity:0;
-  }
-}
-
-#details-modal {
-  .text-cat {
-    color: rgba(1, 178, 134, 1);
-  }
-  .modal-footer {
-    text-align: left;
+    color: rgba(39, 174, 96, 1);
   }
 }

@@ -9,53 +9,28 @@
  */
 angular.module('linkyApp')
   .controller('MainCtrl', function ($scope) {
-    // data
-    $scope.categories = ['Technology', 'Photography', 'Life', 'Economy'];
+    $scope.filter = 'all';
+    $scope.categories = ['Technology', 'Photography', 'Life', 'Ecomomy'];
     $scope.feeds = [
-      {id:1,category:'Life',user:'rphillips0',url:'http://friendfeed.com',type:'article',description:'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.'},
-      {id:2,category:'Life',user:'echapman1',url:'https://shinystat.com',type:'image',description:'uis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.'},
-      {id:3,category:'Photography',user:'nbailey2',url:'http://forbes.com',type:'video',description:'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.'},
-      {id:4,category:'Economy',user:'jbanks3',url:'http://a8.net',type:'image',description:'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.'},
-      {id:5,category:'Economy',user:'ehanson4',url:'http://clickbank.net',type:'image',description:'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.'},
-      {id:6,category:'Life',user:'cbrooks5',url:'http://geocities.com',type:'video',description:'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.'},
-      {id:7,category:'Economy',user:'clynch6',url:'http://baidu.com',type:'image',description:'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.'},
-      {id:8,category:'Life',user:'hreyes7',url:'https://etsy.com',type:'article',description:'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.'},
-      {id:9,category:'Photography',user:'csanchez8',url:'https://deviantart.com',type:'image',description:'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.'},
-      {id:10,category:'Economy',user:'fmorales9',url:'http://npr.org',type:'video',description:'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.'},
-      {id:11,category:'Life',user:'jstonea',url:'http://github.io',type:'image',description:'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.'},
-      {id:12,category:'Photography',user:'cruizb',url:'http://businessinsider.com',type:'article',description:'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.'},
-      {id:13,category:'Life',user:'btuckerc',url:'https://unblog.fr',type:'image',description:'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.'},
-      {id:14,category:'Photography',user:'jryand',url:'https://ihg.com',type:'article',description:'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.'},
-      {id:15,category:'Life',user:'dwheelere',url:'http://google.cn',type:'article',description:'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.'},
-      {id:16,category:'Technology',user:'jyoungf',url:'http://mozilla.com',type:'video',description:'Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.'},
-      {id:17,category:'Life',user:'rwilliamsong',url:'http://ibm.com',type:'article',description:'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.'},
-      {id:18,category:'Life',user:'dmillerh',url:'http://unicef.org',type:'article',description:'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.'},
-      {id:19,category:'Economy',user:'carmstrongi',url:'https://pcworld.com',type:'article',description:'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.'},
-      {id:20,category:'Life',user:'jwashingtonj',url:'https://ebay.com',type:'article',description:'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.'}
+      {id:1,category:'life',user:'rphillips0',url:'http://friendfeed.com',type:'article',description:'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.'},
+      {id:2,category:'life',user:'echapman1',url:'https://shinystat.com',type:'image',description:'uis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.'},
+      {id:3,category:'photography',user:'nbailey2',url:'http://forbes.com',type:'video',description:'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.'},
+      {id:4,category:'economy',user:'jbanks3',url:'http://a8.net',type:'image',description:'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.'},
+      {id:5,category:'economy',user:'ehanson4',url:'http://clickbank.net',type:'image',description:'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.'},
+      {id:6,category:'life',user:'cbrooks5',url:'http://geocities.com',type:'video',description:'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.'},
+      {id:7,category:'economy',user:'clynch6',url:'http://baidu.com',type:'image',description:'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.'},
+      {id:8,category:'life',user:'hreyes7',url:'https://etsy.com',type:'article',description:'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.'},
+      {id:9,category:'photography',user:'csanchez8',url:'https://deviantart.com',type:'image',description:'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.'},
+      {id:10,category:'economy',user:'fmorales9',url:'http://npr.org',type:'video',description:'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.'},
+      {id:11,category:'life',user:'jstonea',url:'http://github.io',type:'image',description:'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.'},
+      {id:12,category:'photography',user:'cruizb',url:'http://businessinsider.com',type:'article',description:'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.'},
+      {id:13,category:'life',user:'btuckerc',url:'https://unblog.fr',type:'image',description:'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.'},
+      {id:14,category:'photography',user:'jryand',url:'https://ihg.com',type:'article',description:'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.'},
+      {id:15,category:'life',user:'dwheelere',url:'http://google.cn',type:'article',description:'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.'},
+      {id:16,category:'technology',user:'jyoungf',url:'http://mozilla.com',type:'video',description:'Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.'},
+      {id:17,category:'life',user:'rwilliamsong',url:'http://ibm.com',type:'article',description:'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.'},
+      {id:18,category:'life',user:'dmillerh',url:'http://unicef.org',type:'article',description:'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.'},
+      {id:19,category:'economy',user:'carmstrongi',url:'https://pcworld.com',type:'article',description:'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.'},
+      {id:20,category:'life',user:'jwashingtonj',url:'https://ebay.com',type:'article',description:'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.'}
     ];
-    $scope.current = {};
-
-    // filter
-    $scope.filterValue = 'All';
-    $scope.shown = $scope.feeds;
-
-    $scope.filter = function(cat) {
-      $scope.filterValue = cat;
-      console.log($scope.filterValue);
-      if (cat==='All') {
-        $scope.shown = $scope.feeds;
-      }
-      else {
-        $scope.shown = $scope.feeds.filter(function(f) {
-          return f.category === cat;
-        });
-      }
-    };
-
-    // details
-    $scope.showDetails = function(feed) {
-      console.log(feed);
-      $scope.current = feed;
-      $('#details-modal').modal('show');
-    };
   });
