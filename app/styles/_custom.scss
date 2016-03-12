@@ -1,5 +1,33 @@
+#header-row {
+  background: #333 url('http://placeimg.com/1200/600/nature/grayscale') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  #new-link {
+    margin: 100px;
+    background-color: rgba(39, 174, 96, 0.7);
+
+    input {
+      background-color: rgba(39, 174, 96, 0.9);
+      border-color: rgba(39, 174, 96, 1);
+      color: white;
+      font-size: 18px;
+      width: 100%;
+      height: 50px;
+      border-width: 0px 0px 0px 3px;
+      padding-left: 20px;
+    }
+  }
+}
+
+#body-row {
+  padding-top: 40px;
+}
+
 .container-narrow {
-  margin: 0px 100px;
+  margin: 0px 200px;
 }
 
 .nav-custom {
@@ -24,26 +52,13 @@
   }
 }
 
-#header-row {
-  background: #333 url('http://placeimg.com/1200/600/nature/grayscale') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.panel-feed {
+  position: relative;
 
-  #new-link {
-    margin: 100px;
-    background-color: rgba(39, 174, 96, 0.7);
-
-    input {
-      background-color: rgba(39, 174, 96, 0.9);
-      border-color: rgba(39, 174, 96, 1);
-      color: white;
-      font-size: 18px;
-      width: 100%;
-      height: 50px;
-      border-width: 0px 0px 0px 3px;
-      padding-left: 20px;
-    }
+  .item-addons {
+    position: absolute;;
+    top: 5px;
+    right: 20px;
+    color: rgba(39, 174, 96, 1);
   }
 }
