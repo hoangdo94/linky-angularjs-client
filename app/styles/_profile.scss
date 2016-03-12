@@ -1,23 +1,27 @@
+body {
+    padding-top: 60px;
+}
+
 .user-profile {
-	.dropdown a img {
-		// img-rounded
-	}
+    .dropdown a img {
+        // img-rounded
+    }
 
-	.navbar-form {
+    .navbar-form {
         margin-top: 15px;
-    	padding-right: 0px;
+        padding-right: 0px;
 
-    	.input-group {
-    		.form-control {
-    			background-color: #333333;
-    			border-color: #45484C;
-    		}
-    	}
-	}
+        .input-group {
+            .form-control {
+                background-color: #333333;
+                border-color: #45484C;
+            }
+        }
+    }
 }
 
 .btn-default {
-	color: white;
+    color: white;
     background-color: #333333;
     border-color: #45484C;
 }
