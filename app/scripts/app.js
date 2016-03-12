@@ -29,6 +29,16 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/profile/:userId', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl',
+        controllerAs: 'profile'
+      })
+      .when('/profile-edit/:userId', {
+        templateUrl: 'views/profile-edit.html',
+        controller: 'ProfileEditCtrl',
+        controllerAs: 'profileEdit'
+      })
       .otherwise({
         redirectTo: '/'
       });
