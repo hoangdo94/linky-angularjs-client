@@ -13,6 +13,13 @@ version 0.15.1.
 		
 		gem install compass
 
+- Install `bower` components
+
+		bower install
+- Install `npm` packages
+
+		npm install
+
 ## Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
