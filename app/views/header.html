@@ -1,28 +1,29 @@
-<div class="header">
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href=""><span><i class="fa fa-chain-broken"></i></span>Linky</a>
-			</div>
-			<div class="navbar-right">
-				<div class="input-group">
-					<span><i class="fa fa-search"></i></span>
-					<input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
-				</div>
-				<div class="user-photo">
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Profile</a></li>
-							<li><a href="#">Setting</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Sign out</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<a class="navbar-brand" id="logo-header" href="#/main"><span><i class="fa fa-chain-broken"></i>&nbsp;&nbsp;Linky</span></a>
 		</div>
-	</div>
-</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<ul class="nav navbar-nav navbar-right user-profile">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search">
+					<span class="input-group-btn">
+						<button class="btn btn-default" id="btn-search" type="submit"><i class="fa fa-search"></i></button>
+					</span>
+				</div>
+			</form>
+			<li class="dropdown">
+				<a class="dropdown-toggle" id="user-profile-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<img class="img-rounded" src="https://placeimg.com/34/34/any" alt=""><span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/#/profile/123"><span>&nbsp;<i class="fa fa-info"></i></span>&nbsp;&nbsp;Profile</a></li>
+						<li><a href="/#/setting/123"><span><i class="fa fa-pencil-square-o"></i></span>&nbsp;Setting</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href=""><span><i class="fa fa-sign-out"></i></span>&nbsp;Sign out</a></li>
+					</ul>
+			</li>
+		</ul>
+	</div><!-- /.container-fluid -->
+</nav>
