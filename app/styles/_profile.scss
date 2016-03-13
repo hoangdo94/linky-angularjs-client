@@ -9,14 +9,14 @@
 	background: url("https://placeimg.com/1000/480/nature") no-repeat;
 	background-size: 100% 100%;
 	width: 100%;
-	height: 460px;
+	height: 420px;
 }
 
 #profile-background {
 	background: url("https://placeimg.com/1000/480/nature") no-repeat;
 	background-size: 100% 100%;
 	width: 100%;
-	height: 460px;
+	height: 420px;
 	filter: blur(3px);
 	-webkit-filter: blur(3px);
 	-moz-filter: blur(3px);
@@ -59,4 +59,38 @@
 #profile-webpage a {
 	color: #505050;
 	text-decoration: none;
+}
+#profile {
+	.container-narrow {
+		text-align: center;
+		margin-top: 27px;
+	}
+}
+#profile .container-narrow a {
+	color: #d9d9d9;
+	padding-top: 90px;
+}
+
+.user-profile {
+	.dropdown a img {
+		// img-rounded
+	}
+
+	.navbar-form {
+        margin-top: 15px;
+    	padding-right: 0px;
+
+    	.input-group {
+    		.form-control {
+    			background-color: #333333;
+    			border-color: #45484C;
+    		}
+    	}
+	}
+}
+
+.btn-default {
+	color: white;
+    background-color: #333333;
+    border-color: #45484C;
 }

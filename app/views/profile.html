@@ -1,42 +1,23 @@
-<html>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Profile</title>
-	<link rel="stylesheet" type="text/css" href="_profile.css">
-</html>
-<body>
-<!-- 	<div id="profile">
-		<div id="profile-background"></div>
-		<div id="profile-information">
-			<div id="profile-image"></div>
-			<div id="profile-name">
-				<p>Jessica Tuan</p>
-			</div>
-			<div id="profile-detail">
-				<p>Designer and Developer living in San Diego, USA</p>
-			</div>
-			<div id="profile-webpage">
-				<a href="">jessicatuan.com</a>
-			</div>
-		</div> -->
-		<div class="container-fluid">
-		  <div class="row" id="header-row">
-		    <div class="container">
-		       <div class="jumbotron" id="new-link">
-		        <input type="text" placeholder="What do you want to SHARE?" />
-		      </div>
-		      <div id="categories">
-		        <ul class="nav nav-tabs">
-		          <li role="presentation" class="active"><a href="#">Home</a></li>
-		          <li role="presentation"><a href="#">Profile</a></li>
-		          <li role="presentation"><a href="#">Messages</a></li>
-		        </ul>
-		      </div>
-		    </div>
-		  </div>
-		  <div class="row" id="body-row">
-		    <div class="container">
-		    </div>
-		  </div>
+<div id="profile">
+	<div id="profile-background"></div>
+	<div id="profile-information">
+		<div id="profile-image"></div>
+		<div id="profile-name">
+			<p>Jessica Tuan</p>
 		</div>
+		<div id="profile-detail">
+			<p>Designer and Developer living in San Diego, USA</p>
+		</div>
+		<div id="profile-webpage">
+			<a href="">jessicatuan.com</a>
+		</div>
+		<div class="container-narrow">
+	        <ul class="nav nav-custom">
+	            <li role="presentation" ng-class="{'active': (filterValue == 'All')}"><a ng-click="filter('All')">All</a></li>
+	            <li role="presentation" ng-repeat="cat in categories" ng-class="{'active': (filterValue == cat)}">
+	              <a ng-click="filter(cat)">{{cat}}</a>
+	            </li>
+	        </ul>
+	    </div>
 	</div>
-</body>
+</div>
