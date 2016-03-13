@@ -1,78 +1,3 @@
-<<<<<<< HEAD
-* {
-	padding: 0;
-	margin: 0;
-}
-
-#profile {
-	padding: 0;
-	margin: 0;
-	background: url("https://placeimg.com/1000/480/nature") no-repeat;
-	background-size: 100% 100%;
-	width: 100%;
-	height: 420px;
-}
-
-#profile-background {
-	background: url("https://placeimg.com/1000/480/nature") no-repeat;
-	background-size: 100% 100%;
-	width: 100%;
-	height: 420px;
-	filter: blur(3px);
-	-webkit-filter: blur(3px);
-	-moz-filter: blur(3px);
-	-o-filter: blur(3px);
-	-ms-filter: blur(3px);
-	position: absolute;
-}
-#profile-information {
-	position: absolute;
-	width: 100%;
-	padding-top: 60px;
-}
-#profile-image {
-	background: url("https://placeimg.com/640/480/people") no-repeat;
-	width: 90px;
-	height: 90px;
-	margin-left: auto;
-	margin-right: auto;
-	border-radius: 5px;
-}
-#profile-name {
-	padding-top: 10px;
-	color: white;
-	font-size: 30px;
-	font-family: cursive;
-	text-align: center;
-}
-#profile-detail {
-	padding-top: 5px;
-	color: #d9d9d9;
-	font-size: 15px;
-	font-family: cursive;
-	text-align: center;	
-}
-#profile-webpage {
-	font-size: 15px;
-	font-family: cursive;
-	text-align: center;		
-}
-#profile-webpage a {
-	color: #505050;
-	text-decoration: none;
-}
-#profile {
-	.container-narrow {
-		text-align: center;
-		margin-top: 27px;
-	}
-}
-#profile .container-narrow a {
-	color: #d9d9d9;
-	padding-top: 90px;
-}
-
-=======
 body {
     padding-top: 60px;
 }
@@ -148,9 +73,6 @@ body {
     color: #d9d9d9;
     padding-top: 90px;
 }
-
-
->>>>>>> remotes/origin/master
 .user-profile {
     #user-profile-toggle {
         background-color: transparent;
