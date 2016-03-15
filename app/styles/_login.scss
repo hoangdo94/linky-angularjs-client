@@ -1,0 +1,115 @@
+.container-login {
+	margin: 0;
+	padding: 0;
+	background: url("../images/background-login-big.jpg") no-repeat;
+	background-size: 100% auto;
+	width: 100%;
+	height: 800px;
+	color: #efefef;
+	text-align: center;
+}
+.inner-background {
+	margin: 0;
+	padding: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 800px;
+	text-align: center;
+}
+.container-main {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	padding-left: 15px;
+	padding-right: 15px;
+	
+	.text {
+		margin-top: 60px;
+	}
+}
+.form-box {
+	background-color: rgba(0, 0, 0, 0.7);
+	width: 33.5%;
+	height: 110px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#form-username {
+	background-color: rgba(255, 255, 255, 0.7);
+	color: #000000;
+	position: absolute;
+	z-index: 10;
+	width: 33%;
+	border: none;
+	height: 40px;
+	margin-top: 10px;
+	margin-left: 8px;
+	font-size: 16px;
+}
+#form-password {
+	background-color: rgba(255, 255, 255, 0.7);
+	border: none;
+	color: #000000;
+	position: absolute;
+	margin-top: 60px;
+	margin-left: 8px;
+	z-index: 10;
+	width: 33%;
+	height: 40px;
+	font-size: 16px;
+}
+#login-btn {
+	position: absolute;
+	border-radius: 50%;
+	background-color: rgba(1, 178, 134, 0.95);
+	margin-top: 25px;
+	margin-left: 190px;
+	height: 60px;
+	width: 60px;
+	z-index: 100;
+	font-size: 22px;
+	border: 8px solid rgba(0, 0, 0, 0.9);
+}
+#login-btn:hover {
+	outline: none;
+	color: #ffffff;
+	background-color: rgba(20, 197, 153, 1);
+}
+.social-login {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	width: 100%;
+	margin-top: 60px;
+	background-color: rgba(0, 0, 0, 0.6);
+	font-size: 20px;
+}
+.btn.btn-fb {
+	background-color: #3b5998;
+	color: #ffffff;
+}
+.btn.btn-tw {
+	background-color: #0084b4;
+	color: #ffffff;
+}
+.btn.btn-gg {
+	background-color: #d34836;
+	color: #ffffff;
+}
+.btn.btn-fb:hover {
+	outline: none;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+.btn.btn-tw:hover {
+	outline: none;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+.btn.btn-gg:hover {
+	outline: none;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
