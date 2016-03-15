@@ -14,17 +14,17 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="linkyApp">
+  <body ng-app="linkyApp" ng-controller="linkyCtrl">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-  <header id="header" class="header header-style" ng-include="'/views/header.html'"></header>
+  <header id="header" class="header header-style" ng-include="'/views/header.html'" ng-if="showHeaderFooter"></header>
 
     <div ng-view=""></div>
 
-    <div class="footer">
+    <div class="footer" ng-if="showHeaderFooter">
       <hr>
       <div class="container" style="text-align: center;">
         <ul class="list-inline">
@@ -69,6 +69,8 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/profile.js"></script>
         <script src="scripts/controllers/setting.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/register.js"></script>
         <!-- endbuild -->
 </body>
 </html>

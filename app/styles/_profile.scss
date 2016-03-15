@@ -73,6 +73,7 @@ body {
     color: #d9d9d9;
     padding-top: 90px;
 }
+
 .user-profile {
     #user-profile-toggle {
         background-color: transparent;
@@ -83,17 +84,28 @@ body {
             color: #337ab7;
         }
     }
+}
 
-    .navbar-form {
-        margin-top: 15px;
-        padding-right: 0px;
+.user-profile-dropdown {
+    padding: 16px;
+}
 
-        .input-group {
-            .form-control {
-                background-color: transparent;
-                border-color: #45484C;
-                color: white;
-            }
+.search-form-input {
+    width: 250px; 
+    padding-top: 15px;
+}
+
+.search-input {
+    background-color: transparent;
+    border-color: #45484C;
+}
+
+#search-form-header {
+    .input-group {
+        .form-control {
+            color: white;
+            background-color: transparent;
+            border-color: #45484C;
         }
     }
 }
@@ -113,5 +125,43 @@ body {
 
     .user-follow {
         color: #CBCFD6;
+    }
+}
+
+@media (max-width: 768px) { 
+    #logo-header {
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 592px) { 
+    .search-input {
+        display: none !important;
+    }
+
+    #logo-header {
+        padding: 15px 0px 0px 0px;
+    }
+
+    #search-form-header form .input-group .input-group-btn {
+        left: 75%;
+    }
+
+    #btn-search {
+        border-radius: 10px;
+    }
+
+    #search-form-header form div input.form-control {
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 492px) {
+    div.col-xs-9 {
+        width: 300px;
+    }
+
+    #logo-header {
+        padding-left: 0px;
     }
 }

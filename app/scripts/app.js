@@ -44,7 +44,15 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl',
+        controllerAs: 'register'
+      })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .controller('linkyCtrl', ['$scope', '$location', function($scope, $location) {
+    $scope.showHeaderFooter = $location.path() !== '/login';
+  }]);
