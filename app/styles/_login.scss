@@ -16,7 +16,7 @@ body {
 .inner-background {
 	margin: 0;
 	padding: 0;
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: rgba(0, 0, 0, 0.5);
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
@@ -53,7 +53,7 @@ body {
 	height: 40px;
 	margin-top: 10px;
 	margin-left: 8px;
-	font-size: 16px;
+	/*font-size: 16px;*/
 }
 #form-password {
 	background-color: rgba(255, 255, 255, 0.7);
@@ -65,7 +65,7 @@ body {
 	z-index: 10;
 	width: 33%;
 	height: 40px;
-	font-size: 16px;
+	/*font-size: 16px;*/
 }
 #login-btn {
 	position: absolute;
@@ -76,7 +76,7 @@ body {
 	height: 60px;
 	width: 60px;
 	z-index: 100;
-	font-size: 22px;
+	/*font-size: 22px;*/
 	border: 8px solid rgba(0, 0, 0, 0.9);
 }
 #login-btn:hover {
@@ -135,4 +135,202 @@ body {
 	outline: none;
 	border-color: #9ecaed;
 	box-shadow: 0 0 10px #9ecaed;
+}
+
+.social-login-buttons p {
+	display: inline;
+}
+
+@media (min-width: 1297px) {
+	#login-btn p {
+		display: none;
+	}	
+
+	#form-username {
+		font-size: 16px;
+	}
+
+	#form-password {
+		font-size: 16px;	
+	}
+
+	#login-btn {
+		font-size: 22px;
+	}
+}
+
+/*responsive*/
+@media (min-width: 769px) and (max-width: 1296px) {
+	
+	.form-box {
+		background-color: rgba(0, 0, 0, 0);
+	}
+
+	#form-username {
+		background-color: rgba(255, 255, 255, 0.9);
+		color: #000000;
+		position: absolute;
+		z-index: 10;
+		width: 33%;
+		border: none;
+		height: 40px;
+		margin-top: 10px;
+		margin-left: 8px;
+		font-size: 16px;
+	}
+
+	#form-password {
+		background-color: rgba(255, 255, 255, 0.9);
+		border: none;
+		color: #000000;
+		position: absolute;
+		margin-top: 60px;
+		margin-left: 8px;
+		z-index: 10;
+		width: 33%;
+		height: 40px;
+		font-size: 16px;
+	}
+
+	#login-btn {
+	    border-radius: 5%;
+	    margin-top: 110px;
+	    margin-left: -45px;
+	    width: 90px;
+	    border: 1px solid black;
+	    height: 35px;
+	}
+
+	#login-btn p {
+	    font-size: 19px;
+	    line-height: 23px;
+	    font-weight: 700;
+	    color: rgba(255, 255, 255, 0.95);
+	}
+
+	.glyphicon.glyphicon-arrow-right {
+		display: none;
+	}
+
+	#toRegister {
+	    padding-top: 43px;
+	    padding-left: 13px;
+	    font-style: italic;
+	    text-align: center;
+	}
+
+	.container-main {
+		padding-top: 0;
+	}
+
+	.container-main.text {
+		margin-top: 0px;
+	}
+
+	.social-login {
+		margin-top: 50px;
+	}
+
+	.container-login {
+		background-size: 100% 100%;
+	}
+}
+
+@media (max-width: 768px) {
+	.container-main {
+		padding-top: 0;
+
+		h1 {
+			font-size: 30px;
+		}
+	}
+
+	.form-box {
+		background-color: rgba(0, 0, 0, 0);
+		width: 60%;
+	}
+
+	#form-username {
+		background-color: rgba(255, 255, 255, 0.9);
+		color: #000000;
+		position: relative;
+		z-index: 10;
+		width: 100%;
+		border: none;
+		height: 30px;
+		margin-top: 0px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#form-password {
+		background-color: rgba(255, 255, 255, 0.9);
+		border: none;
+		color: #000000;
+		position: relative;
+		margin-top: 0px;
+		margin-left: 8px;
+		z-index: 10;
+		width: 100%;
+		height: 30px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#login-btn {
+	    border-radius: 5%;
+	    margin-top: 40px;
+	    margin-left: -45px;
+	    width: 90px;
+	    border: 1px solid black;
+	    height: 30px;
+	}
+
+	#login-btn p {
+	    line-height: 17px;
+	    font-weight: 700;
+	    color: rgba(255, 255, 255, 0.95);
+	}
+
+	.glyphicon.glyphicon-arrow-right {
+		display: none;
+	}
+
+	#toRegister {
+	    padding-left: 13px;
+	    font-style: italic;
+	    width: 100%;
+	    text-align: center;
+	}
+
+	.container-main.text {
+		margin-top: 0px;
+	}
+
+	.social-login {
+		margin-top: 10px;
+	}
+
+	.container-login {
+		background-size: 100% 100%;
+	}
+}
+
+@media (max-width: 480px) {
+
+	.social-login h4 {
+		font-size: 12px;
+	}
+
+	.social-login-buttons {
+
+		.btn {
+			width: 50px;
+		}
+
+		p {
+			display: none;
+		}
+	}
+
 }
