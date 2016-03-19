@@ -1,5 +1,5 @@
 body {
-    padding-top: 60px;
+    padding-top: 50px;
 }
 
 * {
@@ -96,6 +96,10 @@ body {
 }
 
 .search-input {
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
     background-color: transparent;
     border-color: #45484C;
 }
@@ -117,6 +121,7 @@ body {
 }
 
 #logo-header {
+    padding-top: 22px;
     padding-left: 50px;
 }
 
@@ -126,6 +131,14 @@ body {
     .user-follow {
         color: #CBCFD6;
     }
+}
+
+#col-user-profile {
+    padding: 0px;
+}
+
+#col-search-form {
+    padding-right: 0px;
 }
 
 @media (max-width: 768px) { 
@@ -140,7 +153,7 @@ body {
     }
 
     #logo-header {
-        padding: 15px 0px 0px 0px;
+        padding: 22px 0px 0px 0px;
     }
 
     #search-form-header form .input-group .input-group-btn {
@@ -158,10 +171,44 @@ body {
 
 @media (max-width: 492px) {
     div.col-xs-9 {
-        width: 300px;
+        width: 75%;
     }
 
     #logo-header {
         padding-left: 0px;
+    }
+}
+
+@media (max-width: 425px) {
+    #col-search-form {
+        margin-left: 0px;
+    }
+
+    .search-form-input {
+        width: 180px;
+    }
+}
+
+@media (max-width: 375px) {
+    #col-logo {
+        padding: 0px 0px 0px 15px;
+    }
+
+    #col-right-bar {
+        padding: 0px;
+    }
+}
+
+@media (max-width: 320px) {
+    #col-logo {
+        padding: 0px 0px 0px 10px;
+    }
+
+    #col-right-bar {
+        padding: 0px;
+    }
+
+    .search-form-input {
+        width: 160px;
     }
 }

@@ -53,6 +53,11 @@ angular
         redirectTo: '/'
       });
   })
-  .controller('linkyCtrl', ['$scope', '$location', function($scope, $location) {
-    $scope.showHeaderFooter = $location.path() !== '/login';
+  .controller('linkyCtrl', ['$rootScope', '$scope',  function($rootScope, $scope) {
+    $scope.notInLoginScreen = false;
+    $rootScope.$on('$routeChangeSuccess', function(scope, current, pre) {
+      if (current.$$route) {
+        $scope.notInLoginScreen = current.$$route.originalPath !== '/login' && current.$$route.originalPath !== '/register';
+      }
+    });
   }]);
