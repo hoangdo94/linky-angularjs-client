@@ -1,34 +1,41 @@
 <nav class="navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
+	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="row">
-			<div class="col-xs-3">
-					<a class="navbar-brand" id="logo-header" href="#/main"><span><i class="fa fa-chain-broken"></i>&nbsp;&nbsp;Linky</span></a>
+			<div class="col-xs-3" id="col-logo">
+				<a class="navbar-brand" id="logo-header" href="#/main"><span><i class="fa fa-chain-broken"></i>&nbsp;&nbsp;Linky</span></a>
 			</div>
-			<div class="col-xs-9">
+			<div class="col-xs-9" id="col-right-bar">
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="dropdown pull-right user-profile-dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							<img class="img-rounded" src="https://placeimg.com/34/34/any" alt=""><span class="caret"></span></a>
-							<ul class="dropdown-menu">
+				<div class="row">
+					
+					<div class="col-xs-8 col-xs-offset-2" id="col-search-form">
+						<div class="search-form-input pull-right" id="search-form-header">
+							<form role="search">
+								<div class="input-group" ng-init="exp='true'">
+									<input type="text" class="form-control" ng-class="{'search-input':exp}" placeholder="Search">
+									<span class="input-group-btn" ng-class="{'search-input':!exp}" ng-click="exp=!exp">
+										<button class="btn btn-default" id="btn-search" type="submit"><i class="fa fa-search"></i></button>
+									</span>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-xs-1" id="col-user-profile">
+						<div class="dropdown user-profile-dropdown pull-left">
+							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<img class="img-rounded" src="https://placeimg.com/34/34/any" alt=""></a>
+							<ul class="dropdown-menu dropdown-menu-right">
 								<li><a href="/#/profile/123"><span>&nbsp;<i class="fa fa-info"></i></span>&nbsp;&nbsp;Profile</a></li>
 								<li><a href="/#/setting/123"><span><i class="fa fa-pencil-square-o"></i></span>&nbsp;Setting</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href=""><span><i class="fa fa-sign-out"></i></span>&nbsp;Sign out</a></li>
 							</ul>
-					</div>
-				<div class="pull-right search-form-input" id="search-form-header">
-					<form role="search">
-						<div class="input-group" ng-init="exp='true'">
-							<input type="text" class="form-control" ng-class="{'search-input':exp}" placeholder="Search">
-							<span class="input-group-btn" ng-click="exp=!exp">
-								<button class="btn btn-default" id="btn-search" type="submit"><i class="fa fa-search"></i></button>
-							</span>
 						</div>
-					</form>
-					
+					</div>
+					<div class="clear-fix"></div>
 				</div>
 			</div>
 		</div>
-	</div><!-- /.container-fluid -->
-</nav>
+		</div><!-- /.container-fluid -->
+	</nav>
