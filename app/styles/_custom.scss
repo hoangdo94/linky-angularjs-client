@@ -122,6 +122,21 @@ a {
   @media (min-width: $screen-lg) {
     margin: 0 200px;
   }
+  .ng-animate {
+    transition:opacity 0.25s linear;
+  }
+  .ng-enter {
+    opacity:0;
+  }
+  .ng-enter.ng-enter-active {
+    opacity:1;
+  }
+  .ng-leave {
+    opacity:1;
+  }
+  .ng-leave.ng-leave-active {
+    opacity:0;
+  }
 }
 .container-block {
     -moz-column-width: 25em;
