@@ -1,14 +1,62 @@
+body {
+  padding-top: $navbar-height;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+   outline: 0 !important;
+}
+
+.navbar-search {
+  position: relative;
+  .form-control {
+    background-color: transparent;
+  }
+  .btn {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 0px;
+    top: -8px;
+    @media (min-width: $screen-xs) {
+      top: -12px;
+    }
+    @media (min-width: $screen-sm) {
+      top: -3px;
+    }
+    @media (min-width: $screen-md) {
+      top: 0px;
+    }
+    i {
+      color: white;
+    }
+  }
+}
+
 #header-row {
   background: #333 url('http://placeimg.com/1200/600/nature/grayscale') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  -webkit-backdrop-filter: blur(10px);
 
   #new-link {
-    margin: 100px;
     background-color: rgba(1, 178, 134, 0.6);
-
+    margin: 10px 0px;
+    @media (min-width: $screen-sm) {
+      margin: 25px 50px;
+    }
+    @media (min-width: $screen-md) {
+      margin: 50px 100px;
+    }
+    @media (min-width: $screen-lg) {
+      margin: 100px 200px;
+    }
     input {
       background-color: transparent;
       color: white;
@@ -30,7 +78,18 @@
 }
 
 .container-narrow {
-  margin: 0px 200px;
+  @media (min-width: $screen-xs) {
+    margin: 0px;
+  }
+  @media (min-width: $screen-sm) {
+    margin: 0px 50px;
+  }
+  @media (min-width: $screen-md) {
+    margin: 0px 100px;
+  }
+  @media (min-width: $screen-lg) {
+    margin: 0px 200px;
+  }
 }
 
 .nav-custom {

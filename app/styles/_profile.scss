@@ -1,12 +1,3 @@
-body {
-    padding-top: 50px;
-}
-
-* {
-    padding: 0;
-    margin: 0;
-}
-
 #profile {
     padding: 0;
     margin: 0;
@@ -52,12 +43,12 @@ body {
     color: #d9d9d9;
     font-size: 15px;
     font-family: cursive;
-    text-align: center; 
+    text-align: center;
 }
 #profile-webpage {
     font-size: 15px;
     font-family: cursive;
-    text-align: center;     
+    text-align: center;
 }
 #profile-webpage a {
     color: #505050;
@@ -91,7 +82,7 @@ body {
 }
 
 .search-form-input {
-    width: 250px; 
+    width: 250px;
     padding-top: 15px;
 }
 
@@ -141,13 +132,13 @@ body {
     padding-right: 0px;
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
     #logo-header {
         padding-left: 15px;
     }
 }
 
-@media (max-width: 592px) { 
+@media (max-width: 592px) {
     .search-input {
         display: none !important;
     }
