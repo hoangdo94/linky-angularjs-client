@@ -28,31 +28,7 @@
 	<div class="row" id="body-row" ng-if="shown === 'Feeds'">
 		<div class="container">
 			<div class="container-narrow">
-				<div ng-repeat="feed in feeds" class="panel panel-default panel-feed">
-					<div class="panel-body">
-						<div class="media">
-							<div class="media-left">
-								<a href="/#/profile/{{feed.user}}">
-									<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
-								</a>
-								<div class="item-addons">
-									{{feed.category}}&nbsp;&nbsp;
-									<a href="/#/" ng-click="showDetails(feed)"><i class="fa fa-search"></i></a>&nbsp;&nbsp;
-									<a href="/#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
-									<a href="{{feed.url}}" target="_blank"><i class="fa fa-share"></i></a>
-								</div>
-							</div>
-							<div class="media-body">
-								<p><a href="/#/profile/{{feed.user}}"><b>{{feed.user}}</b></a></p>
-								<p>{{feed.description}}</p>
-							</div>
-						</div>
-					</div>
-					<div clas="item-preview">
-						<a href="" ng-click="showDetails(feed)">
-							<img class="img-responsive" src="http://placehold.it/1000x300/?text=Preview" alt="preview" />
-						</a>
-					</div>
+				<div ng-repeat="feed in feeds" class="panel panel-default panel-feed" ng-include="'/views/feed-details.html'">
 				</div>
 			</div>
 		</div>
@@ -118,69 +94,5 @@
 		</div>
 	</div>
 </div>
-<div id="details-modal" class="modal fade" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">
-				<a href="/#/profile/{{current.user}}">
-					<img class="img-circle" src="http://placehold.it/150x150" alt="avatar" width="30px">
-				</a>
-				<a href="/#/profile/{{current.user}}">
-					{{current.user}}
-				</a>
-				</h4>
-			</div>
-			<div class="modal-body">
-				<p>
-					<img class="img-responsive" src="http://placehold.it/1000x300/?text=Preview" alt="preview" />
-				</p>
-				<p>
-					{{current.description}}
-				</p>
-				<p>
-					1 <a href="/#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
-					<a href="{{current.url}}" target="_blank"><i class="fa fa-share"></i></a>
-					<span class="text-cat pull-right">
-						{{current.category}}
-					</span>
-				</p>
-			</div>
-			<div class="modal-footer">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Leave your comment...">
-					<span class="input-group-btn">
-						<button class="btn btn-primary" type="button">Save</button>
-					</span>
-				</div>
-				<!-- /input-group -->
-				<div class="media">
-					<div class="media-left">
-						<a href="/#/profile/{{feed.user}}">
-							<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
-						</a>
-					</div>
-					<div class="media-body">
-						<p><a href="/#/profile/{{feed.user}}"><b>Username</b></a></p>
-						<p>comment 1</p>
-					</div>
-				</div>
-				<div class="media">
-					<div class="media-left">
-						<a href="/#/profile/aaaaa">
-							<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
-						</a>
-					</div>
-					<div class="media-body">
-						<p><a href="/#/profile/aaaa"><b>Username</b></a></p>
-						<p>comment 2</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
+<div id="details-modal" class="modal fade" tabindex="-1" role="dialog" ng-include="'/views/details-modal.html'">
 </div>
-			<!-- /.modal -->

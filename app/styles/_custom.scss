@@ -1,16 +1,13 @@
 body {
   padding-top: $navbar-height;
 }
-
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
-
 a {
-   outline: 0 !important;
+  outline: 0 !important;
 }
-
 .navbar {
   .open a {
     background-color: transparent !important;
@@ -29,7 +26,7 @@ a {
       border: none;
       background-color: transparent;
       position: absolute;
-      right: 0px;
+      right: 0;
       top: -8px;
       @media (min-width: $screen-xs) {
         top: -12px;
@@ -38,7 +35,7 @@ a {
         top: -3px;
       }
       @media (min-width: $screen-md) {
-        top: 0px;
+        top: 0;
       }
       i {
         color: white;
@@ -46,18 +43,15 @@ a {
     }
   }
 }
-
-
 #header-row {
   background: #333 url('http://placeimg.com/1200/600/nature/blur') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
   #new-link {
     background-color: rgba(1, 178, 134, 0.6);
-    margin: 10px 0px;
+    margin: 10px 0;
     @media (min-width: $screen-sm) {
       margin: 25px 50px;
     }
@@ -85,66 +79,100 @@ a {
     }
   }
 }
-
 #body-row {
   padding-top: 10px;
 }
-
-.container-narrow {
-  @media (min-width: $screen-xs) {
-    margin: 0px;
+#categories {
+  .container-narrow {
+    background-color: rgba(0,0,0,0.5);
   }
-  @media (min-width: $screen-sm) {
-    margin: 0px 50px;
+  .nav-custom {
+    display: inline-block;
+    a {
+      color: white !important;
+    }
   }
-  @media (min-width: $screen-md) {
-    margin: 0px 100px;
-  }
-  @media (min-width: $screen-lg) {
-    margin: 0px 200px;
+  .dropdown {
+    display: inline-block;
+    &.open,
+    &.active,
+    &:hover {
+      border-bottom: 4px solid rgba(1, 178, 134, 1);
+    }
+    .btn {
+      background-color: transparent;
+      color: white;
+      padding: 7px 12px;
+    }
+    a {
+      cursor: pointer;
+    }
   }
 }
-
+.container-narrow {
+  @media (min-width: $screen-xs) {
+    margin: 0;
+  }
+  @media (min-width: $screen-sm) {
+    margin: 0 50px;
+  }
+  @media (min-width: $screen-md) {
+    margin: 0 100px;
+  }
+  @media (min-width: $screen-lg) {
+    margin: 0 200px;
+  }
+}
+.container-block {
+    -moz-column-width: 25em;
+    -webkit-column-width: 25em;
+    -moz-column-gap: 0.5em;
+    -webkit-column-gap: 0.5em;
+  .panel {
+    display: inline-block;
+    margin: 0.5em;
+    padding: 0;
+    width: 98%;
+  }
+}
 .nav-custom {
-  background-color: rgba(0,0,0,0.5);
   li {
     display: inline-block;
-
     a {
       color: #cccccc;
       cursor: pointer;
-
+      border-bottom: 4px solid transparent;
       &:hover {
         color: white;
         background-color: transparent;
-        border-bottom: 4px solid rgba(1, 178, 134, 1);
+        border-bottom-color: rgba(1, 178, 134, 1);
       }
     }
-
     &.active {
       a {
         color: white;
-        border-bottom: 4px solid rgba(1, 178, 134, 1);
+        border-bottom-color: rgba(1, 178, 134, 1);
       }
     }
   }
 }
-
 .panel-feed {
   position: relative;
-
   .item-addons {
-    position: absolute;;
+    position: absolute;
     top: 8px;
     right: 20px;
     color: rgba(1, 178, 134, 1);
   }
-
   .item-preview {
     max-height: 400px;
+    
   }
 }
-
+.filter-nothing {
+  text-align: center;
+  margin: 50px;
+}
 #details-modal {
   .text-cat {
     color: rgba(1, 178, 134, 1);
@@ -153,36 +181,8 @@ a {
     text-align: left;
   }
 }
-
 .footer .list-inline {
-	li > a {
-		color: rgb(1, 178, 134);
-	}
-}
-
-// Animation
-.animate-enter,
-.animate-leave
-{
-    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    position: relative;
-    display: block;
-}
-
-.animate-enter.animate-enter-active,
-.animate-leave {
-    opacity: 1;
-    top: 0;
-    height: 30px;
-}
-
-.animate-leave.animate-leave-active,
-.animate-enter {
-    opacity: 0;
-    top: -50px;
-    height: 0px;
+  li > a {
+    color: rgb(1, 178, 134);
+  }
 }
