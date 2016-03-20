@@ -12,26 +12,25 @@
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="navbar-collapse">
+		<div class="collapse navbar-collapse" id="navbar-collapse" ng-if="notInLoginScreen">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						Dropdown
+					<a class="dropdown-toggle" id="header-dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<img src="http://loremflickr.com/32/32/people" alt="profile">
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
+						<li><a href="#/profile/123">Profile</a></li>
+						<li><a href="#/setting/123">Setting</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
+						<li><a href="#/">Sign out</a></li>
 					</ul>
 				</li>
 			</ul>
 			<form class="navbar-form navbar-right" role="search">
 				<div class="navbar-search">
 					<input type="text" class="form-control" placeholder="Search for...">
-        	<button class="btn btn-default" type="button">
+        			<button class="btn btn-default" type="button">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>

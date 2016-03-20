@@ -9,22 +9,22 @@
 }
 #background {
   position: absolute;
-  background: url("../images/bg-register.jpg") no-repeat;
+  // background: url("../images/bg-register.jpg") no-repeat;
   background-size: 100% 100%;
   filter:blur(2px);
   -webkit-filter: blur(2px);
   -moz-filter: blur(2px);
   -o-filter: blur(2px);
   -ms-filter: blur(2px);
-  height: 100%;
+  // height: 100%;
   width: 100%;
   z-index: 1;
 }
 #inner-background {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.7);
+  // background-color: rgba(0, 0, 0, 0.7);
   background-size: 100% auto;
-  height: 100%;
+  // height: 100%;
   width: 100%;
   z-index: 2;
 }
