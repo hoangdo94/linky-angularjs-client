@@ -1,15 +1,67 @@
+body {
+  padding-top: $navbar-height;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+a {
+  outline: 0 !important;
+}
+.navbar {
+  .open a {
+    background-color: transparent !important;
+  }
+  .dropdown-toggle {
+    color: white;
+    display: inline-block;
+    padding: 11px 15px;
+  }
+  .navbar-search {
+    position: relative;
+    .form-control {
+      background-color: transparent;
+    }
+    .btn {
+      border: none;
+      background-color: transparent;
+      position: absolute;
+      right: 0;
+      top: -8px;
+      @media (min-width: $screen-xs) {
+        top: -12px;
+      }
+      @media (min-width: $screen-sm) {
+        top: -3px;
+      }
+      @media (min-width: $screen-md) {
+        top: 0;
+      }
+      i {
+        color: white;
+      }
+    }
+  }
+}
 #header-row {
-  background: #333 url('http://placeimg.com/1200/600/nature/grayscale') no-repeat center center fixed;
+  background: #333 url('http://placeimg.com/1200/600/nature/blur') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
   #new-link {
-    margin: 100px;
     background-color: rgba(1, 178, 134, 0.6);
-
-    input {
+    margin: 10px 0;
+    @media (min-width: $screen-sm) {
+      margin: 25px 50px;
+    }
+    @media (min-width: $screen-md) {
+      margin: 50px 100px;
+    }
+    @media (min-width: $screen-lg) {
+      margin: 100px 200px;
+    }
+    input[type="text"] {
       background-color: transparent;
       color: white;
       font-size: 18px;
@@ -22,75 +74,130 @@
         color: rgba(255, 255, 255, 0.7);
       }
     }
+    form {
+      color: white;
+    }
   }
 }
-
 #body-row {
-  padding-top: 40px;
+  padding-top: 10px;
 }
-
+#categories {
+  .container-narrow {
+    background-color: rgba(0,0,0,0.5);
+  }
+  .nav-custom {
+    display: inline-block;
+    a {
+      color: white !important;
+    }
+  }
+  .dropdown {
+    display: inline-block;
+    &.open,
+    &.active,
+    &:hover {
+      border-bottom: 4px solid rgba(1, 178, 134, 1);
+    }
+    .btn {
+      background-color: transparent;
+      color: white;
+      padding: 7px 12px;
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+}
 .container-narrow {
-  margin: 0px 200px;
+  @media (min-width: $screen-xs) {
+    margin: 0;
+  }
+  @media (min-width: $screen-sm) {
+    margin: 0 50px;
+  }
+  @media (min-width: $screen-md) {
+    margin: 0 100px;
+  }
+  @media (min-width: $screen-lg) {
+    margin: 0 200px;
+  }
+  .ng-animate {
+    transition:opacity 0.25s linear;
+  }
+  .ng-enter {
+    opacity:0;
+  }
+  .ng-enter.ng-enter-active {
+    opacity:1;
+  }
+  .ng-leave {
+    opacity:1;
+  }
+  .ng-leave.ng-leave-active {
+    opacity:0;
+  }
 }
-
+.container-block {
+    -moz-column-width: 25em;
+    -webkit-column-width: 25em;
+    -moz-column-gap: 0.5em;
+    -webkit-column-gap: 0.5em;
+  .panel {
+    display: inline-block;
+    margin: 0.5em;
+    padding: 0;
+    width: 98%;
+  }
+}
 .nav-custom {
   li {
     display: inline-block;
-
     a {
-      color: white;
+      color: #cccccc;
       cursor: pointer;
-
+      border-bottom: 4px solid transparent;
       &:hover {
+        color: white;
         background-color: transparent;
-        border-bottom: 4px solid rgba(1, 178, 134, 1);
+        border-bottom-color: rgba(1, 178, 134, 1);
       }
     }
-
     &.active {
       a {
-        border-bottom: 4px solid rgba(1, 178, 134, 1);
+        color: white;
+        border-bottom-color: rgba(1, 178, 134, 1);
       }
     }
   }
 }
-
 .panel-feed {
   position: relative;
-
   .item-addons {
-    position: absolute;;
+    position: absolute;
     top: 8px;
     right: 20px;
     color: rgba(1, 178, 134, 1);
   }
-
   .item-preview {
     max-height: 400px;
-  }
-
-  &.ng-animate {
-    transition:0.25s linear all;
-  }
-  &.ng-enter {
-    opacity:0;
-  }
-  &.ng-enter.ng-enter-active {
-    opacity:1;
-  }
-  &.ng-leave {
-    opacity:1;
-  }
-  &.ng-leave.ng-leave-active {
-    opacity:0;
+    
   }
 }
-
+.filter-nothing {
+  text-align: center;
+  margin: 50px;
+}
 #details-modal {
   .text-cat {
     color: rgba(1, 178, 134, 1);
   }
   .modal-footer {
     text-align: left;
+  }
+}
+.footer .list-inline {
+  li > a {
+    color: rgb(1, 178, 134);
   }
 }

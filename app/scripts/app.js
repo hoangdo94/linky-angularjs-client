@@ -44,12 +44,30 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .when('/logout', {
-        templateUrl: 'views/logout.html',
-        controller: 'LogoutCtrl',
-        controllerAs: 'logout'
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl',
+        controllerAs: 'register'
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .controller('linkyCtrl', ['$rootScope', '$scope',  function($rootScope, $scope) {
+    $rootScope.viewMode = 'list';
+    $scope.notInLoginScreen = false;
+    $rootScope.$on('$routeChangeSuccess', function(scope, current, pre) {
+      if (current.$$route) {
+        $scope.notInLoginScreen = current.$$route.originalPath !== '/login' && current.$$route.originalPath !== '/register';
+      }
+    });
+    $rootScope.typeIconClass = function(type) {
+      if (type === 'article') {
+        return 'fa fa-newspaper-o';
+      }
+      if (type === 'video') {
+        return 'fa fa-video-camera';
+      }
+      return  'fa fa-picture-o';
+    };
+  }]);

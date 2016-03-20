@@ -8,7 +8,7 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('LogoutCtrl', function () {
+  .controller('RegisterCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
