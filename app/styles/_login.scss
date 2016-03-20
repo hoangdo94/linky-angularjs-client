@@ -1,6 +1,6 @@
 #container-login {
 	background: url("../images/bg-login.jpg") no-repeat;
-	background-size: 100% auto;
+	background-size: 100% 100%;
 	height: 100%;
 	width: 100%;
 	text-align: center;
@@ -12,7 +12,7 @@
 	h1 {
 		font-weight: 700;
 		color: #ffffff;
-		margin-top: 3%;
+		margin-top: 5%;
 		margin-bottom: 3%;
 	}
 
@@ -80,7 +80,7 @@
     margin-top: 3%;
     margin-bottom: 3%;
     padding-top: 1%;
-    padding-bottom: 1%;
+    padding-bottom: 2%;
 
     p {
 	    font-style: italic;
@@ -125,10 +125,25 @@
 }
 
 @media (max-width: 768px) {
+
 	#form-element {
 		font-weight: 700;
 	    width: 70%;
 	    margin-left: auto;
 	    margin-right: auto;
+	}
+}
+
+@media (max-width: 480px) {
+
+	.social-login-buttons {
+
+		.btn {
+			width: 50px;
+		}
+
+		p {
+			display: none !important;
+		}
 	}
 }
