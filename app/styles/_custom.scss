@@ -9,6 +9,9 @@ a {
   outline: 0 !important;
 }
 .navbar {
+  .navbar-brand {
+    padding: 15px;
+  }
   .open a {
     background-color: transparent !important;
   }
@@ -181,7 +184,7 @@ a {
   }
   .item-preview {
     max-height: 400px;
-    
+
   }
 }
 .filter-nothing {
