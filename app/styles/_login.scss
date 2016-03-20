@@ -20,6 +20,17 @@
 	padding: 40px 15px;
 	.text {
 		margin-top: -20px;
+
+		h1 {
+			font-weight: 700;
+			color: #ffffff;
+			margin-top: 5%;
+			margin-bottom: 3%;
+		}
+
+		span {
+	    	color: rgba(21, 198, 154, 1);
+		}
 	}
 }
 .form-box {
@@ -28,6 +39,16 @@
 	height: 110px;
 	margin-left: auto;
 	margin-right: auto;
+}
+#get-information {
+	input {
+		font-weight: bold;
+	}
+
+	input:focus {
+		background-color: rgba(100, 108, 115, 0);
+		color: #ffffff;
+	}
 }
 #form-username {
 	background-color: rgba(255, 255, 255, 0.7);
