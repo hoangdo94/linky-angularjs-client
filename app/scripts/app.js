@@ -17,7 +17,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -53,7 +53,7 @@ angular
         redirectTo: '/'
       });
   })
-  .controller('linkyCtrl', ['$rootScope', '$scope',  function($rootScope, $scope) {
+  .controller('linkyCtrl', ['$rootScope', '$scope', function($rootScope, $scope) {
     $rootScope.viewMode = 'list';
     $scope.notInLoginScreen = false;
     $rootScope.$on('$routeChangeSuccess', function(scope, current, pre) {
@@ -68,6 +68,6 @@ angular
       if (type === 'video') {
         return 'fa fa-video-camera';
       }
-      return  'fa fa-picture-o';
+      return 'fa fa-picture-o';
     };
   }]);

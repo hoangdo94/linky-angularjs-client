@@ -42,7 +42,7 @@
     <div class="container">
       <div ng-class="{'container-narrow': (viewMode == 'list'), 'container-block': (viewMode == 'block')}">
         <div ng-repeat="feed in shown" class="panel panel-default panel-feed" ng-include="'/views/feed-details.html'">
-				</div>
+        </div>
       </div>
     </div>
     <div class="filter-nothing" ng-if="shown.length === 0">
