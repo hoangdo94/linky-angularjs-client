@@ -2,7 +2,42 @@
   <div class="row" id="header-row">
     <div class="container">
       <div class="jumbotron container-narrow" id="new-link">
-        <input type="text" placeholder="What do you want to SHARE?" />
+        <input type="text" placeholder="What do you want to SHARE?" ng-model="link" ng-change="showForm()"/>
+        <form class="form-horizontal" role="form" ng-if="isFormShown" ng-animate="'animate'">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Type</label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" name="optradio">Article
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio">Video
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio">Picture
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="share-cat">Category</label>
+            <div class="col-sm-10">
+              <select type="password" class="form-control" id="share-cat">
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="share-des">Description</label>
+            <div class="col-sm-10">
+              <textarea type="password" class="form-control" id="share-des" placeholder="Something about this link..."></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="reset" class="btn btn-warning" ng-click="hideForm()">Cancel</button>
+              <button type="submit" class="btn btn-success">Share Now</button>
+            </div>
+          </div>
+        </form>
       </div>
       <div id="categories">
         <div class="container-narrow">
@@ -19,7 +54,7 @@
   <div class="row" id="body-row">
     <div class="container">
       <div class="container-narrow">
-        <div ng-repeat="feed in shown" class="panel panel-default panel-feed">
+        <div ng-repeat="feed in shown" class="panel panel-default panel-feed" ng-animate="'animate'">
           <div class="panel-body">
             <div class="media">
               <div class="media-left">
@@ -41,7 +76,7 @@
           </div>
           <div clas="item-preview">
             <a href="/#/" ng-click="showDetails(feed)">
-              <img class="img-responsive" src="http://placehold.it/1500x400/?text=Preview" alt="preview" width="100%"/>
+              <img class="img-responsive" src="http://placehold.it/1500x400/?text=Preview" alt="preview" width="100%" />
             </a>
           </div>
         </div>
