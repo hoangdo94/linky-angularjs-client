@@ -45,3 +45,47 @@
     color: white;
   }
 }
+#setting .form-group {
+	input:focus, input:focus + i {
+		border-color: rgb(1, 178, 134);
+		color: rgb(1, 178, 134)!important;
+	}
+	input[type=password] {
+		color: lightgray;
+		letter-spacing: 3px;
+		font-size: 20px;
+	}
+	margin-left: 0!important;
+	margin-right: 0!important;
+}
+
+
+#setting .form-horizontal {
+	margin-top: 40px;
+	p {
+		color: gray;
+		margin-bottom: 20px;
+	}
+	.col-sm-3 {
+		img {
+			width: 100%;
+			border-radius: 5px;
+			margin-bottom: 10px;
+		}
+		button {
+			margin-bottom: 10px;
+		}
+	}
+}
+#setting button {
+	background-color: rgb(1, 178, 134);
+	color: white;
+}
+.footer .list-inline {
+	li > a {
+		color: rgb(1, 178, 134);
+	}
+}
+#setting .fa {
+	top: 1px;
+}

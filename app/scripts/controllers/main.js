@@ -8,9 +8,12 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('MainCtrl', function($scope) {
+  .controller('MainCtrl', function($rootScope, $scope) {
     // data
-    $scope.categories = ['Technology', 'Photography', 'Life', 'Economy'];
+    $scope.categories = ['Technology', 'Photography', 'Life', 'Economy', 'Joke'];
+    $scope.preferredCategories = $scope.categories.slice(0, 3);
+    $scope.otherCategories = $scope.categories.slice(3, $scope.categories.length);
+
     $scope.feeds = [{
       id: 1,
       category: 'Life',
@@ -155,6 +158,7 @@ angular.module('linkyApp')
     $scope.current = {};
     $scope.link = '';
     $scope.isFormShown = false;
+    $scope.moreCategoriesText = 'More...';
 
     // share
     $scope.showForm = function() {
@@ -172,9 +176,15 @@ angular.module('linkyApp')
     $scope.filterValue = 'All';
     $scope.shown = $scope.feeds;
 
-    $scope.filter = function(cat) {
-      $scope.filterValue = cat;
-      console.log($scope.filterValue);
+    $scope.filter = function(cat, isOther) {
+      if (isOther) {
+        $scope.filterValue = 'Other';
+        $scope.moreCategoriesText = cat;
+      } else {
+        $scope.filterValue = cat;
+        $scope.moreCategoriesText = 'More...';
+      }
+
       if (cat === 'All') {
         $scope.shown = $scope.feeds;
       } else {
@@ -184,13 +194,17 @@ angular.module('linkyApp')
       }
     };
 
+    // view mode
+    $scope.setViewMode = function(mode) {
+      $rootScope.viewMode = mode;
+    };
+
     // details
     $scope.showDetails = function(feed) {
       console.log(feed);
       $scope.current = feed;
       $('#details-modal').modal('show');
     };
-
 
     function isUrl(s) {
       var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
