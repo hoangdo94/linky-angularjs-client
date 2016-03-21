@@ -141,11 +141,7 @@ a {
     opacity:0;
   }
 }
-.container-block {
-    -moz-column-width: 25em;
-    -webkit-column-width: 25em;
-    -moz-column-gap: 0.5em;
-    -webkit-column-gap: 0.5em;
+.container-block { 
   .panel {
     display: inline-block;
     margin: 0.5em;

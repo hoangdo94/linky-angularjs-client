@@ -40,8 +40,9 @@
   </div>
   <div class="row" id="body-row">
     <div class="container">
-      <div ng-class="{'container-narrow': (viewMode == 'list'), 'container-block': (viewMode == 'block')}">
-        <div ng-repeat="feed in shown" class="panel panel-default panel-feed" ng-include="'/views/feed-details.html'">
+      <!-- <div ng-class="{'container-narrow': (viewMode == 'list'), 'container-block': (viewMode == 'block')}"> -->
+      <div ng-class="{'container-narrow': (viewMode == 'list'), 'container-block': (viewMode == 'block')}" isotope-container="isotope-container"> <!-- isotope-container="isotope-container"  -->
+        <div ng-repeat="feed in shown" class="panel panel-default panel-feed" isotope-item="isotope-item"  ng-include="'/views/feed-details.html'" ><!-- isotope-item="isotope-item" -->
         </div>
       </div>
     </div>
