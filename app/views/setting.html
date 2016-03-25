@@ -1,48 +1,118 @@
-<div class="container">
-	<div class="row" id="setting">
-		<div class="col-md-6 col-md-offset-3">
-		<h1>Settings</h1>
-		  	<form class="form-horizontal" role="form">
-				<p>ACCOUNT</p>
-			  	<div class="row">
-			      	<div class="col-sm-3">
-			      		<img src="http://thelatestpull.com/wp-content/uploads/2015/02/avatar-extras-the-avatar-state-cart-b.jpg">
-			      		<button class="btn btn-sm btn-block">Change</button>
-			      	</div>
-			      	<div class="col-sm-8">
-			      		<div class="form-group left-inner-addon">
-			      			<input type="text" class="form-control input-lg" value="Thanh Huy">		
-			      			<i class="fa fa-user"></i>
-			      		</div>
-			          	<div class="form-group left-inner-addon">
-			      			<input type="email" class="form-control input-lg" value="huy@gmail.com">
-			      			<i class="fa fa-envelope"></i>		
-			      		</div>
-			      		<div class="form-group left-inner-addon">
-			      			<input type="password" class="form-control input-lg" value="Thanh Huy">		
-			      			<i class="fa fa-lock fa-lg"></i>
-			      		</div>
-			      		<div class="form-group left-inner-addon re-pass">
-			      			<input type="password" class="form-control input-lg" value="Thanh Huy">		
-			      			<i class="fa fa-lock fa-lg"></i>
-			      		</div>
-			      		<div class="form-group left-inner-addon">
-			      			<input type="text" class="form-control input-lg" value="Designer and Developer living in Ho Chi Minh City, Vietnam">		
-			      			<i class="fa fa-tags"></i>
-			      		</div>
-			      		<div class="form-group left-inner-addon">
-			      			<input type="text" class="form-control input-lg" value="akai-sama.com">		
-			      			<i class="fa fa-link"></i>
-			      		</div>
-			      		<div class="form-group left-inner-addon">
-			      			<input type="text" class="form-control input-lg" value="Life, Technology, Economy">		
-			      			<i class="fa fa-heart"></i>
-			      		</div>
-			      	</div>
-			  	</div>
-			  	<hr>
-			  	<button class="btn col-sm-3">Save Changes</button>
-		  	</form>
-	    </div>
+<div class="container-fluid" style="position:relative;">
+	<div class="row" id="header-row">
+		<div class="container">
+			<div id="profile">
+				<div id="profile-information">
+					<div id="profile-image">
+						<p class="avt_edit trans">
+							<a class="avt_edit_icon zmbtn3" title="Update avatar" href="#">
+								<em class="zmicn"></em>
+							</a>
+						</p>
+					</div>
+					<div id="profile-name" style="margin-bottom: 60px;">
+						<p>akai-sama</p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	<a title="Change background" class="editpfcover" href="#">
+		<span>Change background</span>
+		<em class="editpfcover_icn zmicn16"></em>
+	</a>
+</div>
+
+
+
+
+<div class="container">
+	<div id="setting">
+		<div class="row">
+			<div class="col-sm-10">
+				<h2 style="font-weight:bold;">Settings</h2>
+			</div>
+			<div class="col-sm-2">
+				<button class="edit btn"><i class="fa fa-pencil-square-o"></i> Edit</button>
+				<button class="save btn"><i class="fa fa-floppy-o"></i> Save</button>
+			</div>
+		</div>
+		
+		
+	  	<form class="form-horizontal" role="form">
+	  		<div class="col-sm-10 col-sm-offset-1">
+	  			<div class="row">
+		  			<span class="basic icon"></span>
+		  			<div class="col-sm-10 col-sm-offset-1">
+		  				<strong>Basic Infomation:</strong>
+		  				<div class="form-group" style="margin-top:10px;">
+		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Username</label>
+		  					<div class="col-sm-10">
+		  						<input type="text" class="form-control" value="Thanh Huy" readonly>
+		  					</div>
+			      		</div>
+			      		<div class="form-group">
+		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Password</label>
+		  					<div class="col-sm-10">
+		  						<input type="password" class="form-control" value="Thanh Huy" readonly>
+		  					</div>
+			      		</div>
+			      		<div class="form-group" style="display: none;" id="re-pass">
+		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Re-password</label>
+		  					<div class="col-sm-10">
+		  						<input type="password" class="form-control" value="Thanh Huy">
+		  					</div>
+			      		</div>
+		  			</div>
+		  		</div>
+		  		<div class="row">
+		  			<span class="contact icon"></span>
+		  			<div class="col-sm-10 col-sm-offset-1">
+		  				<strong>Contact Infomation:</strong>
+		  				<div class="form-group" style="margin-top:10px;">
+		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Email</label>
+		  					<div class="col-sm-10">
+		  						<input type="email" class="form-control" value="huy@gmail.com" readonly>
+		  					</div>
+			      		</div>
+			      		<div class="form-group">
+		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Website</label>
+		  					<div class="col-sm-10">
+		  						<input type="text" class="form-control" value="www.huy.com.vn" readonly>
+		  					</div>
+			      		</div>
+		  			</div>
+		  		</div>
+		  		<div class="row">
+		  			<span class="other icon"></span>
+		  			<div class="col-sm-10 col-sm-offset-1">
+		  				<strong>Other Infomation:</strong>
+		  				<div class="form-group" style="margin-top:10px;">
+		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Title</label>
+		  					<div class="col-sm-10">
+		  						<input type="text" class="form-control" value="Designer and Developer living in Ho Chi Minh City, Vietnam" readonly>
+		  					</div>
+			      		</div>
+			      		<div class="form-group">
+		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Categories</label>
+		  					<div class="col-sm-10">
+		  						<div id="multi_select"
+						  			isteven-multi-select
+								    input-model="categories"
+								    output-model="preferedCategories"
+								    button-label="name"
+								    item-label="name"
+								    tick-property="ticked"
+								    disable-property="disabled"
+						  		>
+						  		</div>
+		  					</div>
+			      		</div>
+		  			</div>
+		  		</div>
+	  		</div>
+	  		
+	  		
+	  	</form>
+  	</div>
 </div>

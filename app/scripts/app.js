@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'isteven-multi-select'
   ])
   .config(function($routeProvider) {
     $routeProvider
