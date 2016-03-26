@@ -111,8 +111,10 @@
     padding-left: 6%;
   }
   .container-register {
-    background-image: none;
-    background-color: #202020;
+/*    background-image: none;
+    background-color: #202020;*/
+    background: url("../images/bg-register-small-1.jpg") no-repeat;
+    background-size: 100% 100%;
     .form-horizontal {
       width: 100%;
     }
