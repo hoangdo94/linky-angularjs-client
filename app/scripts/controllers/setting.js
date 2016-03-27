@@ -50,8 +50,8 @@ angular.module('linkyApp')
 	};
 	$scope.change_avatar = function(){
 		$('#fileinput').click();
-	}
+	};
 	$scope.change_background = function(){
 		$('#fileinput').click();
-	}
+	};
   });
