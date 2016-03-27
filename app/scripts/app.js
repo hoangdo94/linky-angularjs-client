@@ -1,3 +1,4 @@
+/*globals $:false */
 'use strict';
 
 /**
@@ -57,6 +58,9 @@ angular
   .controller('linkyCtrl', ['$rootScope', '$scope', function($rootScope, $scope) {
     $rootScope.viewMode = 'list';
     $scope.notInLoginScreen = false;
+    $rootScope.$on( "$routeChangeStart", function() {
+      $('#details-modal').modal('hide');
+    });
     $rootScope.$on('$routeChangeSuccess', function(scope, current) {
       if (current.$$route) {
         $scope.notInLoginScreen = current.$$route.originalPath !== '/login' && current.$$route.originalPath !== '/register';
@@ -70,5 +74,9 @@ angular
         return 'fa fa-video-camera';
       }
       return 'fa fa-picture-o';
+    };
+    // details
+    $rootScope.showDetails = function(feed) {
+      $rootScope.current = feed;
     };
   }]);

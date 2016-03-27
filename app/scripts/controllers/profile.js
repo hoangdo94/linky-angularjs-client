@@ -96,9 +96,4 @@ angular.module('linkyApp')
         $scope.shown = 'Following';
       }
     };
-
-    // details
-    $scope.showDetails = function(feed) {
-      $scope.current = feed;
-    };
   });
