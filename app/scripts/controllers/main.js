@@ -201,9 +201,7 @@ angular.module('linkyApp')
 
     // details
     $scope.showDetails = function(feed) {
-      console.log(feed);
       $scope.current = feed;
-      $('#details-modal').modal('show');
     };
 
     function isUrl(s) {

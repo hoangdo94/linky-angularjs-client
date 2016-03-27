@@ -7,7 +7,7 @@
       <div class="item-addons">
         {{feed.category}}&nbsp;&nbsp;
         <a><i ng-class="typeIconClass(feed.type)"></i></a>&nbsp;&nbsp;
-        <a href="/#/" ng-click="showDetails(feed)"><i class="fa fa-search"></i></a>&nbsp;&nbsp;
+        <a href="/#/" ng-click="showDetails(feed)" data-toggle="modal" data-target="#details-modal"><i class="fa fa-search"></i></a>&nbsp;&nbsp;
         <a href="/#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
         <a href="{{feed.url}}" target="_blank"><i class="fa fa-share"></i></a>
       </div>
@@ -19,7 +19,7 @@
   </div>
 </div>
 <div clas="item-preview">
-  <a href="" ng-click="showDetails(feed)">
+  <a href="" ng-click="showDetails(feed)" data-toggle="modal" data-target="#details-modal">
     <img class="img-responsive" src="http://placehold.it/1000x300/?text=Preview" alt="preview" />
   </a>
 </div>
