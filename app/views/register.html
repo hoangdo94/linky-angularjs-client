@@ -14,19 +14,19 @@
 			      	<div class="col-sm-10 col-sm-offset-1">
 			      		<p class="description">Username:</p>
 			      		<div class="form-group left-inner-addon">
-			      			<input type="text" class="form-control input-lg" tabindex="1">
+			      			<input type="text" class="form-control input-lg" alt="" tabindex="1" required>
 			      		</div>
 			      		<p class="description">Email:</p>
 			          	<div class="form-group left-inner-addon">
-			      			<input type="email" class="form-control input-lg" tabindex="2">
+			      			<input type="email" class="form-control input-lg" alt="" tabindex="2" required>
 			      		</div>
 			      		<p class="description">Password:</p>
 			      		<div class="form-group left-inner-addon">
-			      			<input type="password" class="form-control input-lg" tabindex="3">
+			      			<input type="password" class="form-control input-lg" alt="Password must be at least 6 characters long, contain at least 1 uppercase letter and 1 digit. It cannot contain @ # $ %" tabindex="3" required>
 			      		</div>
 			      		<p class="description">Re-enter password:</p>
 			      		<div class="form-group left-inner-addon re-pass">
-			      			<input type="password" class="form-control input-lg" tabindex="4">
+			      			<input type="password" class="form-control input-lg" tabindex="4" required>
 			      		</div>
 			      	</div>
 			  	</div>
@@ -43,14 +43,15 @@
 			      		<p class="description">Gender:</p>
 			      		<div class="form-group left-inner-addon">
 			      			<select name="gender" class="form-control input-lg" tabindex="5">
-			      				<option value="Male" selected>Male</option>
+			      				<option value="None">--- Please select ---</option>
+			      				<option value="Male">Male</option>
 			      				<option value="Female">Female</option>
 			      				<option value="Other">Other</option>
 			      			</select>
 			      		</div>
 			      		<p class="description">Birthday:</p>
 			      		<div class="form-group left-inner-addon">
-			      			<input type="date" name="birthday" class="form-control input-lg" tabindex="6">
+			      			<input type="date" name="birthday" class="form-control input-lg" tabindex="6" required>
 			      		</div>
 			      		<p class="description">Mobile phones:</p>
 			      		<div class="form-group left-inner-addon">
@@ -60,6 +61,7 @@
 			          	<div class="form-group left-inner-addon">
 			      			<!-- <input type="text" class="form-control input-lg" tabindex="6"> -->
 			      			<select name="country" class="form-control input-lg" tabindex="8">
+			      				<option value="None">--- Please select ---</option>
 								<option value="AF">Afghanistan</option>
 								<option value="AL">Albania</option>
 								<option value="DZ">Algeria</option>
@@ -298,7 +300,7 @@
 								<option value="VU">Vanuatu</option>
 								<option value="VS">Vatican City State</option>
 								<option value="VE">Venezuela</option>
-								<option value="VN" selected>Vietnam</option>
+								<option value="VN">Vietnam</option>
 								<option value="VB">Virgin Islands (Brit)</option>
 								<option value="VA">Virgin Islands (USA)</option>
 								<option value="WK">Wake Island</option>
@@ -323,5 +325,18 @@
 <script type="text/javascript">
 	document.getElementById("btn-back").onclick = function () {
 		location.href = "#/login";
+	}
+</script>
+
+<script type="text/javascript">
+	document.getElementById("btn-register").onclick = function () {
+		location.href = "#/";
+	}
+</script>
+
+<script type="text/javascript">
+	var sex = document.getElementByName("gender")[0].value;
+	if (sex.value == None) {
+		alert("Please choose gender");
 	}
 </script>
