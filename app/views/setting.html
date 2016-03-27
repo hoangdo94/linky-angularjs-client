@@ -5,7 +5,7 @@
 				<div id="profile-information">
 					<div id="profile-image">
 						<p class="avt_edit trans">
-							<a class="avt_edit_icon zmbtn3" title="Update avatar" href="#">
+							<a class="avt_edit_icon zmbtn3 cursor" title="Update avatar" ng-click="change_avatar()">
 								<em class="zmicn"></em>
 							</a>
 						</p>
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 	</div>
-	<a title="Change background" class="editpfcover" href="#">
+	<a title="Change background" class="editpfcover cursor" ng-click="change_background()">
 		<span>Change background</span>
 		<em class="editpfcover_icn zmicn16"></em>
 	</a>
@@ -33,8 +33,8 @@
 				<h2 style="font-weight:bold;">Settings</h2>
 			</div>
 			<div class="col-sm-2">
-				<button class="edit btn"><i class="fa fa-pencil-square-o"></i> Edit</button>
-				<button class="save btn"><i class="fa fa-floppy-o"></i> Save</button>
+				<button class="edit btn" ng-click="edit()"><i class="fa fa-pencil-square-o"></i> Edit</button>
+				<button class="save btn" ng-click="save()"><i class="fa fa-floppy-o"></i> Save</button>
 			</div>
 		</div>
 		
@@ -116,3 +116,5 @@
 	  	</form>
   	</div>
 </div>
+
+<input type="file" name="upload" id="fileinput" style="display:none;">

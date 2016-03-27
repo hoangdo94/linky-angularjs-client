@@ -21,31 +21,37 @@ angular.module('linkyApp')
     	{'name': 'Photography', ticked: true},
     	{'name': 'Life', ticked: true}
     ];
-    $('.edit').click(function(){
+    $scope.edit = function(){
 		$('input').each(function(){
 			$(this).attr('readonly', false);
 		});
 		for (var i = $scope.categories.length - 1; i >= 0; i--) {
 			$scope.categories[i].disabled = false;
-		};
+		}
 		$('#re-pass').toggle();
 		$('.save').toggle();
-		$(this).toggle();
+		$('.edit').toggle();
 		$('.multiSelect > button').css('pointer-events', 'all');
 		$('.multiSelect > button').css('background-color', '#fff');
-	})
-	$('.save').click(function(){
+	};
+	$scope.save = function(){
 		$('input').each(function(){
 			$(this).attr('readonly', true);
 		});
 		for (var i = $scope.categories.length - 1; i >= 0; i--) {
 			$scope.categories[i].disabled = true;
-		};
-		$(this).toggle();
+		}
+		$('.save').toggle();
 		$('.edit').toggle();
 		$('#re-pass').toggle();
 		$('.multiSelect > button').css('pointer-events', 'none');
 		$('.multiSelect > button').css('background-color', '#eeeeee');
 		
-	})
+	};
+	$scope.change_avatar = function(){
+		$('#fileinput').click();
+	}
+	$scope.change_background = function(){
+		$('#fileinput').click();
+	}
   });
