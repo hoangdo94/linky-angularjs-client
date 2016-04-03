@@ -28,7 +28,7 @@
 	<div class="row" id="body-row" ng-if="shown === 'Feeds'">
 		<div class="container">
 			<div class="container-narrow">
-				<div ng-repeat="feed in feeds" class="panel panel-default panel-feed" ng-include="'/views/feed-details.html'">
+				<div ng-repeat="feed in feeds" class="panel panel-default panel-feed" ng-include="'feed-details'">
 				</div>
 			</div>
 		</div>
@@ -40,12 +40,12 @@
 					<div class="panel-body">
 						<div class="media">
 							<div class="media-left">
-								<a href="/#/profile/{{follower.user}}">
+								<a href="#/profile/{{follower.user}}">
 									<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
 								</a>
 							</div>
 							<div class="media-body">
-								<p><a href="/#/profile/{{follower.user}}"><b>{{follower.user}}</b></a></p>
+								<p><a href="#/profile/{{follower.user}}"><b>{{follower.user}}</b></a></p>
 								<p class="user-follow">
 									<span>{{follower.posts}} posts &nbsp;</span>
 									<span>{{follower.followers}} followers &nbsp;</span>
@@ -70,12 +70,12 @@
 					<div class="panel-body">
 						<div class="media">
 							<div class="media-left">
-								<a href="/#/profile/{{follow.user}}">
+								<a href="#/profile/{{follow.user}}">
 									<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
 								</a>
 							</div>
 							<div class="media-body">
-								<p><a href="/#/profile/{{follow.user}}"><b>{{follow.user}}</b></a></p>
+								<p><a href="#/profile/{{follow.user}}"><b>{{follow.user}}</b></a></p>
 								<p class="user-follow">
 									<span>{{follow.posts}} posts &nbsp;</span>
 									<span>{{follow.followers}} followers &nbsp;</span>

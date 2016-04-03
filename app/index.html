@@ -1,64 +1,220 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Linky - For sharers by sharers</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/isteven-angular-multiselect/isteven-multi-select.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="linkyApp" ng-controller="linkyCtrl">
-    <!--[if lte IE 8]>
+
+<head>
+  <meta charset="utf-8">
+  <title>Linky - For sharers by sharers</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/isteven-angular-multiselect/isteven-multi-select.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+
+<body ng-app="linkyApp" ng-controller="linkyCtrl">
+  <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <header id="header" class="header header-style" ng-include="'/views/header.html'"></header>
-    <div ng-view=""></div>
-    <div class="footer" ng-include="'/views/footer.html'"></div>
-    <div id="details-modal" class="modal fade" tabindex="-1" role="dialog" ng-include="'/views/details-modal.html'">
+  <header id="header" class="header header-style">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    	<div class="container">
+    		<!-- Brand and toggle get grouped for better mobile display -->
+    		<div class="navbar-header">
+    			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+    				<span class="sr-only">Toggle navigation</span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    			</button>
+    			<a class="navbar-brand" href="#/">
+    				<img src="images/logo.png" height="25px" />
+    			</a>
+    		</div>
+
+    		<!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse" ng-if="notInLoginScreen">
+    			<ul class="nav navbar-nav navbar-right">
+    				<li class="dropdown">
+    					<a class="dropdown-toggle" id="header-dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    						<img class="img-rounded" src="https://placeimg.com/32/32/people" alt="profile">
+    						<span class="caret"></span>
+    					</a>
+    					<ul class="dropdown-menu">
+    						<li><a href="#/profile/123">Profile</a></li>
+    						<li><a href="#/setting/123">Setting</a></li>
+    						<li role="separator" class="divider"></li>
+    						<li><a href="#/login">Sign out</a></li>
+    					</ul>
+    				</li>
+    			</ul>
+    			<form class="navbar-form navbar-right" role="search">
+    				<div class="navbar-search">
+    					<input type="text" class="form-control" placeholder="Search for...">
+    					<button class="btn btn-default" type="button">
+    						<i class="fa fa-search"></i>
+    					</button>
+    				</div>
+    			</form>
+    		</div>
+    		<!-- /.navbar-collapse -->
+    	</div>
+    	<!-- /.container-fluid -->
+    </nav>
+  </header>
+  <div ng-view=""></div>
+  <div class="footer">
+    <hr/>
+    <div class="container" style="text-align: center;">
+      <ul class="list-inline">
+        <li><a href="#/">ABOUT US</a></li>
+        <li><a href="#/">SUPPORT</a></li>
+        <li><a href="#/">PRIVACY</a></li>
+        <li><a href="#/">TERMS</a></li>
+      </ul>
+      &copy; 2016 Linky
     </div>
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <br/>
+  </div>
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
+  <!-- Modal -->
+  <div id="details-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">
+            <a href="#/profile/{{current.user}}">
+              <img class="img-circle" src="http://placehold.it/150x150" alt="avatar" width="30px">
+            </a>
+            <a href="#/profile/{{current.user}}">
+              {{current.user}}
+            </a>
+            </h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            <img class="img-responsive" src="http://placehold.it/1000x300/?text=Preview" alt="preview" />
+          </p>
+          <p>
+            {{current.description}}
+          </p>
+          <p>
+            1 <a href="#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
+            <a href="{{current.url}}" target="_blank"><i class="fa fa-share"></i></a>
+            <span class="text-cat pull-right">
+                <a><i ng-class="typeIconClass(feed.type)"></i></a>&nbsp;&nbsp;
+                {{current.category}}
+              </span>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Leave your comment...">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">Save</button>
+              </span>
+          </div>
+          <!-- /input-group -->
+          <div class="media">
+            <div class="media-left">
+              <a href="#/profile/{{feed.user}}">
+                <img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+              </a>
+            </div>
+            <div class="media-body">
+              <p><a href="#/profile/user1"><b>Username</b></a></p>
+              <p>comment 1</p>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <a href="#/profile/user2">
+                <img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+              </a>
+            </div>
+            <div class="media-body">
+              <p><a href="#/profile/aaaa"><b>Username</b></a></p>
+              <p>comment 2</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <script type="text/ng-template" id="feed-details">
+    <div class="panel-body">
+      <div class="media">
+        <div class="media-left">
+          <a href="#/profile/{{feed.user}}">
+            <img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+          </a>
+          <div class="item-addons">
+            {{feed.category}}&nbsp;&nbsp;
+            <a><i ng-class="typeIconClass(feed.type)"></i></a>&nbsp;&nbsp;
+            <a href="#/" ng-click="showDetails(feed)" data-toggle="modal" data-target="#details-modal"><i class="fa fa-search"></i></a>&nbsp;&nbsp;
+            <a href="#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
+            <a href="{{feed.url}}" target="_blank"><i class="fa fa-share"></i></a>
+          </div>
+        </div>
+        <div class="media-body">
+          <p><a href="#/profile/{{feed.user}}"><b>{{feed.user}}</b></a></p>
+          <p>{{feed.description}}</p>
+        </div>
+      </div>
+    </div>
+    <div clas="item-preview">
+      <a href="" ng-click="showDetails(feed)" data-toggle="modal" data-target="#details-modal">
+        <img class="img-responsive" src="http://placehold.it/1000x300/?text=Preview" alt="preview" />
+      </a>
+    </div>
+  </script>
+  </div>
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+  <script>
+    ! function(A, n, g, u, l, a, r) {
+      A.GoogleAnalyticsObject = l, A[l] = A[l] || function() {
+          (A[l].q = A[l].q || []).push(arguments)
+        }, A[l].l = +new Date, a = n.createElement(g),
+        r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+    }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+  </script>
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/profile.js"></script>
-        <script src="scripts/controllers/setting.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/register.js"></script>
-        <!-- endbuild -->
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/controllers/main.js"></script>
+  <script src="scripts/controllers/about.js"></script>
+  <script src="scripts/controllers/profile.js"></script>
+  <script src="scripts/controllers/setting.js"></script>
+  <script src="scripts/controllers/login.js"></script>
+  <script src="scripts/controllers/register.js"></script>
+  <!-- endbuild -->
 </body>
+
 </html>
