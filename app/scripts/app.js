@@ -69,7 +69,7 @@ angular
             $scope.notInLoginScreen = false;
 
             // Set api Url
-            localStorageService.set('apiUrl', 'http://localhost:3000');
+            localStorageService.set('apiUrl', 'http://localhost:1234/api');
 
             $rootScope.$on("$routeChangeStart", function(event) {
                 $('#details-modal').modal('hide');
