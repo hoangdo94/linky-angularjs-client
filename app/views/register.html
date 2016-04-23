@@ -3,7 +3,7 @@
 	<div id="inner-background"></div>
 	<div class="row col-md-11 col-md-offset-1" id="container-main">
 		<h1>Welcome to <span>Linky</span>,</h1>
-	  	<form class="form-horizontal" role="form">
+	  	<form class="form-horizontal" role="form" name="form_user">
 	  		<!-- <fieldset class="fieldset" id="account"> -->
 	  		<div class="row col-md-5" id="account">
 			    <!-- <div class="col-sm-8"> -->
@@ -14,19 +14,22 @@
 			      	<div class="col-sm-10 col-sm-offset-1">
 			      		<p class="description">Username:</p>
 			      		<div class="form-group left-inner-addon">
-			      			<input type="text" class="form-control input-lg" alt="" tabindex="1" required>
+			      			<input type="text" class="form-control input-lg" ng-model="user.username" alt="" tabindex="1" required>
 			      		</div>
 			      		<p class="description">Email:</p>
 			          	<div class="form-group left-inner-addon">
-			      			<input type="email" class="form-control input-lg" alt="" tabindex="2" required>
+			      			<input type="email" class="form-control input-lg" ng-model="user.email" alt="" tabindex="2" required>
 			      		</div>
 			      		<p class="description">Password:</p>
 			      		<div class="form-group left-inner-addon">
-			      			<input type="password" class="form-control input-lg" alt="Password must be at least 6 characters long, contain at least 1 uppercase letter and 1 digit. It cannot contain @ # $ %" tabindex="3" required>
+			      			<input type="password" class="form-control input-lg" name="password" ng-model="user.password" alt="Password must be at least 6 characters long, contain at least 1 uppercase letter and 1 digit. It cannot contain @ # $ %" tabindex="3" required>
 			      		</div>
 			      		<p class="description">Re-enter password:</p>
 			      		<div class="form-group left-inner-addon re-pass">
-			      			<input type="password" class="form-control input-lg" tabindex="4" required>
+			      			<input type="password" class="form-control input-lg" name="password_verify" ng-model="user.password_verify" tabindex="4" required pw-check>
+			      			<span class="text text-danger" ng-show="form_user.password_verify.$error.noMatch">
+						    	Password not matched!
+						  </span>
 			      		</div>
 			      	</div>
 			  	</div>
@@ -42,26 +45,25 @@
 			      	<div class="col-sm-10 col-sm-offset-1">
 			      		<p class="description">Gender:</p>
 			      		<div class="form-group left-inner-addon">
-			      			<select name="gender" class="form-control input-lg" tabindex="5">
-			      				<option value="None">--- Please select ---</option>
+			      			<select name="gender" class="form-control input-lg" ng-model="user.gender" tabindex="5">
+			      				<option value="None" disabled="disabled">--- Please select ---</option>
 			      				<option value="Male">Male</option>
 			      				<option value="Female">Female</option>
-			      				<option value="Other">Other</option>
 			      			</select>
 			      		</div>
 			      		<p class="description">Birthday:</p>
 			      		<div class="form-group left-inner-addon">
-			      			<input type="date" name="birthday" class="form-control input-lg" tabindex="6" required>
+			      			<input type="date" name="birthday" class="form-control input-lg" ng-model="user.birthday" tabindex="6" required>
 			      		</div>
 			      		<p class="description">Mobile phones:</p>
 			      		<div class="form-group left-inner-addon">
-			      			<input type="tel" class="form-control input-lg" tabindex="7">
+			      			<input type="tel" class="form-control input-lg" ng-model="user.phone" tabindex="7">
 			      		</div>
 			      		<p class="description">Country:</p>
 			          	<div class="form-group left-inner-addon">
 			      			<!-- <input type="text" class="form-control input-lg" tabindex="6"> -->
-			      			<select name="country" class="form-control input-lg" tabindex="8">
-			      				<option value="None">--- Please select ---</option>
+			      			<select name="country" class="form-control input-lg" ng-model="user.country" tabindex="8">
+			      				<option value="None" disabled="disableds">--- Please select ---</option>
 								<option value="AF">Afghanistan</option>
 								<option value="AL">Albania</option>
 								<option value="DZ">Algeria</option>
@@ -315,28 +317,12 @@
 			  	</div>
 			</div>
 		  	<!-- </fieldset> -->
-		  	<!-- <hr> -->
-		  	<button class="btn col-sm-2" tabindex="9" id="btn-register">Sign Up</button>
-		  	<button class="btn col-sm-2" tabindex="10" id="btn-back">Cancel</button>
+		  	<div class="clearfix"></div>
+		  	<div class="form-group">
+			  	<button class="btn col-sm-2" ng-click="signUp(user)" tabindex="9" id="btn-register">Sign Up</button>
+			  	<button class="btn col-sm-2" ng-click="goToLogin()" tabindex="10" id="btn-back">Cancel</button>
+		  	</div>
+		  		
 	  	</form>
 	</div>
 </div>
-
-<script type="text/javascript">
-	document.getElementById("btn-back").onclick = function () {
-		location.href = "#/login";
-	}
-</script>
-
-<script type="text/javascript">
-	document.getElementById("btn-register").onclick = function () {
-		location.href = "#/";
-	}
-</script>
-
-<script type="text/javascript">
-	var sex = document.getElementByName("gender")[0].value;
-	if (sex.value == None) {
-		alert("Please choose gender");
-	}
-</script>
