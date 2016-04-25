@@ -88,8 +88,7 @@ angular.module('linkyApp')
 
                 currentUser = null;
 
-                $location.path('/');
-                $location.$$compose();
+                $location.path('/login');
             },
         };
 

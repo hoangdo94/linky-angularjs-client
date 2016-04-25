@@ -60,16 +60,18 @@ angular
                 controllerAs: 'register'
             })
             .when('/admin', {
-              templateUrl: 'views/admin.html',
-              controller: 'AdminCtrl',
-              controllerAs: 'admin'
+                templateUrl: 'views/admin.html',
+                controller: 'AdminCtrl',
+                controllerAs: 'admin'
             })
             .otherwise({
                 redirectTo: '/'
             });
     })
-    .controller('linkyCtrl', ['$rootScope', '$scope', '$location', 'localStorageService',
-        function($rootScope, $scope, $location, localStorageService) {
+    .controller('linkyCtrl', ['$rootScope', '$scope', '$location', 'localStorageService', 'UserData', '$cookieStore',
+        function($rootScope, $scope, $location, localStorageService, UserData, $cookieStore) {
+            $rootScope.userId = $cookieStore.get('userId') ? $cookieStore.get('userId') : '';
+
             $rootScope.viewMode = 'list';
             $scope.notInLoginScreen = false;
 
@@ -99,6 +101,10 @@ angular
             // details
             $rootScope.showDetails = function(feed) {
                 $rootScope.current = feed;
+            };
+
+            $scope.logout = function() {
+                UserData.logout();
             };
 
         }

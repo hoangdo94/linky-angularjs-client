@@ -8,23 +8,26 @@
 			</div>
 			<div class="row">
 				<div class="form-box">
-					<form role="form" action="" method="post" class="login-form">
+					<form role="form" class="login-form" name="form-login">
 						<div id="get-information">
 							<div class="form-group">
 								<!-- <label class="sr-only" for="form-username">Username</label> -->
-								<input type="text" name="form-username" ng-model="user.username" placeholder="Username" class="form-username form-control" id="form-username" tabindex="1">
+								<input type="text" name="form-username" ng-model="user.username" placeholder="Username" class="form-username form-control" id="form-username" tabindex="1" required="required">
 							</div>
-							<button id="login-btn" class="btn" ng-click="loginUser(user)" tabindex="3">
-								<p>Sign In</p><span class="glyphicon glyphicon-arrow-right"></span></button>
+							<button id="login-btn" class="btn" ng-click="loginUser(user)" ng-disabled="form-login.$invalid" tabindex="3">
+							<p>Sign In</p><span class="glyphicon glyphicon-arrow-right"></span></button>
 							<div class="form-group">
 								<!-- <label class="sr-only" for="form-password">Password</label> -->
-								<input type="password" name="form-password" ng-model="user.password" placeholder="Password" class="form-password form-control" id="form-password" tabindex="2">
+								<input type="password" name="form-password" ng-model="user.password" placeholder="Password" class="form-password form-control" id="form-password" tabindex="2" required="required">
 							</div>
 						</div>
 					</form>
 				</div>
 				<div id="toRegister">
 					<a href="#/register" tabindex="4">Create new account</a>
+				</div>
+				<div>
+					<p class="text-center text-uppercase" ng-show="showAlertLogin == true"><strong>Error!</strong> Please try again</p>					
 				</div>
 			</div>
 			<div class="row">
