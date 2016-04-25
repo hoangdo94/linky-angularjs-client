@@ -7,7 +7,7 @@
  * Factory in the linkyApp.
  */
 angular.module('linkyApp')
-    .factory('UserData', function($cookieStore, $window, $location) {
+    .factory('UserData', function($cookieStore, $window, $location, $http, localStorageService) {
         var currentUser = null;
 
         var userData = {
@@ -18,12 +18,13 @@ angular.module('linkyApp')
                         async: false
                     });
                     update({
-                        '_id': $cookieStore.get('userId')
+                        'id': $cookieStore.get('userId')
                     }, function(response) {
                         userData.adminRestrict(response);
                         $.ajaxSetup({
                             async: true
                         });
+
                     });
                 } else {
                     this.adminRestrict();
@@ -31,21 +32,35 @@ angular.module('linkyApp')
             },
 
             isAdmin: function() {
-                return (currentUser && currentUser.is_admin) ? true : false;
+                return (currentUser && currentUser.isAdmin == '1') ? true : false;
             },
 
             adminRestrict: function(response) {
                 response = response || currentUser;
                 // Redirect to homepage if not admin but try to
                 // access /admin
-                if (!response.isAdmin() && !/^\/(admin)?$/.test($window.location.pathname)) {
+                if (!this.isAdmin() && !/^\/(admin)?$/.test($window.location.pathname)) {
                     $location.path('/');
                 }
             },
 
-            setCurrentUser: function(user) {
+            update: function(callback) {
+                var user = this.getCurrentUser();
+                if (user != null) {
+                    update(user, function(response) {
+                        if (typeof func === 'function') {
+                            callback.call(this, response);
+                        }
+                    });
+                }
+            },
+
+            setCurrentUser: function(user, callback) {
                 currentUser = user;
-                $cookieStore.put('userId', user._id);
+                $cookieStore.put('userId', user.id);
+                if (callback && typeof callback == 'function') {
+                    callback.call();
+                }
             },
 
             getCurrentUser: function() {
@@ -53,14 +68,18 @@ angular.module('linkyApp')
             },
 
             isLoggedIn: function() {
-                return (currentUser) ? currentUser : false;
+                return (!_.isEmpty(currentUser)) ? currentUser : false;
+            },
+
+            register: function(user) {
+                this.setCurrentUser(user);
             },
 
             login: function() {
                 if (this.getCurrentUser() == null) {
-                  $location.path('/login');
+                    $location.path('/login');
                 }
-            },  
+            },
 
             logout: function() {
                 if ($cookieStore.get('userId') != null) {
@@ -79,20 +98,20 @@ angular.module('linkyApp')
             if ($cookieStore.get('userId') != null) {
                 id = $cookieStore.get('userId');
             } else {
-                id = user._id;
+                id = user.id;
             }
 
             // TO-DO
             // api-to-validate-user-with-userId
-
-            // $.get(localStorageService.get('apiUrl') + '/api/user?id=' + id, function(response) {
-            //   if (typeof response == 'object') {
-            //       userData.setCurrentUser(response);
-            //   }
-            // })
-            // .fail(function() {
-
-            // });
+            $.get(localStorageService.get('apiUrl') + '/users/' + id)
+                .success(function(response) {
+                    if (typeof response == 'object') {
+                        userData.setCurrentUser(response, function() {
+                            callback.call(this, response);
+                        });
+                    }
+                })
+                .error(function(error) {});
         }
 
         return userData;

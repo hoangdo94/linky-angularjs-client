@@ -106,8 +106,8 @@
             {{current.content}}
           </p>
           <p>
-            1 <a href="#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
-            <a href="{{current.url}}" target="_blank"><i class="fa fa-share"></i></a>
+            {{current.num_likes}} <a href="#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
+            <a href="{{current.link}}" target="_blank"><i class="fa fa-share"></i></a>
             <span class="text-cat pull-right">
                 <a><i ng-class="typeIconClass(feed.type_name)"></i></a>&nbsp;&nbsp;
                 {{current.cate_name}}

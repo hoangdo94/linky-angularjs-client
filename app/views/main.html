@@ -23,7 +23,7 @@
             <div class="col-sm-10">
               <select type="password" class="form-control" id="share-cat">
                 <option ng-repeat="cat in categories" value="cat">
-                  {{cat}}
+                  {{cat.name}}
                 </option>
               </select>
             </div>
@@ -47,8 +47,8 @@
           <!-- Categories filter -->
           <ul class="nav nav-custom">
             <li role="presentation" ng-class="{'active': (filterValue == 'All')}"><a ng-click="filter('All')">All</a></li>
-            <li role="presentation" ng-repeat="cat in preferredCategories" ng-class="{'active': (filterValue == cat)}">
-              <a ng-click="filter(cat, false)">{{cat}}</a>
+            <li role="presentation" ng-repeat="cat in preferredCategories" ng-class="{'active': (filterValue == cat.name)}">
+              <a ng-click="filter(cat.name, false)">{{cat.name}}</a>
             </li>
           </ul>
           <div ng-class="{'active': (filterValue == 'Other'), 'dropdown': true}">
@@ -57,7 +57,7 @@
               <span class="caret"></span></button>
             <ul class="dropdown-menu">
               <li ng-repeat="cat in otherCategories">
-                <a ng-click="filter(cat, true)">{{cat}}</a>
+                <a ng-click="filter(cat.name, true)">{{cat.name}}</a>
               </li>
             </ul>
           </div>

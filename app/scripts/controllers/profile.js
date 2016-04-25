@@ -8,7 +8,20 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('ProfileCtrl', function ($scope) {
+  .controller('ProfileCtrl', function ($scope, $cookieStore, $routeParams, UserData) {
+    // Init UserData
+    UserData.init();
+    if ($cookieStore.get('userId') != null){
+        $scope.user = UserData.getCurrentUser();
+    } else {
+        UserData.login();
+    }
+
+    // Get userId from stateParams
+    $scope.userId = ($routeParams.userId != '') ? $routeParams.userId : '';
+    console.log("=======userId======");
+    console.log($scope.userId);
+
     $scope.categories = ['Feeds', 'Followers', 'Following'];
     $scope.feeds = [
       {id:1,category:'Life',user:'akai-sama',url:'http://friendfeed.com',type:'article',description:'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.'},

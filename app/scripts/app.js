@@ -87,10 +87,10 @@ angular
             });
 
             $rootScope.typeIconClass = function(type) {
-                if (type === 'article') {
+                if (type === 'Article') {
                     return 'fa fa-newspaper-o';
                 }
-                if (type === 'video') {
+                if (type === 'Video') {
                     return 'fa fa-video-camera';
                 }
                 return 'fa fa-picture-o';

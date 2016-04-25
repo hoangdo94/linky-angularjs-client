@@ -8,11 +8,17 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-    .controller('MainCtrl', function($rootScope, $scope, $http, localStorageService) {
+    .controller('MainCtrl', function($rootScope, $scope, $http, localStorageService, $cookieStore, UserData) {
+        // Init UserData
+        UserData.init();
+        if ($cookieStore.get('userId') != null){
+            $scope.user = UserData.getCurrentUser();
+        } else {
+            UserData.login();
+        }
+
         // data
-        $scope.categories = ['Technology', 'Photography', 'Life', 'Economy', 'Joke'];
-        $scope.preferredCategories = $scope.categories.slice(0, 3);
-        $scope.otherCategories = $scope.categories.slice(3, $scope.categories.length);
+        // $scope.categories = ['Technology', 'Photography', 'Life', 'Economy', 'Joke'];
 
         $scope.feeds = [];
         $scope.current = {};
@@ -26,12 +32,23 @@ angular.module('linkyApp')
             .success(function(response) {
                 $scope.feeds = response;
                 $scope.shown = $scope.feeds;
-                console.dir(response);
             })
             .error(function(error) {
                 console.error(error);
             });
 
+        // Get all categories
+        $http.get($scope.apiUrl + '/category')
+            .success(function(response) {
+                $scope.categories = response;
+
+
+        $scope.preferredCategories = $scope.categories.slice(0, 3);
+        $scope.otherCategories = $scope.categories.slice(3, $scope.categories.length);
+            })
+            .error(function(error) {
+                console.error(error);
+            });
         // share
         $scope.showForm = function() {
             if (isUrl($scope.link)) {
@@ -60,7 +77,7 @@ angular.module('linkyApp')
                 $scope.shown = $scope.feeds;
             } else {
                 $scope.shown = $scope.feeds.filter(function(f) {
-                    return f.category === cat;
+                    return f.cate_name === cat;
                 });
             }
         };
