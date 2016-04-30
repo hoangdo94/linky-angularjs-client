@@ -103,6 +103,11 @@ angular
                 $rootScope.current = feed;
             };
 
+            // Follow user by click eye-icon
+            $rootScope.followUser = function() {
+
+            };
+
             $scope.logout = function() {
                 UserData.logout();
             };

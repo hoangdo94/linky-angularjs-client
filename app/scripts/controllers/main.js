@@ -28,7 +28,7 @@ angular.module('linkyApp')
 
         // Get all posts
         $scope.apiUrl = localStorageService.get('apiUrl');
-        $http.get($scope.apiUrl + '/post')
+        $http.get($scope.apiUrl + '/posts')
             .success(function(response) {
                 $scope.feeds = response;
                 $scope.shown = $scope.feeds;
@@ -38,7 +38,7 @@ angular.module('linkyApp')
             });
 
         // Get all categories
-        $http.get($scope.apiUrl + '/category')
+        $http.get($scope.apiUrl + '/categories')
             .success(function(response) {
                 $scope.categories = response;
 
