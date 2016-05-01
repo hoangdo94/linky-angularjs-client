@@ -42,21 +42,21 @@
 					<div class="panel-body">
 						<div class="media">
 							<div class="media-left">
-								<a href="#/profile/{{follower.user}}">
+								<a href="#/profile/{{follower.id}}">
 									<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
 								</a>
 							</div>
 							<div class="media-body">
-								<p><a href="#/profile/{{follower.user}}"><b>{{follower.user}}</b></a></p>
+								<p><a href="#/profile/{{follower.id}}"><b>{{follower.username}}</b></a></p>
 								<p class="user-follow">
-									<span>{{follower.posts}} posts &nbsp;</span>
-									<span>{{follower.followers}} followers &nbsp;</span>
-									<span>{{follower.following}} following &nbsp;</span>
+									<!-- <span>{{follower.posts}} posts &nbsp;</span> -->
+									<span>{{follower.num_followers}} followers &nbsp;</span>
+									<span>{{follower.num_followings}} followings &nbsp;</span>
 								</p>
 							</div>
 							<div class="media-right">
-								<button type="button" class="btn btn-success">
-									<span class="glyphicon glyphicon-ok"></span>
+								<button type="button" class="btn btn-info">
+									<span class="fa fa-eye"></span>
 								</button>
 							</div>
 						</div>
@@ -68,25 +68,25 @@
 	<div class="row" id="following-row" ng-if="shown === 'Following'">
 		<div class="container">
 			<div class="container-narrow">
-				<div ng-repeat="follow in following" class="panel panel-default panel-follower">
+				<div ng-repeat="follow in followings" class="panel panel-default panel-follower">
 					<div class="panel-body">
 						<div class="media">
 							<div class="media-left">
-								<a href="#/profile/{{follow.user}}">
+								<a href="#/profile/{{follow.id}}">
 									<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
 								</a>
 							</div>
 							<div class="media-body">
-								<p><a href="#/profile/{{follow.user}}"><b>{{follow.user}}</b></a></p>
+								<p><a href="#/profile/{{follow.id}}"><b>{{follow.username}}</b></a></p>
 								<p class="user-follow">
-									<span>{{follow.posts}} posts &nbsp;</span>
-									<span>{{follow.followers}} followers &nbsp;</span>
-									<span>{{follow.following}} following &nbsp;</span>
+									<!-- <span>{{follow.posts}} posts &nbsp;</span> -->
+									<span>{{follow.num_followers}} followers &nbsp;</span>
+									<span>{{follow.num_followings}} followings &nbsp;</span>
 								</p>
 							</div>
 							<div class="media-right">
-								<button type="button" class="btn btn-success">
-									<span class="glyphicon glyphicon-ok"></span>
+								<button type="button" class="btn btn-info">
+									<span class="fa fa-eye"></span>
 								</button>
 							</div>
 						</div>

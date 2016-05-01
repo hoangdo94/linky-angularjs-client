@@ -2,17 +2,16 @@
 
 /**
  * @ngdoc service
- * @name linkyApp.postsservice
+ * @name linkyApp.followsService
  * @description
- * # postsservice
+ * # followsService
  * Factory in the linkyApp.
  */
 angular.module('linkyApp')
-    .factory('postsService', function($rootScope, $http) {
-
-        return {
-            getUserPost: function(callback) {
-            	$http.get($rootScope.apiUrl + '/posts?user_id=' + $rootScope.currentUser.id)
+  .factory('followsService', function ($http, $rootScope) {
+    return {
+            getFollowers: function(callback) {
+            	$http.get($rootScope.apiUrl + '/follows?type=1')
                     .success(function(data) {
                         if (callback) {
                             callback(data);
@@ -24,8 +23,8 @@ angular.module('linkyApp')
                         }
                     });
             },
-            getList: function(callback) {
-                $http.get($rootScope.apiUrl + '/posts')
+            getFollowings: function(callback) {
+                $http.get($rootScope.apiUrl + '/follows?type=2')
                     .success(function(data) {
                         if (callback) {
                             callback(data);
@@ -38,4 +37,4 @@ angular.module('linkyApp')
                     });
             }
         };
-    });
+  });

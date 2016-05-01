@@ -61,12 +61,15 @@ angular
   .run(function(
     $rootScope,
     $location,
-    authService
+    authService,
+    likesService
   ) {
     $rootScope.apiUrl = 'http://localhost:3000/api';
     $rootScope.viewMode = 'list';
     $rootScope.notInLoginScreen = false;
     $rootScope.authInited = false;
+    // $rootScope.liked = false;
+    // $rootScope.unliked = true;
 
     $rootScope.$on( '$routeChangeStart', function() {
       $('#details-modal').modal('hide');
@@ -96,6 +99,15 @@ angular
     $rootScope.showDetails = function(feed) {
       $rootScope.current = feed;
     };
+
+    // like post
+    $rootScope.likePost = function(postId) {
+      likesService.likePost(postId, function() {
+        // $rootScope.liked = true;
+        // $rootScope.unliked = false;
+      });
+    };
+
     // Init auth
     authService.init(function(isLoggedIn, user) {
       $rootScope.authInited = true;
