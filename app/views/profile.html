@@ -5,18 +5,18 @@
 				<div id="profile-information">
 					<div id="profile-image"></div>
 					<div id="profile-name">
-						<p>akai-sama</p>
+						<p>{{profileUser.username}}</p>
 					</div>
 					<div id="profile-detail">
-						<p>Designer and Developer living in Ho Chi Minh City, Vietnam</p>
+						<p>{{profileUser.title}}</p>
 					</div>
 					<div id="profile-webpage">
-						<a href="">akai-sama.com</a>
+						<a href="">{{profileUser.website}}</a>
 					</div>
 					<div class="container-narrow">
 				        <ul class="nav nav-custom">
 				            <li role="presentation" ng-repeat="cat in categories" ng-class="{'active': (filterValue == cat)}">
-				              <a ng-click="filter(cat)">{{cat}}</a>
+				              <a ng-click="filter(cat)">{{cat.name}}</a>
 				            </li>
 				        </ul>
 				    </div>
@@ -33,6 +33,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="row" id="followers-row" ng-if="shown === 'Followers'">
 		<div class="container">
 			<div class="container-narrow">

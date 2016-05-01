@@ -47,10 +47,10 @@
     						<span class="caret"></span>
     					</a>
     					<ul class="dropdown-menu">
-    						<li><a href="#/profile/123">Profile</a></li>
-    						<li><a href="#/setting/123">Setting</a></li>
+    						<li><a href="#/profile/{{currentUser.id}}">Profile</a></li>
+    						<li><a href="#/setting/{{currentUser.id}}">Setting</a></li>
     						<li role="separator" class="divider"></li>
-    						<li><a href="#/login">Sign out</a></li>
+    						<li><a href="#" ng-click="logout()">Log out</a></li>
     					</ul>
     				</li>
     			</ul>
@@ -203,6 +203,7 @@
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script src="bower_components/angular-touch/angular-touch.js"></script>
   <script src="bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
+  <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -214,6 +215,10 @@
   <script src="scripts/controllers/setting.js"></script>
   <script src="scripts/controllers/login.js"></script>
   <script src="scripts/controllers/register.js"></script>
+  <script src="scripts/services/authservice.js"></script>
+  <script src="scripts/services/categoriesservice.js"></script>
+  <script src="scripts/services/typesservice.js"></script>
+  <script src="scripts/services/usersservice.js"></script>
   <!-- endbuild -->
 </body>
 

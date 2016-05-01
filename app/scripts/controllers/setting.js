@@ -1,3 +1,4 @@
+/*global $ */
 'use strict';
 
 /**
@@ -46,12 +47,12 @@ angular.module('linkyApp')
 		$('#re-pass').toggle();
 		$('.multiSelect > button').css('pointer-events', 'none');
 		$('.multiSelect > button').css('background-color', '#eeeeee');
-		
+
 	};
-	$scope.change_avatar = function(){
+	$scope.changeAvatar = function(){
 		$('#fileinput').click();
 	};
-	$scope.change_background = function(){
+	$scope.changeBackground = function(){
 		$('#fileinput').click();
 	};
   });

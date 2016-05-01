@@ -3,22 +3,22 @@
 		<div class="container-main container-fluid">
 			<div class="row">
 				<div class="text">
-					<h1>Sign in to <span>Linky</span></h1>
+					<h1>Log in to <span>Linky</span></h1>
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-box">
-					<form role="form" action="" method="post" class="login-form">
+					<form role="form" class="login-form" ng-submit="doLogin()">
 						<div id="get-information">
 							<div class="form-group">
 								<!-- <label class="sr-only" for="form-username">Username</label> -->
-								<input type="text" name="form-username" placeholder="Username" class="form-username form-control" id="form-username" tabindex="1">
+								<input type="text" placeholder="Username" class="form-username form-control" id="form-username" ng-model="username" tabindex="1">
 							</div>
 							<button type="submit" class="btn" id="login-btn" tabindex="3">
-								<p>Sign In</p><span class="glyphicon glyphicon-arrow-right"></span></button>
+								<p>Log In</p><span class="glyphicon glyphicon-arrow-right"></span></button>
 							<div class="form-group">
 								<!-- <label class="sr-only" for="form-password">Password</label> -->
-								<input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password" tabindex="2">
+								<input type="password" placeholder="Password" class="form-password form-control" id="form-password" ng-model="password" tabindex="2">
 							</div>
 						</div>
 					</form>
@@ -26,10 +26,13 @@
 				<div id="toRegister">
 					<a href="#/register" tabindex="4">Create new account</a>
 				</div>
+				<div id="message">
+					{{message}}
+				</div>
 			</div>
 			<div class="row">
 				<div class="social-login">
-					<h4>or sign in with</h4>
+					<h4>or Log in with</h4>
 					<div class="social-login-buttons">
 						<a class="btn btn-fb" href="#/" tabindex="5">
 							<i class="fa fa-facebook"></i>

@@ -8,11 +8,18 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('MainCtrl', function($rootScope, $scope) {
-    // data
-    $scope.categories = ['Technology', 'Photography', 'Life', 'Economy', 'Joke'];
-    $scope.preferredCategories = $scope.categories.slice(0, 3);
-    $scope.otherCategories = $scope.categories.slice(3, $scope.categories.length);
+  .controller('MainCtrl', function($rootScope, $scope, categoriesService) {
+
+    function isUrl(s) {
+      var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+      return regexp.test(s);
+    }
+
+    categoriesService.getList(function(categories) {
+      $scope.categories = categories;
+      $scope.preferredCategories = $scope.categories.slice(0, 3);
+      $scope.otherCategories = $scope.categories.slice(3, $scope.categories.length);
+    });
 
     $scope.feeds = [{
       id: 1,
@@ -179,7 +186,7 @@ angular.module('linkyApp')
     $scope.filter = function(cat, isOther) {
       if (isOther) {
         $scope.filterValue = 'Other';
-        $scope.moreCategoriesText = cat;
+        $scope.moreCategoriesText = cat.name;
       } else {
         $scope.filterValue = cat;
         $scope.moreCategoriesText = 'More...';
@@ -199,8 +206,5 @@ angular.module('linkyApp')
       $rootScope.viewMode = mode;
     };
 
-    function isUrl(s) {
-      var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-      return regexp.test(s);
-    }
+
   });

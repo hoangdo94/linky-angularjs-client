@@ -17,9 +17,10 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'LocalStorageModule',
     'isteven-multi-select'
   ])
-  .config(function($routeProvider) {
+  .config(function($routeProvider, localStorageServiceProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -54,16 +55,33 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
+      localStorageServiceProvider.setPrefix('linky');
   })
-  .controller('linkyCtrl', ['$rootScope', '$scope', function($rootScope, $scope) {
+  .controller('linkyCtrl', function(
+    $rootScope,
+    $scope,
+    $location,
+    authService
+  ) {
+    $rootScope.apiUrl = 'http://localhost:3000/api';
     $rootScope.viewMode = 'list';
-    $scope.notInLoginScreen = false;
-    $rootScope.$on( "$routeChangeStart", function() {
+    $rootScope.notInLoginScreen = false;
+    $rootScope.authInited = false;
+
+    $rootScope.$on( '$routeChangeStart', function() {
       $('#details-modal').modal('hide');
     });
     $rootScope.$on('$routeChangeSuccess', function(scope, current) {
       if (current.$$route) {
-        $scope.notInLoginScreen = current.$$route.originalPath !== '/login' && current.$$route.originalPath !== '/register';
+        $rootScope.notInLoginScreen = current.$$route.originalPath !== '/login' && current.$$route.originalPath !== '/register';
+        if ($rootScope.notInLoginScreen && $rootScope.authInited && !authService.isLoggedIn()) {
+          $location.path('/login');
+        }
+        if (!$rootScope.notInLoginScreen && $rootScope.authInited && authService.isLoggedIn()) {
+          console.log('redirect to main');
+          $location.path('/');
+        }
       }
     });
     $rootScope.typeIconClass = function(type) {
@@ -79,4 +97,16 @@ angular
     $rootScope.showDetails = function(feed) {
       $rootScope.current = feed;
     };
-  }]);
+
+    // Init auth
+    authService.init(function(isLoggedIn, user) {
+      $rootScope.authInited = true;
+      if (isLoggedIn) {
+        $rootScope.currentUser = user;
+      } else {
+        $location.path('/login');
+      }
+    });
+    $rootScope.isLoggedIn = authService.isLoggedIn;
+    $rootScope.logout = authService.logout;
+  });
