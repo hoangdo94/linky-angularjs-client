@@ -68,8 +68,8 @@ angular
                 redirectTo: '/'
             });
     })
-    .controller('linkyCtrl', ['$rootScope', '$scope', '$location', 'localStorageService', 'UserData', '$cookieStore',
-        function($rootScope, $scope, $location, localStorageService, UserData, $cookieStore) {
+    .controller('linkyCtrl', ['$rootScope', '$scope', '$location', 'localStorageService', 'UserData', '$cookieStore', '$http',
+        function($rootScope, $scope, $location, localStorageService, UserData, $cookieStore, $http) {
             $rootScope.userId = $cookieStore.get('userId') ? $cookieStore.get('userId') : '';
 
             $rootScope.viewMode = 'list';
@@ -104,8 +104,16 @@ angular
             };
 
             // Follow user by click eye-icon
-            $rootScope.followUser = function() {
+            $rootScope.followUser = function(followUserId) {
+                $scope.apiUrl = localStorageService.get('apiUrl');
 
+                $.post($scope.apiUrl + '/follows', {
+                    id: followUserId
+                }, function(data, textStatus, xhr) {
+                    console.dir(data);
+                    console.log("============");
+                    console.dir(textStatus);
+                });
             };
 
             $scope.logout = function() {

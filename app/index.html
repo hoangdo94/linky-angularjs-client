@@ -160,7 +160,7 @@
           <div class="item-addons">
             {{feed.cate_name}}&nbsp;&nbsp;
             <a><i ng-class="typeIconClass(feed.type_name)"></i></a>&nbsp;&nbsp;
-            <a href="#/"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
+            <a ng-if="feed.user_id !== userId" ng-click="followUser(feed.user_id)" style="text-decoration: none;"><i class="fa fa-eye"></i>&nbsp;&nbsp;</a>
             <a href="#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
             <a href="{{feed.link}}" target="_blank"><i class="fa fa-share"></i></a>
           </div>
