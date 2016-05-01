@@ -3,7 +3,8 @@
 		<div class="container">
 			<div id="profile">
 				<div id="profile-information">
-					<div id="profile-image"></div>
+					<div id="profile-image">
+					</div>
 					<div id="profile-name">
 						<p>{{profileUser.username}}</p>
 					</div>
@@ -11,12 +12,12 @@
 						<p>{{profileUser.title}}</p>
 					</div>
 					<div id="profile-webpage">
-						<a href="">{{profileUser.website}}</a>
+					 <a href="mailto:{{profileUser.email}}">{{profileUser.email}}</a> |	<a href="{{profileUser.website}}" target="_blank">{{profileUser.website}}</a>
 					</div>
 					<div class="container-narrow">
 				        <ul class="nav nav-custom">
 				            <li role="presentation" ng-repeat="cat in categories" ng-class="{'active': (filterValue == cat)}">
-				              <a ng-click="filter(cat)">{{cat.name}}</a>
+				              <a ng-click="filter(cat)">{{cat}}</a>
 				            </li>
 				        </ul>
 				    </div>
@@ -33,7 +34,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="row" id="followers-row" ng-if="shown === 'Followers'">
 		<div class="container">
 			<div class="container-narrow">

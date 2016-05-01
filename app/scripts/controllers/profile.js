@@ -8,23 +8,17 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('ProfileCtrl', function ($scope, $routeParams, $location, categoriesService, usersService) {
+  .controller('ProfileCtrl', function ($scope, $routeParams, $location, usersService) {
     $scope.profileUser = {};
     var userId = parseInt($routeParams.userId);
     usersService.get(userId, function(user) {
-      console.log(user);
       if (user.id !== userId) {
         $location.path('/');
       }
-
       $scope.profileUser = user;
     });
 
-    categoriesService.getList(function(categories) {
-      $scope.categories = categories;
-    });
-
-
+    $scope.categories = ['Feeds', 'Followers', 'Following'];
 
     $scope.feeds = [
       {id:1,category:'Life',user:'akai-sama',url:'http://friendfeed.com',type:'article',description:'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.'},

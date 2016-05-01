@@ -58,9 +58,8 @@ angular
 
       localStorageServiceProvider.setPrefix('linky');
   })
-  .controller('linkyCtrl', function(
+  .run(function(
     $rootScope,
-    $scope,
     $location,
     authService
   ) {
@@ -97,7 +96,6 @@ angular
     $rootScope.showDetails = function(feed) {
       $rootScope.current = feed;
     };
-
     // Init auth
     authService.init(function(isLoggedIn, user) {
       $rootScope.authInited = true;
@@ -109,4 +107,7 @@ angular
     });
     $rootScope.isLoggedIn = authService.isLoggedIn;
     $rootScope.logout = authService.logout;
+  })
+  .controller('linkyCtrl', function() {
+    
   });

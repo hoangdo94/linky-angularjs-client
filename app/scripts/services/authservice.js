@@ -19,6 +19,8 @@ angular.module('linkyApp')
       init: function(callback) {
           username = localStorageService.get('username');
           password = localStorageService.get('password');
+          currentUser = localStorageService.get('currentUser');
+          $rootScope.currentUser = currentUser;
           if (username && password) {
             this.login(username, password, callback);
           } else {
@@ -33,6 +35,7 @@ angular.module('linkyApp')
             .success(function(data) {
                 localStorageService.set('username', username);
                 localStorageService.set('password', password);
+                localStorageService.set('currentUser', data);
                 isLoggedIn = true;
                 currentUser = data;
                 if (callback) {
@@ -50,8 +53,9 @@ angular.module('linkyApp')
       logout: function() {
           username = null;
           password = null;
+          currentUser = {};
           isLoggedIn = false;
-          localStorageService.remove('username', 'password');
+          localStorageService.remove('username', 'password', 'currentUser');
           //remove the auth header
           $http.defaults.headers.common['Authorization'] = ''; // jshint ignore:line
           $location.path('/login');

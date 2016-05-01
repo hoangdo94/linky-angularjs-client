@@ -11,7 +11,7 @@
 						</p>
 					</div>
 					<div id="profile-name" style="margin-bottom: 60px;">
-						<p>akai-sama</p>
+						<p>{{profileUser.username}}</p>
 					</div>
 				</div>
 			</div>
@@ -22,9 +22,6 @@
 		<em class="editpfcover_icn zmicn16"></em>
 	</a>
 </div>
-
-
-
 
 <div class="container">
 	<div id="setting">
@@ -48,7 +45,7 @@
 		  				<div class="form-group" style="margin-top:10px;">
 		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Username</label>
 		  					<div class="col-sm-10">
-		  						<input type="text" class="form-control" value="Thanh Huy" readonly>
+		  						<input type="text" class="form-control" value="{{profileUser.username}}" readonly>
 		  					</div>
 			      		</div>
 			      		<div class="form-group">
@@ -72,13 +69,13 @@
 		  				<div class="form-group" style="margin-top:10px;">
 		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Email</label>
 		  					<div class="col-sm-10">
-		  						<input type="email" class="form-control" value="huy@gmail.com" readonly>
+		  						<input type="email" class="form-control" value="{{profileUser.email}}" readonly>
 		  					</div>
 			      		</div>
 			      		<div class="form-group">
 		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Website</label>
 		  					<div class="col-sm-10">
-		  						<input type="text" class="form-control" value="www.huy.com.vn" readonly>
+		  						<input type="text" class="form-control" value="{{profileUser.website}}" readonly>
 		  					</div>
 			      		</div>
 		  			</div>
@@ -90,7 +87,7 @@
 		  				<div class="form-group" style="margin-top:10px;">
 		  					<label class="col-sm-2 control-label" style="text-align:left; color:gray;">Title</label>
 		  					<div class="col-sm-10">
-		  						<input type="text" class="form-control" value="Designer and Developer living in Ho Chi Minh City, Vietnam" readonly>
+		  						<input type="text" class="form-control" value="{{profileUser.title}}" readonly>
 		  					</div>
 			      		</div>
 			      		<div class="form-group">

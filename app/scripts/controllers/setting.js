@@ -9,7 +9,19 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('SettingCtrl', function ($scope) {
+  .controller('SettingCtrl', function ($rootScope, $scope, $routeParams, $location, usersService) {
+    var userId = parseInt($routeParams.userId);
+    $scope.profileUser = {};
+    if ($rootScope.currentUser.id !== userId) {
+      $location.path('/setting/' + $rootScope.currentUser.id);
+    } else {
+      usersService.get(userId, function(user) {
+        if (user.id !== userId) {
+          $location.path('/');
+        }
+        $scope.profileUser = user;
+      });
+    }
   	$scope.categories = [
     	{name: 'Technology', ticked: true, disabled: true},
     	{name: 'Photography', ticked: true, disabled: true},
