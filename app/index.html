@@ -154,20 +154,20 @@
     <div class="panel-body">
       <div class="media">
         <div class="media-left">
-          <a href="#/profile/{{feed.user}}">
+          <a href="#/profile/{{feed.user_id}}">
             <img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
           </a>
           <div class="item-addons">
-            {{feed.category}}&nbsp;&nbsp;
-            <a><i ng-class="typeIconClass(feed.type)"></i></a>&nbsp;&nbsp;
-            <a href="#/" ng-click="showDetails(feed)" data-toggle="modal" data-target="#details-modal"><i class="fa fa-search"></i></a>&nbsp;&nbsp;
+            {{feed.cate_name}}&nbsp;&nbsp;
+            <a><i ng-class="typeIconClass(feed.type_name)"></i></a>&nbsp;&nbsp;
+            <a ng-if="feed.user_id !== currentUser.id" ng-click="followUser(feed.user_id)" style="text-decoration: none; cursor: pointer;"><i class="fa fa-eye"></i>&nbsp;&nbsp;</a>
             <a href="#/"><i class="fa fa-heart-o"></i></a>&nbsp;&nbsp;
-            <a href="{{feed.url}}" target="_blank"><i class="fa fa-share"></i></a>
+            <a href="{{feed.link}}" target="_blank"><i class="fa fa-share"></i></a>
           </div>
         </div>
         <div class="media-body">
-          <p><a href="#/profile/{{feed.user}}"><b>{{feed.user}}</b></a></p>
-          <p>{{feed.description}}</p>
+          <p><a href="#/profile/{{feed.user_id}}"><b>{{feed.username}}</b></a></p>
+          <p>{{feed.content}}</p>
         </div>
       </div>
     </div>
@@ -207,6 +207,7 @@
   <script src="scripts/services/categoriesservice.js"></script>
   <script src="scripts/services/typesservice.js"></script>
   <script src="scripts/services/usersservice.js"></script>
+  <script src="scripts/services/postsservice.js"></script>
   <!-- endbuild -->
 </body>
 
