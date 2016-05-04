@@ -22,11 +22,11 @@
 			      		</div>
 			      		<p class="description">Password:</p>
 			      		<div class="form-group left-inner-addon">
-			      			<input type="password" class="form-control input-lg" name="password" ng-model="user.password" alt="Password must be at least 6 characters long, contain at least 1 uppercase letter and 1 digit. It cannot contain @ # $ %" tabindex="3" required>
+			      			<input type="password" class="form-control input-lg" name="password" ng-model="user.password" alt="Password must be at least 6 characters long, contain at least 1 uppercase letter and 1 digit. It cannot contain @ # $ %" min="6" tabindex="3" required>
 			      		</div>
 			      		<p class="description">Re-enter password:</p>
 			      		<div class="form-group left-inner-addon re-pass">
-			      			<input type="password" class="form-control input-lg" name="password_verify" ng-model="user.password_verify" tabindex="4" required pw-check>
+			      			<input type="password" class="form-control input-lg" name="password_verify" ng-model="user.password_verify" min="6" tabindex="4" required pw-recheck>
 			      			<span class="text text-danger" ng-show="form_user.password_verify.$error.noMatch">
 						    	Password not matched!
 						  </span>
