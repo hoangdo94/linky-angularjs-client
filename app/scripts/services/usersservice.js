@@ -51,7 +51,7 @@ angular.module('linkyApp')
           });
       },
       update: function(id, data, callback) {
-        $http.post($rootScope.apiUrl + '/users' + id, data)
+        $http.post($rootScope.apiUrl + '/users/' + id, data)
           .success(function(result) {
             if (callback) {
               callback(result);

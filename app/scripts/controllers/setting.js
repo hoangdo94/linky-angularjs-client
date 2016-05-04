@@ -9,7 +9,7 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('SettingCtrl', function ($rootScope, $scope, $routeParams, $location, usersService) {
+  .controller('SettingCtrl', function ($rootScope, $scope, $routeParams, $location, usersService, notify) {
     var userId = parseInt($routeParams.userId);
     $scope.profileUser = {};
     if ($rootScope.currentUser.id !== userId) {
@@ -19,6 +19,7 @@ angular.module('linkyApp')
         if (user.id !== userId) {
           $location.path('/');
         }
+        $scope.edit = user;
         $scope.profileUser = user;
       });
     }
@@ -34,7 +35,7 @@ angular.module('linkyApp')
     	{'name': 'Photography', ticked: true},
     	{'name': 'Life', ticked: true}
     ];
-    $scope.edit = function(){
+    $scope.updateUser = function(){
 		$('input').each(function(){
 			$(this).attr('readonly', false);
 		});
@@ -59,6 +60,23 @@ angular.module('linkyApp')
 		$('#re-pass').toggle();
 		$('.multiSelect > button').css('pointer-events', 'none');
 		$('.multiSelect > button').css('background-color', '#eeeeee');
+
+		usersService.update($rootScope.currentUser.id, $scope.edit, function(res) {
+			if (res.status_code === '200') {
+				notify({
+                    message: 'Congratulation! You just updated information successfully!',
+                    duration: '5000',
+                    position: 'center'
+                });
+			} else {
+				notify({
+                    message: 'Please make sure your information is correct!',
+                    duration: '5000',
+                    position: 'center'
+                });
+			}
+			
+		});
 
 	};
 	$scope.changeAvatar = function(){
