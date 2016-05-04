@@ -36,6 +36,19 @@ angular.module('linkyApp')
                             callback([]);
                         }
                     });
+            },
+            createPost: function(post, callback) {
+              $http.post($rootScope.apiUrl + '/posts', post)
+                .success(function(data) {
+                    if (callback) {
+                        callback(data);
+                    }
+                })
+                .error(function(err) {
+                    if (callback) {
+                        callback(err);
+                    }
+                });
             }
         };
     });
