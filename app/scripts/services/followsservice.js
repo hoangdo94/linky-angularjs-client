@@ -10,8 +10,8 @@
 angular.module('linkyApp')
     .factory('followsService', function($http, $rootScope) {
         return {
-            getFollowers: function(callback) {
-                $http.get($rootScope.apiUrl + '/follows?type=1')
+            getFollowers: function(userId, callback) {
+                $http.get($rootScope.apiUrl + '/follows?type=1' + '&user_id=' + userId)
                     .success(function(data) {
                         if (callback) {
                             callback(data);
@@ -23,8 +23,8 @@ angular.module('linkyApp')
                         }
                     });
             },
-            getFollowings: function(callback) {
-                $http.get($rootScope.apiUrl + '/follows?type=2')
+            getFollowings: function(userId, callback) {
+                $http.get($rootScope.apiUrl + '/follows?type=2' + '&user_id=' + userId)
                     .success(function(data) {
                         if (callback) {
                             callback(data);
