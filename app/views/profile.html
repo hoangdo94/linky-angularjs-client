@@ -55,7 +55,7 @@
 								</p>
 							</div>
 							<div class="media-right">
-								<button type="button" class="btn btn-info">
+								<button type="button" class="btn btn-info" ng-click="followUser(follower.id,follower.username)">
 									<span class="fa fa-eye"></span>
 								</button>
 							</div>
@@ -84,11 +84,11 @@
 									<span>{{follow.num_followings}} followings &nbsp;</span>
 								</p>
 							</div>
-							<div class="media-right">
+							<!-- <div class="media-right">
 								<button type="button" class="btn btn-info">
 									<span class="fa fa-eye"></span>
 								</button>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>

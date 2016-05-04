@@ -8,10 +8,10 @@
  * Factory in the linkyApp.
  */
 angular.module('linkyApp')
-  .factory('followsService', function ($http, $rootScope) {
-    return {
+    .factory('followsService', function($http, $rootScope) {
+        return {
             getFollowers: function(callback) {
-            	$http.get($rootScope.apiUrl + '/follows?type=1')
+                $http.get($rootScope.apiUrl + '/follows?type=1')
                     .success(function(data) {
                         if (callback) {
                             callback(data);
@@ -35,6 +35,21 @@ angular.module('linkyApp')
                             callback([]);
                         }
                     });
+            },
+            followUser: function(userId, callback) {
+                $http.post($rootScope.apiUrl + '/follows', {
+                    'id': userId
+                })
+                    .success(function(data) {
+                        if (callback) {
+                            callback(data);
+                        }
+                    })
+                    .error(function() {
+                        if (callback) {
+                            callback([]);
+                        }
+                    });
             }
         };
-  });
+    });
