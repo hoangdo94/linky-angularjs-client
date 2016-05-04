@@ -2,16 +2,18 @@
 
 /**
  * @ngdoc function
- * @name linkyApp.controller:LogoutCtrl
+ * @name linkyApp.controller:RegisterCtrl
  * @description
- * # LogoutCtrl
+ * # RegisterCtrl
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('RegisterCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('RegisterCtrl', function ($rootScope, $scope, $location) {
+    $scope.signUpUser = function(data) {
+    	console.dir(data);
+    };
+
+    $scope.goToLogin = function() {
+    	$location.path('/login');
+    };
   });
