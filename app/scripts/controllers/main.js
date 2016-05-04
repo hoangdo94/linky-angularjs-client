@@ -23,6 +23,7 @@ angular.module('linkyApp')
 
     postsService.getList(function(posts) {
       $scope.feeds = posts;
+      $scope.shown = posts;
     });
 
     $scope.link = '';
@@ -35,7 +36,7 @@ angular.module('linkyApp')
 
     // filter
     $scope.filterValue = 'All';
-    $scope.shown = $scope.feeds;
+    // $scope.shown = $scope.feeds;
 
     $scope.filter = function(cat, isOther) {
       if (isOther) {
@@ -50,8 +51,7 @@ angular.module('linkyApp')
         $scope.shown = $scope.feeds;
       } else {
         $scope.shown = $scope.feeds.filter(function(f) {
-          var cateName = f.cate_name;
-          return cateName === cat;
+          return f.cate_name === cat.name;
         });
       }
     };

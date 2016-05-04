@@ -11,8 +11,8 @@ angular.module('linkyApp')
     .factory('postsService', function($rootScope, $http) {
 
         return {
-            getUserPost: function(callback) {
-            	$http.get($rootScope.apiUrl + '/posts?user_id=' + $rootScope.currentUser.id)
+            getUserPost: function(userId, callback) {
+            	$http.get($rootScope.apiUrl + '/posts?user_id=' + userId)
                     .success(function(data) {
                         if (callback) {
                             callback(data);

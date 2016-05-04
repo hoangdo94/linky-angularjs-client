@@ -20,7 +20,7 @@ angular.module('linkyApp')
 
     $scope.categories = ['Feeds', 'Followers', 'Following'];
 
-    postsService.getUserPost(function(posts) {
+    postsService.getUserPost(userId, function(posts) {
       $scope.feeds = posts;
     });
 
