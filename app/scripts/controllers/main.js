@@ -8,7 +8,7 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('MainCtrl', function($rootScope, $scope, categoriesService) {
+  .controller('MainCtrl', function($rootScope, $scope, categoriesService, metaService) {
 
     function isUrl(s) {
       var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
@@ -164,21 +164,13 @@ angular.module('linkyApp')
     }];
     $scope.current = {};
     $scope.link = '';
+    $scope.isMetaShown = false;
+    $scope.isMetaLoading = true;
+    $scope.metadata = null;
     $scope.isFormShown = false;
     $scope.moreCategoriesText = 'More...';
 
-    // share
-    $scope.showForm = function() {
-      if (isUrl($scope.link)) {
-        $scope.isFormShown = true;
-      } else {
-        $scope.isFormShown = false;
-      }
-    };
-    $scope.hideForm = function() {
-      $scope.link = '';
-      $scope.isFormShown = false;
-    };
+
     // filter
     $scope.filterValue = 'All';
     $scope.shown = $scope.feeds;
@@ -206,5 +198,27 @@ angular.module('linkyApp')
       $rootScope.viewMode = mode;
     };
 
+    // share link
+    $scope.showForm = function() {
+      if (isUrl($scope.link)) {
+        $scope.isMetaShown = true;
+        $scope.isFormShown = false;
+        $scope.isMetaLoading = true;
+        var link = $scope.link;
+        metaService.getLinkMeta(link, function(metadata) {
+          $scope.isMetaLoading = false;
+          $scope.isFormShown = true;
+          if (metadata && link === $scope.link) {
+            $scope.metadata = metadata;
+          }
+        });
+      } else {
+        $scope.isFormShown = false;
+      }
+    };
+    $scope.hideForm = function() {
+      $scope.link = '';
+      $scope.isFormShown = false;
+    };
 
   });
