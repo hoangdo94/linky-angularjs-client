@@ -3,6 +3,21 @@
     <div class="container">
       <div class="jumbotron container-narrow" id="new-link">
         <input type="text" placeholder="What do you want to SHARE?" ng-model="link" ng-change="showForm()" />
+        <div ng-if="isMetaShown">
+          <div id="meta-loading" ng-if="isMetaLoading">
+            <i class="fa fa-spinner fa-spin fa-fw margin-bottom"></i>&nbsp;
+            <span>Fetching link metadata...</span>
+          </div>
+          <div id="meta-data" ng-if="metadata">
+            <div class="thumbnail">
+              <img ng-src="{{apiUrl}}/files/{{metadata.thumb_id}}" alt="{{metadata.link}}">
+              <div class="caption">
+                <h3>{{metadata.title}}</h3>
+                <p>{{metadata.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
         <form class="form-horizontal" role="form" ng-if="isFormShown">
           <div class="form-group">
             <label class="control-label col-sm-2" for="email">Type</label>
