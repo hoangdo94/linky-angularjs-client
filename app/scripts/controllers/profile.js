@@ -24,11 +24,11 @@ angular.module('linkyApp')
       $scope.feeds = posts;
     });
 
-    followsService.getFollowers(function(followers) {
+    followsService.getFollowers(userId, function(followers) {
       $scope.followers = followers;
     });
 
-    followsService.getFollowings(function(followings) {
+    followsService.getFollowings(userId, function(followings) {
       $scope.followings = followings;
     });
 
