@@ -104,25 +104,28 @@ angular
             return 'fa fa-picture-o';
         };
         // details
-        $rootScope.showDetails = function(feed) {
+        $rootScope.showDetails = function(post) {
             // Refresh comment storage
-            $rootScope.comments = {};
+            $rootScope.comments = [];
 
             // Get comment of post
-            commentsService.getComment(feed.id, function(data) {
-                $rootScope.current = feed;
-                $rootScope.comments = data;
+            commentsService.getComment(post.id, function(resComments) {
+                $rootScope.current = post;
+                $rootScope.comments = resComments;
             });
         };
 
-        $rootScope.commentPost = function(feed, content) {
-            commentsService.commentPost(feed.id, content, function(data) {
+        $rootScope.commentPost = function(postId, content) {
+            commentsService.commentPost(postId, content, function(data) {
                 if (data.status_code === '200') {
                     var newComment = {
                         'username': $rootScope.currentUser.username,
                         'content': content
                     };
-                    $rootScope.comments += newComment;
+                    // Add to current Comments object, at first
+                    $rootScope.comments.unshift(newComment);
+                    // Refresh currentUserComment
+                    $('#input_comment').val('');
                 } else {
                     notify({
                         message: 'Something going wrong with your comment! Please try again!',
@@ -168,5 +171,10 @@ angular
         $rootScope.logout = authService.logout;
     })
     .controller('linkyCtrl', function() {
-
+        $('#input_comment').on('keypress', function(event) {
+            if (event.which === 13 || event.keyCode === 13) {
+                $('#button_comment').click();
+                $('#input_comment').val('');
+            }
+        });
     });

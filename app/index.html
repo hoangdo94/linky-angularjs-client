@@ -118,21 +118,21 @@
         </div>
         <div class="modal-footer">
           <div class="input-group">
-            <input type="text" class="form-control" ng-model="currentUserComment" placeholder="Leave your comment...">
+            <input type="text" class="form-control" id="input_comment" ng-model="currentUserComment" placeholder="Leave your comment...">
             <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" ng-click="commentPost(feed.id, currentUserComment)">Save</button>
+                <button class="btn btn-primary" id="button_comment" type="button" ng-click="commentPost(current.id, currentUserComment)">Save</button>
             </span>
           </div>
           <!-- /input-group -->
-          <div class="media">
+          <div class="media" ng-repeat="comment in comments">
             <div class="media-left">
-              <a href="#/profile/{{feed.user_id}}">
+              <a href="#/profile/{{comment.user_id}}">
                 <img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
               </a>
             </div>
             <div class="media-body">
-              <p><a href="#/profile/user1"><b>Username</b></a></p>
-              <p>comment 1</p>
+              <p><a href="#/profile/{{comment.user_id}}"><b>{{comment.username}}</b></a></p>
+              <p>{{comment.content}}</p>
             </div>
           </div>
         </div>
