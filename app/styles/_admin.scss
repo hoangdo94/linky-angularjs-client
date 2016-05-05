@@ -1,3 +1,11 @@
 #admin-view {
   padding-top: 30px;
+
+  #entity-list {
+    text-align: center;
+    a {
+      margin: 0px 5px;
+      text-transform: uppercase;
+    }
+  }
 }
