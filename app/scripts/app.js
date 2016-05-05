@@ -120,7 +120,8 @@ angular
                 if (data.status_code === '200') {
                     var newComment = {
                         'username': $rootScope.currentUser.username,
-                        'content': content
+                        'content': content,
+                        'created_at': 'just now'
                     };
                     // Add to current Comments object, at first
                     $rootScope.comments.unshift(newComment);
