@@ -172,6 +172,7 @@ angular
         $rootScope.logout = authService.logout;
     })
     .controller('linkyCtrl', function() {
+        // Press Enter to send comment
         $('#input_comment').on('keypress', function(event) {
             if (event.which === 13 || event.keyCode === 13) {
                 $('#button_comment').click();
