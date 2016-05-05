@@ -93,7 +93,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">
             <a href="#/profile/{{current.user_id}}">
-              <img class="img-circle" src="http://placehold.it/150x150" alt="avatar" width="30px">
+              <img class="img-rounded" src="http://placehold.it/150x150" alt="avatar" width="30px">
             </a>
             <a href="#/profile/{{current.user_id}}">
               {{current.username}}
@@ -118,10 +118,10 @@
         </div>
         <div class="modal-footer">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Leave your comment...">
+            <input type="text" class="form-control" ng-model="currentUserComment" placeholder="Leave your comment...">
             <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">Save</button>
-              </span>
+                <button class="btn btn-primary" type="button" ng-click="commentPost(feed.id, currentUserComment)">Save</button>
+            </span>
           </div>
           <!-- /input-group -->
           <div class="media">
@@ -133,17 +133,6 @@
             <div class="media-body">
               <p><a href="#/profile/user1"><b>Username</b></a></p>
               <p>comment 1</p>
-            </div>
-          </div>
-          <div class="media">
-            <div class="media-left">
-              <a href="#/profile/user2">
-                <img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
-              </a>
-            </div>
-            <div class="media-body">
-              <p><a href="#/profile/aaaa"><b>Username</b></a></p>
-              <p>comment 2</p>
             </div>
           </div>
         </div>
@@ -216,6 +205,8 @@
   <script src="scripts/services/metaservice.js"></script>
   <script src="scripts/directives/pw-recheck.js"></script>
   <script src="scripts/controllers/admin.js"></script>
+  <script src="scripts/services/filesservice.js"></script>
+  <script src="scripts/services/commentsservice.js"></script>
   <!-- endbuild -->
 </body>
 

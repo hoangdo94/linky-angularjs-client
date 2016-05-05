@@ -54,9 +54,9 @@ angular
                 controllerAs: 'register'
             })
             .when('/admin/:entity', {
-              templateUrl: 'views/admin.html',
-              controller: 'AdminCtrl',
-              controllerAs: 'admin'
+                templateUrl: 'views/admin.html',
+                controller: 'AdminCtrl',
+                controllerAs: 'admin'
             })
             .otherwise({
                 redirectTo: '/'
@@ -70,6 +70,7 @@ angular
         authService,
         likesService,
         followsService,
+        commentsService,
         notify
     ) {
         $rootScope.apiUrl = 'http://localhost:3000/api';
@@ -104,7 +105,32 @@ angular
         };
         // details
         $rootScope.showDetails = function(feed) {
-            $rootScope.current = feed;
+            // Refresh comment storage
+            $rootScope.comments = {};
+
+            // Get comment of post
+            commentsService.getComment(feed.id, function(data) {
+                $rootScope.current = feed;
+                $rootScope.comments = data;
+            });
+        };
+
+        $rootScope.commentPost = function(feed, content) {
+            commentsService.commentPost(feed.id, content, function(data) {
+                if (data.status_code === '200') {
+                    var newComment = {
+                        'username': $rootScope.currentUser.username,
+                        'content': content
+                    };
+                    $rootScope.comments += newComment;
+                } else {
+                    notify({
+                        message: 'Something going wrong with your comment! Please try again!',
+                        duration: '5000',
+                        position: 'center'
+                    });
+                }
+            });
         };
 
         // like post
