@@ -1,0 +1,28 @@
+<div class="container" id="admin-view">
+  <div class="row">
+    <div class="col-md-3">
+      <ul>
+        <li>Categories</li>
+        <li>Posts</li>
+        <li>Types</li>
+        <li>Users</li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div ng-if="entity==='users'">
+        <table class="table table-stripped table-hover">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Username</th>
+              <th>Title</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Website</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

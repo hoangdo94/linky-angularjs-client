@@ -53,6 +53,11 @@ angular
                 controller: 'RegisterCtrl',
                 controllerAs: 'register'
             })
+            .when('/admin/:entity', {
+              templateUrl: 'views/admin.html',
+              controller: 'AdminCtrl',
+              controllerAs: 'admin'
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -84,7 +89,6 @@ angular
                     $location.path('/login');
                 }
                 if (!$rootScope.notInLoginScreen && $rootScope.authInited && authService.isLoggedIn()) {
-                    console.log('redirect to main');
                     $location.path('/');
                 }
             }
