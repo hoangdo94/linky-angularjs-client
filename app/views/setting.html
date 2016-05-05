@@ -114,4 +114,5 @@
   	</div>
 </div>
 
-<input type="file" name="upload" id="fileinput" style="display:none;">
+<input type="file" id="avatar_image" onchange="angular.element(this).scope().uploadImage(this.files[0])" style="display: none;" />
+<input type="file" id="cover_image" onchange="angular.element(this).scope().uploadImage(this.files[0])" style="display: none;" />
