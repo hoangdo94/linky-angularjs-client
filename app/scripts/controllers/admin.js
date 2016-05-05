@@ -57,6 +57,7 @@ angular.module('linkyApp')
             entityService = usersService;
             $scope.fields = ['id', 'username', 'email', 'website', 'phone', 'title'];
             $scope.editables = ['website', 'phone', 'title'];
+            $scope.addOrRemoveable = false;
             getUsers();
             break;
           }
@@ -65,6 +66,7 @@ angular.module('linkyApp')
             entityService = postsService;
             $scope.fields = ['id', 'user_id', 'cate_id', 'type_id', 'content'];
             $scope.editables = ['content'];
+            $scope.addOrRemoveable = false;
             getPosts();
             break;
           }
@@ -73,6 +75,7 @@ angular.module('linkyApp')
             entityService = typesService;
             $scope.fields = ['id', 'name'];
             $scope.editables = ['name'];
+            $scope.addOrRemoveable = true;
             getTypes();
             break;
           }
@@ -81,6 +84,7 @@ angular.module('linkyApp')
             entityService = categoriesService;
             $scope.fields = ['id', 'name'];
             $scope.editables = ['name'];
+            $scope.addOrRemoveable = true;
             getCategories();
             break;
           }
