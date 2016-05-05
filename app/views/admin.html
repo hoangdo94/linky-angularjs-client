@@ -1,28 +1,52 @@
 <div class="container" id="admin-view">
-  <div class="row">
-    <div class="col-md-3">
-      <ul>
-        <li>Categories</li>
-        <li>Posts</li>
-        <li>Types</li>
-        <li>Users</li>
-      </ul>
-    </div>
-    <div class="col-md-9">
-      <div ng-if="entity==='users'">
-        <table class="table table-stripped table-hover">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Username</th>
-              <th>Title</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Website</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
+  <div id="entity-list">
+    <a class="btn btn-link" ng-repeat="entity in entities" href="#/admin/{{entity}}">
+      <i class="fa {{iconClasses[$index]}}"></i>
+      {{ entity }}
+    </a>
+  </div>
+  <hr/>
+  <div>
+    <div ng-if="entity==='users'">
+      <table class="table table-stripped table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Title</th>
+            <th>Phone</th>
+            <th>Website</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="user in users | orderBy:'id'">
+            <td>
+              {{user.id}}
+            </td>
+            <td>
+              {{user.username}}
+            </td>
+            <td>
+              {{user.email}}
+            </td>
+            <td>
+              {{user.title}}
+            </td>
+            <td>
+              {{user.phone}}
+            </td>
+            <td>
+              {{user.website}}
+            </td>
+            <td>
+              <a class="btn btn-xs btn-primary">Edit</a>
+              <a class="btn btn-xs btn-danger">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

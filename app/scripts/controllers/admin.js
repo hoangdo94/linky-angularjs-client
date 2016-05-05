@@ -8,8 +8,17 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('AdminCtrl', function ($scope, $routeParams, categoriesService, postsService, typesService, usersService) {
-    $scope.entity = $routeParams.entity.toLowerCase();
+  .controller('AdminCtrl', function ($scope, $routeParams, $location, categoriesService, postsService, typesService, usersService) {
+    $scope.entities = ['categories', 'posts', 'types', 'users'];
+    $scope.iconClasses = ['fa-object-group', 'fa-newspaper-o', 'fa-table', 'fa-users'];
+    if ($routeParams.entity) {
+      $scope.entity = $routeParams.entity.toLowerCase();
+      if ($scope.entities.indexOf($scope.entity) === -1) {
+        $location.path('/admin/' + $scope.entities[0]);
+      }
+    } else {
+      $scope.entity = $scope.entities[0];
+    }
     console.log($scope.entity);
     function getCategories() {
       categoriesService.getList(function(categories) {
