@@ -8,23 +8,23 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-  .controller('AdminCtrl', function ($scope, $routeParams, $location, categoriesService, postsService, typesService, usersService) {
-    $scope.entities = ['categories', 'posts', 'types', 'users'];
+  .controller('AdminCtrl', function($scope, $routeParams, $location, $filter, categoriesService, postsService, typesService, usersService, notify) {
+    $scope.entityTypes = ['categories', 'links', 'types', 'users'];
     $scope.iconClasses = ['fa-object-group', 'fa-newspaper-o', 'fa-table', 'fa-users'];
     if ($routeParams.entity) {
-      $scope.entity = $routeParams.entity.toLowerCase();
-      if ($scope.entities.indexOf($scope.entity) === -1) {
-        $location.path('/admin/' + $scope.entities[0]);
+      $scope.entityType = $routeParams.entity.toLowerCase();
+      if ($scope.entityTypes.indexOf($scope.entityType) === -1) {
+        $location.path('/admin/' + $scope.entityTypes[0]);
       }
     } else {
-      $scope.entity = $scope.entities[0];
+      $scope.entityType = $scope.entityTypes[0];
     }
-    console.log($scope.entity);
+
+    var entityService = null;
+
     function getCategories() {
       categoriesService.getList(function(categories) {
-        $scope.categories = categories;
-        $scope.preferredCategories = $scope.categories.slice(0, 3);
-        $scope.otherCategories = $scope.categories.slice(3, $scope.categories.length);
+        $scope.entities = categories;
       });
     }
 
@@ -34,38 +34,126 @@ angular.module('linkyApp')
           var s = type.name;
           type.name = s && s[0].toUpperCase() + s.slice(1);
         });
-        $scope.types = types;
+        $scope.entities = types;
       });
     }
 
     function getPosts() {
       postsService.getList(function(posts) {
-        $scope.posts = posts;
+        $scope.entities = posts;
       });
     }
 
     function getUsers() {
       usersService.getList(function(users) {
-        $scope.users = users;
+        $scope.entities = users;
       });
     }
 
-    switch ($scope.entity) {
-      case 'users': {
-        getUsers();
-        break;
-      }
-      case 'posts': {
-        getPosts();
-        break;
-      }
-      case 'types': {
-        getTypes();
-        break;
-      }
-      default: {
-        getCategories();
-        break;
+    function fetchData() {
+      switch ($scope.entityType) {
+        case 'users':
+          {
+            entityService = usersService;
+            $scope.fields = ['id', 'username', 'email', 'website', 'phone', 'title'];
+            $scope.editables = ['website', 'phone', 'title'];
+            getUsers();
+            break;
+          }
+        case 'links':
+          {
+            entityService = postsService;
+            $scope.fields = ['id', 'user_id', 'cate_id', 'type_id', 'content'];
+            $scope.editables = ['content'];
+            getPosts();
+            break;
+          }
+        case 'types':
+          {
+            entityService = typesService;
+            $scope.fields = ['id', 'name'];
+            $scope.editables = ['name'];
+            getTypes();
+            break;
+          }
+        default:
+          {
+            entityService = categoriesService;
+            $scope.fields = ['id', 'name'];
+            $scope.editables = ['name'];
+            getCategories();
+            break;
+          }
       }
     }
+
+    fetchData();
+
+    $scope.editData = {};
+
+    $scope.startEdit = function(id) {
+      var currentEntity = $filter('filter')($scope.entities, {
+        id: id
+      })[0];
+      $scope.editData.id = id;
+      $scope.editables.forEach(function(field) {
+        $scope.editData[field] = currentEntity[field];
+      });
+    };
+
+    $scope.finishEdit = function() {
+      console.log($scope.editData);
+      entityService.update($scope.editData.id, $scope.editData, function(res) {
+        if (res.error) {
+          var alert = '';
+          var keys = Object.keys(res.error.errors);
+          keys.forEach(function(key) {
+            alert += '\n' + res.error.errors[key][0];
+          });
+          notify({
+            message: alert,
+            duration: 5000,
+            position: 'center'
+          });
+        } else {
+          fetchData();
+          notify({
+            message: 'Updated!',
+            duration: 2000,
+            position: 'center'
+          });
+        }
+        $scope.editData = {};
+      });
+    };
+
+    $scope.startDelete = function(id) {
+        $scope.editData.id = id;
+    };
+
+    $scope.finishDelete = function() {
+      entityService.delete($scope.editData.id, function(res) {
+        if (res.error) {
+          var alert = '';
+          var keys = Object.keys(res.error.errors);
+          keys.forEach(function(key) {
+            alert += '\n' + res.error.errors[key][0];
+          });
+          notify({
+            message: alert,
+            duration: 5000,
+            position: 'center'
+          });
+        } else {
+          fetchData();
+          notify({
+            message: 'Deleted!',
+            duration: 2000,
+            position: 'center'
+          });
+        }
+        $scope.editData = {};
+      });
+    };
+
   });

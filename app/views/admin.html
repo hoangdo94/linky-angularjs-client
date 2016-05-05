@@ -1,52 +1,79 @@
 <div class="container" id="admin-view">
-  <div id="entity-list">
-    <a class="btn btn-link" ng-repeat="entity in entities" href="#/admin/{{entity}}">
-      <i class="fa {{iconClasses[$index]}}"></i>
-      {{ entity }}
-    </a>
+  <div id="entity-list" class="col-md-3">
+    <div class="list-group">
+      <a class="list-group-item" ng-repeat="ett in entityTypes" ng-class="{'active': ett===entityType}" href="#/admin/{{ett}}">
+        <i class="fa {{iconClasses[$index]}}"></i>
+        {{ ett }}
+      </a>
+    </div>
   </div>
-  <hr/>
-  <div>
-    <div ng-if="entity==='users'">
+  <div class="col-md-9">
+    <div>
       <table class="table table-stripped table-hover">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Title</th>
-            <th>Phone</th>
-            <th>Website</th>
+            <th ng-repeat="field in fields">{{field}}</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="user in users | orderBy:'id'">
-            <td>
-              {{user.id}}
+          <tr ng-repeat="ett in entities | orderBy:'id'">
+            <td ng-repeat="field in fields">
+              {{ett[field]}}
             </td>
             <td>
-              {{user.username}}
-            </td>
-            <td>
-              {{user.email}}
-            </td>
-            <td>
-              {{user.title}}
-            </td>
-            <td>
-              {{user.phone}}
-            </td>
-            <td>
-              {{user.website}}
-            </td>
-            <td>
-              <a class="btn btn-xs btn-primary">Edit</a>
-              <a class="btn btn-xs btn-danger">Delete</a>
+              <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit-modal" ng-click="startEdit(ett.id)">Edit</a>
+              <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete-modal" ng-click="startDelete(ett.id)">Delete</a>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
+</div>
+
+<div id="edit-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit entity</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group" ng-repeat="field in editables">
+          <label>{{field}}</label>
+          <input type="text" class="form-control" ng-model="editData[field]">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="finishEdit()">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="delete-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete entity</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure?</p>
+        <p>
+          <b>NOTICE:</b> If you delete this entity, other entities which depends on it will also be deleted.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="finishDelete()">Delete</button>
+      </div>
+    </div>
+
   </div>
 </div>

@@ -2,10 +2,17 @@
   padding-top: 30px;
 
   #entity-list {
-    text-align: center;
     a {
-      margin: 0px 5px;
       text-transform: uppercase;
     }
+    a.active {
+      background-color: #01b286 !important;
+      border-color: #01b286 !important;
+    }
+  }
+
+  table tr td:last-child {
+    white-space: nowrap;
+    width: 1px;
   }
 }
