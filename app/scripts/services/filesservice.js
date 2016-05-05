@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc service
- * @name linkyApp.likesService
+ * @name linkyApp.filesService
  * @description
- * # likesService
+ * # filesService
  * Service in the linkyApp.
  */
 angular.module('linkyApp')
-    .factory('likesService', function($http, $rootScope) {
+    .factory('filesService', function($http, $rootScope) {
         return {
-            likePost: function(postId, callback) {
-                $http.post($rootScope.apiUrl + '/likes?id=' + postId)
+            uploadImage: function(image, callback) {
+                $http.post($rootScope.apiUrl + '/files', image)
                     .success(function(data) {
                         if (callback) {
                             callback(data);

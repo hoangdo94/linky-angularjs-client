@@ -54,9 +54,9 @@ angular
                 controllerAs: 'register'
             })
             .when('/admin/:entity', {
-              templateUrl: 'views/admin.html',
-              controller: 'AdminCtrl',
-              controllerAs: 'admin'
+                templateUrl: 'views/admin.html',
+                controller: 'AdminCtrl',
+                controllerAs: 'admin'
             })
             .when('/admin', {
               templateUrl: 'views/admin.html',
@@ -75,6 +75,7 @@ angular
         authService,
         likesService,
         followsService,
+        commentsService,
         notify
     ) {
         $rootScope.apiUrl = 'http://localhost:3000/api';
@@ -108,8 +109,37 @@ angular
             return 'fa fa-picture-o';
         };
         // details
-        $rootScope.showDetails = function(feed) {
-            $rootScope.current = feed;
+        $rootScope.showDetails = function(post) {
+            // Refresh comment storage
+            $rootScope.comments = [];
+
+            // Get comment of post
+            commentsService.getComment(post.id, function(resComments) {
+                $rootScope.current = post;
+                $rootScope.comments = resComments;
+            });
+        };
+
+        $rootScope.commentPost = function(postId, content) {
+            commentsService.commentPost(postId, content, function(data) {
+                if (data.status_code === '200') {
+                    var newComment = {
+                        'username': $rootScope.currentUser.username,
+                        'content': content,
+                        'created_at': 'just now'
+                    };
+                    // Add to current Comments object, at first
+                    $rootScope.comments.unshift(newComment);
+                    // Refresh currentUserComment
+                    $('#input_comment').val('');
+                } else {
+                    notify({
+                        message: 'Something going wrong with your comment! Please try again!',
+                        duration: '5000',
+                        position: 'center'
+                    });
+                }
+            });
         };
 
         // like post
@@ -147,5 +177,10 @@ angular
         $rootScope.logout = authService.logout;
     })
     .controller('linkyCtrl', function() {
-
+        $('#input_comment').on('keypress', function(event) {
+            if (event.which === 13 || event.keyCode === 13) {
+                $('#button_comment').click();
+                $('#input_comment').val('');
+            }
+        });
     });
