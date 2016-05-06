@@ -44,7 +44,7 @@
     			<ul class="nav navbar-nav navbar-right">
     				<li class="dropdown" ng-if="isLoggedIn()">
     					<a class="dropdown-toggle" id="header-dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-    						<img class="img-rounded" src="https://placeimg.com/32/32/people" alt="profile">
+    						<img class="img-rounded" ng-src="{{currentUser.avatar_url}}" height="32" width="32" alt="profile">
     						<span class="caret"></span>
     					</a>
     					<ul class="dropdown-menu">
@@ -93,7 +93,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">
             <a href="#/profile/{{current.user_id}}">
-              <img class="img-rounded" src="http://placehold.it/150x150" alt="avatar" width="30px">
+              <img class="img-rounded" ng-src="{{current.avatar_url}}" alt="avatar" width="30px" height="30px">
             </a>
             <a href="#/profile/{{current.user_id}}">
               {{current.username}}
@@ -102,14 +102,14 @@
         </div>
         <div class="modal-body">
           <p>
-            <img class="img-responsive" src="http://placehold.it/1000x300/?text=Preview" alt="preview" />
+            <img class="img-responsive" ng-src="{{current.thumb_url}}" alt="preview" style="margin: 10px auto;" />
           </p>
           <p>
             {{current.content}}
           </p>
           <p>
-            1 <a ng-click="likePost(current.id)"><i class="fa fa-heart" style="cursor: pointer;"></i></a>&nbsp;&nbsp;
-            <a href="{{current.link}}" target="_blank"><i class="fa fa-share"></i></a>
+            {{current.num_likes}} <a ng-click="likePost(current.id)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
+            <a href="{{current.link}}" target="_blank"><i class="fa fa-share" title="Open link"></i></a>
             <span class="text-cat pull-right">
                 <a><i ng-class="typeIconClass(feed.type_name)"></i></a>&nbsp;&nbsp;
                 {{current.cate_name}}
@@ -117,23 +117,23 @@
           </p>
         </div>
         <div class="modal-footer">
-          <div class="input-group">
-            <input type="text" class="form-control" id="input_comment" ng-model="currentUserComment" placeholder="Leave your comment...">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" id="button_comment" type="button" ng-click="commentPost(current.id, currentUserComment)">Save</button>
-            </span>
-          </div>
           <!-- /input-group -->
           <div class="media" ng-repeat="comment in comments">
             <div class="media-left">
               <a href="#/profile/{{comment.user_id}}">
-                <img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+                <img class="media-object img-rounded" ng-src="{{comment.avatar_url}}" alt="avatar" width="50px" height="50px">
               </a>
             </div>
             <div class="media-body">
               <p><a href="#/profile/{{comment.user_id}}"><b>{{comment.username}}</b></a></p>
               <p>{{comment.content}}<span class="text-info pull-right">at {{comment.created_at}}</span></p>
             </div>
+          </div>
+          <div class="input-group">
+            <input type="text" class="form-control" id="input_comment" ng-model="currentUserComment" placeholder="Leave your comment...">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" id="button_comment" type="button" ng-click="commentPost(current.id, currentUserComment)">Save</button>
+            </span>
           </div>
         </div>
       </div>
@@ -146,14 +146,14 @@
       <div class="media">
         <div class="media-left">
           <a href="#/profile/{{feed.user_id}}">
-            <img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+            <img class="media-object img-rounded" ng-src="{{feed.avatar_url}}" alt="avatar" width="50px" height="50px">
           </a>
           <div class="item-addons">
             {{feed.cate_name}}&nbsp;&nbsp;
             <a><i ng-class="typeIconClass(feed.type_name)"></i></a>&nbsp;&nbsp;
-            <a ng-if="feed.user_id !== currentUser.id" ng-click="followUser(feed.user_id,feed.username)" style="text-decoration: none; cursor: pointer;"><i class="fa fa-eye"></i>&nbsp;&nbsp;</a>
-            <a ng-click="likePost(feed.id)"><i class="fa fa-heart" style="cursor: pointer;"></i></a>&nbsp;&nbsp;
-            <a href="{{feed.link}}" target="_blank"><i class="fa fa-share"></i></a>
+            <a ng-if="feed.user_id !== currentUser.id" ng-click="followUser(feed.user_id,feed.username)" style="text-decoration: none; cursor: pointer;"><i class="fa fa-eye" title="Follow"></i>&nbsp;&nbsp;</a>
+            <a ng-click="likePost(feed.id)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
+            <a href="{{feed.link}}" target="_blank"><i class="fa fa-share" title="Open link"></i></a>
           </div>
         </div>
         <div class="media-body">
@@ -164,7 +164,7 @@
     </div>
     <div clas="item-preview">
       <a href="" ng-click="showDetails(feed)" data-toggle="modal" data-target="#details-modal">
-        <img class="img-responsive" src="http://placehold.it/1000x300/?text=Preview" alt="preview" />
+        <img class="img-responsive" ng-src="{{feed.thumb_url}}" alt="preview" style="margin: 10px auto;" />
       </a>
     </div>
   </script>
