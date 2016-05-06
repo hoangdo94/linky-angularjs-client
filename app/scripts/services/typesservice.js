@@ -23,6 +23,19 @@ angular.module('linkyApp')
             }
           });
       },
+      insert: function(data, callback) {
+        $http.post($rootScope.apiUrl + '/types', data)
+          .success(function(data) {
+            if (callback) {
+              callback(data);
+            }
+          })
+          .error(function(err) {
+            if (callback) {
+              callback(err);
+            }
+          });
+      },
       update: function(id, data, callback) {
         $http.post($rootScope.apiUrl + '/types/' + id, data)
           .success(function(data) {
@@ -30,9 +43,9 @@ angular.module('linkyApp')
               callback(data);
             }
           })
-          .error(function() {
+          .error(function(err) {
             if (callback) {
-              callback([]);
+              callback(err);
             }
           });
       },

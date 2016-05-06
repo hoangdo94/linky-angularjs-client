@@ -30,16 +30,13 @@ angular.module('linkyApp')
 
     function getTypes() {
       typesService.getList(function(types) {
-        types.forEach(function(type) {
-          var s = type.name;
-          type.name = s && s[0].toUpperCase() + s.slice(1);
-        });
         $scope.entities = types;
       });
     }
 
     function getPosts() {
       postsService.getList(function(posts) {
+        console.log(posts);
         $scope.entities = posts;
       });
     }
@@ -55,7 +52,7 @@ angular.module('linkyApp')
         case 'users':
           {
             entityService = usersService;
-            $scope.fields = ['id', 'username', 'email', 'website', 'phone', 'title'];
+            $scope.fields = ['username', 'email', 'website', 'phone', 'title'];
             $scope.editables = ['website', 'phone', 'title'];
             $scope.addOrRemoveable = false;
             getUsers();
@@ -64,8 +61,8 @@ angular.module('linkyApp')
         case 'links':
           {
             entityService = postsService;
-            $scope.fields = ['id', 'user_id', 'cate_id', 'type_id', 'content'];
-            $scope.editables = ['content'];
+            $scope.fields = ['user_id', 'cate_id', 'type_id', 'link', 'content'];
+            $scope.editables = ['link', 'content'];
             $scope.addOrRemoveable = false;
             getPosts();
             break;
@@ -73,7 +70,7 @@ angular.module('linkyApp')
         case 'types':
           {
             entityService = typesService;
-            $scope.fields = ['id', 'name'];
+            $scope.fields = ['name'];
             $scope.editables = ['name'];
             $scope.addOrRemoveable = true;
             getTypes();
@@ -82,7 +79,7 @@ angular.module('linkyApp')
         default:
           {
             entityService = categoriesService;
-            $scope.fields = ['id', 'name'];
+            $scope.fields = ['name'];
             $scope.editables = ['name'];
             $scope.addOrRemoveable = true;
             getCategories();
@@ -94,6 +91,32 @@ angular.module('linkyApp')
     fetchData();
 
     $scope.editData = {};
+    $scope.addData = {};
+
+    $scope.finishAdd = function() {
+      entityService.insert($scope.addData, function(res) {
+        if (res.error) {
+          var alert = '';
+          var keys = Object.keys(res.error.errors);
+          keys.forEach(function(key) {
+            alert += '\n' + res.error.errors[key][0];
+          });
+          notify({
+            message: alert,
+            duration: 5000,
+            position: 'center'
+          });
+        } else {
+          fetchData();
+          notify({
+            message: 'Added!',
+            duration: 2000,
+            position: 'center'
+          });
+        }
+        $scope.addData = {};
+      });
+    };
 
     $scope.startEdit = function(id) {
       var currentEntity = $filter('filter')($scope.entities, {
@@ -106,7 +129,6 @@ angular.module('linkyApp')
     };
 
     $scope.finishEdit = function() {
-      console.log($scope.editData);
       entityService.update($scope.editData.id, $scope.editData, function(res) {
         if (res.error) {
           var alert = '';
