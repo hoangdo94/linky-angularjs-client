@@ -92,6 +92,7 @@ angular.module('linkyApp')
                         duration: '5000',
                         position: 'center'
                     });
+                    $rootScope.currentUser = res.data;
                 } else {
                     notify({
                         message: 'Please make sure your information is correct!',
@@ -99,25 +100,83 @@ angular.module('linkyApp')
                         position: 'center'
                     });
                 }
-
             });
 
-        };
-        $scope.uploadImage = function(file) {
-            console.dir(file);
-            var formData = new FormData();
-            formData.append('file', file);
-            filesService.upload(formData, function(res) {
-                console.log('=================');
-                console.dir(res);
-            });
         };
 
         $scope.changeAvatar = function() {
-            $('#avatar_image').click();
+            $('#avatar-input').click();
         };
 
         $scope.changeBackground = function() {
-            $('#cover_image').click();
+            $('#cover-input').click();
         };
+
+        //handle avatar file change
+        $scope.$watch('avatar', function (avatar) {
+          if (avatar) {
+            filesService.upload(avatar, function(res) {
+              if (res.data.id) { //success
+                usersService.update($rootScope.currentUser.id, {
+                  avatar_id: res.data.id
+                }, function(res) {
+                  if (res.status_code === '200') {
+                      notify({
+                          message: 'Changed avatar!',
+                          duration: '5000',
+                          position: 'center'
+                      });
+                      $rootScope.currentUser = res.data;
+                  } else {
+                      notify({
+                          message: 'Failed to change avatar. Please try again.',
+                          duration: '5000',
+                          position: 'center'
+                      });
+                  }
+                });
+              } else { // cannot upload
+                notify({
+                    message: 'Failed to upload file. Please try again.',
+                    duration: '5000',
+                    position: 'center'
+                });
+              }
+            });
+          }
+       });
+
+       //handle cover file change
+       $scope.$watch('cover', function (cover) {
+         if (cover) {
+           filesService.upload(cover, function(res) {
+             if (res.data.id) { //success
+               usersService.update($rootScope.currentUser.id, {
+                 cover_id: res.data.id
+               }, function(res) {
+                 if (res.status_code === '200') {
+                     notify({
+                         message: 'Changed cover!',
+                         duration: '5000',
+                         position: 'center'
+                     });
+                     $rootScope.currentUser = res.data;
+                 } else {
+                     notify({
+                         message: 'Failed to change cover. Please try again.',
+                         duration: '5000',
+                         position: 'center'
+                     });
+                 }
+               });
+             } else { // cannot upload
+               notify({
+                   message: 'Failed to upload file. Please try again.',
+                   duration: '5000',
+                   position: 'center'
+               });
+             }
+           });
+         }
+      });
     });
