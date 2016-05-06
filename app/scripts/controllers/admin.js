@@ -36,7 +36,6 @@ angular.module('linkyApp')
 
     function getPosts() {
       postsService.getList(function(posts) {
-        console.log(posts);
         $scope.entities = posts;
       });
     }
