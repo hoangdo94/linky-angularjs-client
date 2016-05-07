@@ -29,6 +29,11 @@ angular.module('linkyApp')
             }
           }
       },
+      updateLocalPassword: function(password) {
+        localStorageService.set('password', password);
+        var username = localStorageService.get('username');
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa(username + ':' + password); // jshint ignore:line
+      },
       login: function(username, password, callback) {
           $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa(username + ':' + password); // jshint ignore:line
           $http.post($rootScope.apiUrl + '/auth')

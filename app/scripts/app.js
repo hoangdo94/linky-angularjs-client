@@ -183,20 +183,22 @@ angular
         };
 
         // Init auth
-        authService.init(function(isLoggedIn, user) {
-            $rootScope.authInited = true;
-            if (isLoggedIn) {
-                $rootScope.currentUser = user;
+        $rootScope.checkAuth = function() {
+          authService.init(function(isLoggedIn, user) {
+              $rootScope.authInited = true;
+              if (isLoggedIn) {
+                  $rootScope.currentUser = user;
 
-                // Get Followings of Current User to check follow status of this user
-                followsService.getFollowings($rootScope.currentUser.id, function(followings) {
-                    $rootScope.followingsOfCurrentUser = followings.data;
-                });
+                  // Get Followings of Current User to check follow status of this user
+                  followsService.getFollowings($rootScope.currentUser.id, function(followings) {
+                      $rootScope.followingsOfCurrentUser = followings.data;
+                  });
 
-            } else {
-                $location.path('/login');
-            }
-        });
+              } else {
+                  $location.path('/login');
+              }
+          });
+        };
 
         $rootScope.followedUser = function(followerId) {
             var result = false;
@@ -210,6 +212,7 @@ angular
 
         $rootScope.isLoggedIn = authService.isLoggedIn;
         $rootScope.logout = authService.logout;
+        $rootScope.checkAuth();
     })
     .controller('linkyCtrl', function() {
         // Press Enter to send comment
