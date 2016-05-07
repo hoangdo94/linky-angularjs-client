@@ -66,7 +66,6 @@ angular.module('linkyApp')
                 } else {
                   $scope.canLoadMore = false;
                 }
-                console.log(res.data);
                 res.data.forEach(function(post) {
                     $scope.feeds.push(post);
                     $scope.shown = $scope.feeds;

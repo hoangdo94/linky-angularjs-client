@@ -67,6 +67,7 @@ angular
     .run(function(
         $rootScope,
         $location,
+        $route,
         authService,
         likesService,
         followsService,
@@ -170,7 +171,7 @@ angular
                     });
 
                     post.isFirstLike = true;
-                } else if (res.status_code && res.status_code === '200'){
+                } else if (res.status_code && res.status_code === '200') {
                     notify({
                         message: 'You just liked this post!',
                         duration: 2000,
@@ -206,6 +207,46 @@ angular
                 }
             });
             return result;
+        };
+
+        $rootScope.finishEditPost = function() {
+            postsService.update($rootScope.current.id, $rootScope.current, function(res) {
+                if (res.status_code === '200') {
+                    notify({
+                        message: 'You just edited this post successfully!',
+                        duration: 2000,
+                        position: 'right'
+                    });
+                } else {
+                    notify({
+                        message: 'Something went wrong! Please try again!',
+                        duration: 2000,
+                        position: 'right'
+                    });
+                }
+            });
+        };
+
+        $rootScope.deletePost = function() {
+            postsService.delete($rootScope.current.id, function(res) {
+                if (res.status_code === '200') {
+                    notify({
+                        message: 'You just deleted this post successfully!',
+                        duration: 2000,
+                        position: 'right'
+                    });
+
+                    // Refresh main page & close modal
+                    $('#details-modal').modal('hide');
+                    $route.reload();
+                } else {
+                    notify({
+                        message: 'Something went wrong! Please try again!',
+                        duration: 2000,
+                        position: 'right'
+                    });
+                }
+            });
         };
 
         $rootScope.isLoggedIn = authService.isLoggedIn;

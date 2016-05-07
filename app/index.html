@@ -1,90 +1,92 @@
 <!doctype html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <title>Linky - By Sharers, For Sharers</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  <!-- build:css(.) styles/vendor.css -->
-  <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/isteven-angular-multiselect/isteven-multi-select.css" />
-  <link rel="stylesheet" href="bower_components/angular-notify/dist/angular-notify.css" />
-  <!-- endbower -->
-  <!-- endbuild -->
-  <!-- build:css(.tmp) styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
-  <!-- endbuild -->
-</head>
-
-<body ng-app="linkyApp" ng-controller="linkyCtrl">
-  <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <head>
+    <meta charset="utf-8">
+    <title>Linky - By Sharers, For Sharers</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/isteven-angular-multiselect/isteven-multi-select.css" />
+    <link rel="stylesheet" href="bower_components/angular-notify/dist/angular-notify.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="linkyApp" ng-controller="linkyCtrl">
+    <!--[if lte IE 8]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-  <header id="header" class="header header-style">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-    	<div class="container">
-    		<!-- Brand and toggle get grouped for better mobile display -->
-    		<div class="navbar-header">
-    			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-    				<span class="sr-only">Toggle navigation</span>
-    				<span class="icon-bar"></span>
-    				<span class="icon-bar"></span>
-    				<span class="icon-bar"></span>
-    			</button>
-    			<a class="navbar-brand" href="#/">
-    				<img src="images/logo.png" height="25px" />
-    			</a>
-    		</div>
-
-    		<!-- Collect the nav links, forms, and other content for toggling -->
-    		<div class="collapse navbar-collapse" id="navbar-collapse" ng-if="notInLoginScreen">
-    			<ul class="nav navbar-nav navbar-right">
-    				<li class="dropdown" ng-if="isLoggedIn()">
-    					<a class="dropdown-toggle" id="header-dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-    						<img class="img-rounded" ng-src="{{resolveImg(currentUser.avatar_id, 'avatar')}}" height="32" width="32" alt="profile">
-                <span>&nbsp;&nbsp;{{currentUser.username}}&nbsp;&nbsp;</span>
-                <span class="caret"></span>
-    					</a>
-    					<ul class="dropdown-menu">
-    						<li><a href="#/profile/{{currentUser.id}}">Profile</a></li>
-    						<li><a href="#/setting">Setting</a></li>
-    						<li role="separator" class="divider"></li>
-                <li ng-if="currentUser.isAdmin"><a href="#/admin">Admin</a></li>
-    						<li><a href="#" ng-click="logout()">Log out</a></li>
-    					</ul>
-    				</li>
-    			</ul>
-    		</div>
-    		<!-- /.navbar-collapse -->
-    	</div>
-    	<!-- /.container-fluid -->
-    </nav>
-  </header>
-  <div ng-view=""></div>
-  <div class="footer">
-    <hr/>
-    <div class="container" style="text-align: center;">
-      <ul class="list-inline">
-        <li><a href="#/">ABOUT US</a></li>
-        <li><a href="#/">SUPPORT</a></li>
-        <li><a href="#/">PRIVACY</a></li>
-        <li><a href="#/">TERMS</a></li>
-      </ul>
-      &copy; 2016 Linky
+    <header id="header" class="header header-style">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">
+              <img src="images/logo.png" height="25px" />
+            </a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-collapse" ng-if="notInLoginScreen">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown" ng-if="isLoggedIn()">
+                <a class="dropdown-toggle" id="header-dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <img class="img-rounded" ng-src="{{resolveImg(currentUser.avatar_id, 'avatar')}}" height="32" width="32" alt="profile">
+                  <span>&nbsp;&nbsp;{{currentUser.username}}&nbsp;&nbsp;</span>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#/profile/{{currentUser.id}}">Profile</a></li>
+                  <li><a href="#/setting">Setting</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li ng-if="currentUser.isAdmin"><a href="#/admin">Admin</a></li>
+                  <li><a href="#" ng-click="logout()">Log out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+      </nav>
+    </header>
+    <div ng-view=""></div>
+    <div class="footer">
+      <hr/>
+      <div class="container" style="text-align: center;">
+        <ul class="list-inline">
+          <li><a href="#/">ABOUT US</a></li>
+          <li><a href="#/">SUPPORT</a></li>
+          <li><a href="#/">PRIVACY</a></li>
+          <li><a href="#/">TERMS</a></li>
+        </ul>
+        &copy; 2016 Linky
+      </div>
+      <br/>
     </div>
-    <br/>
-  </div>
-
-  <!-- Modal -->
-  <div id="details-modal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">
+    <!-- Detail Modal -->
+    <div id="details-modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="dropdown" ng-if="current.user_id === currentUser.id">
+              <button type="button" class="dropdown-toggle close"id="optionDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right: 10px;"><span class="glyphicon glyphicon-option-vertical"></span></button>
+              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="optionDropdownMenu">
+                <li style="cursor: pointer;"><a data-toggle="modal" data-target="#edit-modal">Edit post</a></li>
+                <li style="cursor: pointer;"><a data-toggle="modal" data-target="#delete-modal">Delete post</a></li>
+              </ul>
+            </div>
+            <h4 class="modal-title">
             <a href="#/profile/{{current.user_id}}">
               <img class="img-rounded" ng-src="{{resolveImg(current.avatar_id, 'avatar')}}" alt="avatar" width="30px" height="30px">
             </a>
@@ -92,56 +94,99 @@
               {{current.username}}
             </a>
             </h4>
-        </div>
-        <div class="modal-body">
-          <div class="panel panel-default panel-preview">
-            <div class="panel-body">
-              <div class="preview-thumb" style="background-image: url({{resolveImg(current.thumb_id, 'thumb')}})"></div>
-            </div>
-            <div class="panel-footer">
-              <h3 class="panel-title">{{current.title}}</h3>
-              <p>{{current.description}}</p>
-              <a href="{{current.link}}" title="{{current.title}}" target="_blank">{{current.link}}</a>
-            </div>
           </div>
-          <p>
-            {{current.content}}
-          </p>
-          <p>
-            {{current.num_likes}} <a ng-click="likePost(current)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
-            <a href="{{current.link}}" target="_blank"><i class="fa fa-share" title="Open link"></i></a>
-            <span class="text-cat pull-right">
+          <div class="modal-body">
+            <div class="panel panel-default panel-preview">
+              <div class="panel-body">
+                <div class="preview-thumb" style="background-image: url({{resolveImg(current.thumb_id, 'thumb')}})"></div>
+              </div>
+              <div class="panel-footer">
+                <h3 class="panel-title">{{current.title}}</h3>
+                <p>{{current.description}}</p>
+                <a href="{{current.link}}" title="{{current.title}}" target="_blank">{{current.link}}</a>
+              </div>
+            </div>
+            <p>
+              {{current.content}}
+            </p>
+            <p>
+              {{current.num_likes}} <a ng-click="likePost(current)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
+              <a href="{{current.link}}" target="_blank"><i class="fa fa-share" title="Open link"></i></a>
+              <span class="text-cat pull-right">
                 {{current.cate_name}} {{current.type_name}}
               </span>
-          </p>
-        </div>
-        <div class="modal-footer">
-          <!-- /input-group -->
-          <div class="media" ng-repeat="comment in comments">
-            <div class="media-left">
-              <a href="#/profile/{{comment.user_id}}">
-                <img class="media-object img-rounded" ng-src="{{resolveImg(comment.avatar_id, 'avatar')}}" alt="avatar" width="50px" height="50px">
-              </a>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <!-- /input-group -->
+            <div class="media" ng-repeat="comment in comments">
+              <div class="media-left">
+                <a href="#/profile/{{comment.user_id}}">
+                  <img class="media-object img-rounded" ng-src="{{resolveImg(comment.avatar_id, 'avatar')}}" alt="avatar" width="50px" height="50px">
+                </a>
+              </div>
+              <div class="media-body">
+                <p><a href="#/profile/{{comment.user_id}}"><b>{{comment.username}}</b></a></p>
+                <p>{{comment.content}}<span class="text-info pull-right">at {{comment.created_at}}</span></p>
+              </div>
             </div>
-            <div class="media-body">
-              <p><a href="#/profile/{{comment.user_id}}"><b>{{comment.username}}</b></a></p>
-              <p>{{comment.content}}<span class="text-info pull-right">at {{comment.created_at}}</span></p>
+            <div class="input-group">
+              <input type="text" class="form-control" id="input_comment" ng-model="currentUserComment" placeholder="Leave your comment...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="button_comment" type="button" ng-click="commentPost(current.id, currentUserComment)">Save</button>
+              </span>
             </div>
           </div>
-          <div class="input-group">
-            <input type="text" class="form-control" id="input_comment" ng-model="currentUserComment" placeholder="Leave your comment...">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" id="button_comment" type="button" ng-click="commentPost(current.id, currentUserComment)">Save</button>
-            </span>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- Edit/Delete Modal -->
+    <div id="edit-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Post</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Description</label>
+              <input type="text" class="form-control" ng-model="current.content">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="finishEditPost()">Save</button>
           </div>
         </div>
       </div>
-      <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
+    <div id="delete-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Delete Post</h4>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure?</p>
+            <p>
+              <b>NOTICE:</b> If you delete this post, other entities which depends on it will also be deleted.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deletePost()">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <script type="text/ng-template" id="feed-details">
+    <script type="text/ng-template" id="feed-details">
     <div class="panel-body">
       <div class="media">
         <div class="media-left">
@@ -175,47 +220,44 @@
         </div>
       </div>
     </div>
-  </script>
-
-  <!-- build:js(.) scripts/vendor.js -->
-  <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
-  <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
-  <script src="bower_components/angular-notify/dist/angular-notify.js"></script>
-  <!-- endbower -->
-  <!-- endbuild -->
-
-  <!-- build:js({.tmp,app}) scripts/scripts.js -->
-  <script src="scripts/app.js"></script>
-  <script src="scripts/controllers/main.js"></script>
-  <script src="scripts/controllers/profile.js"></script>
-  <script src="scripts/controllers/setting.js"></script>
-  <script src="scripts/controllers/login.js"></script>
-  <script src="scripts/controllers/register.js"></script>
-  <script src="scripts/services/authservice.js"></script>
-  <script src="scripts/services/categoriesservice.js"></script>
-  <script src="scripts/services/typesservice.js"></script>
-  <script src="scripts/services/usersservice.js"></script>
-  <script src="scripts/services/postsservice.js"></script>
-  <script src="scripts/services/followsservice.js"></script>
-  <script src="scripts/services/likesservice.js"></script>
-  <script src="scripts/services/metaservice.js"></script>
-  <script src="scripts/directives/pw-recheck.js"></script>
-  <script src="scripts/controllers/admin.js"></script>
-  <script src="scripts/services/filesservice.js"></script>
-  <script src="scripts/services/commentsservice.js"></script>
-  <script src="scripts/directives/filemodel.js"></script>
-  <script src="scripts/services/prefercategoriesservice.js"></script>
-  <!-- endbuild -->
-</body>
-
+    </script>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-notify/dist/angular-notify.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/profile.js"></script>
+    <script src="scripts/controllers/setting.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/register.js"></script>
+    <script src="scripts/services/authservice.js"></script>
+    <script src="scripts/services/categoriesservice.js"></script>
+    <script src="scripts/services/typesservice.js"></script>
+    <script src="scripts/services/usersservice.js"></script>
+    <script src="scripts/services/postsservice.js"></script>
+    <script src="scripts/services/followsservice.js"></script>
+    <script src="scripts/services/likesservice.js"></script>
+    <script src="scripts/services/metaservice.js"></script>
+    <script src="scripts/directives/pw-recheck.js"></script>
+    <script src="scripts/controllers/admin.js"></script>
+    <script src="scripts/services/filesservice.js"></script>
+    <script src="scripts/services/commentsservice.js"></script>
+    <script src="scripts/directives/filemodel.js"></script>
+    <script src="scripts/services/prefercategoriesservice.js"></script>
+    <!-- endbuild -->
+  </body>
 </html>
