@@ -8,19 +8,30 @@
     </div>
   </div>
   <div class="col-md-9">
-    <div ng-if="addOrRemoveable">
-      <button class="btn btn-success" data-toggle="modal" data-target="#add-modal">
+    <div ng-if="addOrRemoveable" class="pull-left">
+      <a class="btn btn-success" data-toggle="modal" data-target="#add-modal">
         <i class="fa fa-plus"></i> Insert
-      </button>
+      </a>
       <br/><br/>
+    </div>
+    <div class="pull-right">
+      <select ng-model="perPage" ng-change="reload()">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+      </select>
+      &nbsp;
+      entities per page
     </div>
     <div>
       <table class="table table-stripped table-hover">
         <thead>
           <tr>
-            <th>id</th>
-            <th ng-repeat="field in fields">{{field}}</th>
-            <th>actions</th>
+            <th>Id</th>
+            <th ng-repeat="field in labels">{{field}}</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +47,25 @@
           </tr>
         </tbody>
       </table>
+      <div>
+        <a class="btn btn-sm btn-info" ng-class="{'disabled': !canPrev}" ng-click="goPrev()">Prev</a>
+        &nbsp;&nbsp;
+        Page <b>{{currentPage}}</b>/{{totalPages}}
+        &nbsp;&nbsp;
+        <a class="btn btn-sm btn-info" ng-class="{'disabled': !canNext}" ng-click="goNext()">Next</a>
+        <span class="pull-right" ng-if="from !== to">
+          Showing from <b>{{from}}</b> to <b>{{to}}</b> of total <b>{{total}}</b> entities.
+        </span>
+        <span class="pull-right" ng-if="from === to">
+          Showing <b>{{from}}</b>
+            <sup>
+              <span ng-if="from===1">st</span>
+              <span ng-if="from===2">nd</span>
+              <span ng-if="from===3">rd</span>
+              <span ng-if="from>3">th</span>
+            </sup> &nbsp;of total <b>{{total}}</b> entities.
+        </span>
+      </div>
     </div>
   </div>
 </div>
