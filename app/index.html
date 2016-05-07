@@ -101,7 +101,7 @@
             {{current.content}}
           </p>
           <p>
-            {{current.num_likes}} <a ng-click="likePost(current.id)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
+            {{current.num_likes}} <a ng-click="likePost(current)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
             <a href="{{current.link}}" target="_blank"><i class="fa fa-share" title="Open link"></i></a>
             <span class="text-cat pull-right">
                 {{current.cate_name}} {{current.type_name}}
@@ -142,7 +142,7 @@
           </a>
           <div class="item-addons">
             {{feed.cate_name}} {{feed.type_name}}&nbsp;&nbsp;
-            <a ng-click="likePost(feed.id)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
+            <a ng-click="likePost(feed)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
             <a href="{{feed.link}}" target="_blank"><i class="fa fa-share" title="Open link"></i></a>
           </div>
         </div>

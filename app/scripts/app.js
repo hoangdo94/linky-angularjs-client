@@ -151,17 +151,32 @@ angular
             });
         };
 
-        // like post
-        $rootScope.likePost = function(postId, reload) {
-            likesService.likePost(postId, function() {
-                notify({
-                    message: 'You just liked this post!',
-                    duration: '5000',
-                    position: 'right'
-                });
+        function reloadLike(current) {
+            if (!current.isFirstLike) {
+                current.num_likes++;
+                current.isFirstLike = true;
+            }
+        }
 
-                if (reload) {
-                    reload();
+        // like post
+        $rootScope.likePost = function(post) {
+            likesService.likePost(post.id, function(res) {
+                if (res.message === 'already liked this post') {
+                    notify({
+                        message: 'You already liked this this post!',
+                        duration: '5000',
+                        position: 'right'
+                    });
+
+                    post.isFirstLike = true;
+                } else if (res.status_code && res.status_code === '200'){
+                    notify({
+                        message: 'You just liked this post!',
+                        duration: '5000',
+                        position: 'right'
+                    });
+
+                    reloadLike(post);
                 }
             });
         };
