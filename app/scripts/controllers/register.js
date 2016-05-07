@@ -28,14 +28,14 @@ angular.module('linkyApp')
 
                     notify({
                         message: alert,
-                        duration: 5000,
+                        duration: 2000,
                         position: 'center'
                     });
                 } else {
                   var welcome = 'Welcome to Linky! Good luck, have fun!';
                     notify({
                         message: welcome,
-                        duration: 5000,
+                        duration: 2000,
                         position: 'center'
                     });
                     $location.path('/');

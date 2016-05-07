@@ -182,9 +182,21 @@ a {
     right: 20px;
     color: rgba(1, 178, 134, 1);
   }
-  .item-preview {
-    max-height: 400px;
-
+}
+.panel-preview {
+  margin: 10px;
+  .panel-body {
+    padding: 0px;
+  }
+  .preview-thumb {
+    cursor: pointer;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 }
 .filter-nothing {

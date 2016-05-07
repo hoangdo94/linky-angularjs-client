@@ -29,14 +29,22 @@ angular.module('linkyApp')
                 $scope.categories = categories;
                 var lengOfPrefer = 3;
                 prefercategoriesService.getUserPreferCategories(function(prefer) {
-                    console.dir(prefer);
                     if (prefer) {
                         $scope.preferredCategories = prefer;
                         lengOfPrefer = prefer.length;
                     } else {
                         $scope.preferredCategories = $scope.categories.slice(0, 3);
                     }
-                    $scope.otherCategories = $scope.categories.slice(lengOfPrefer, $scope.categories.length);
+                    var preferIds = [];
+                    $scope.preferredCategories.forEach(function(cat) {
+                      preferIds.push(cat.cate_id || cat.id);
+                    });
+                    $scope.otherCategories = [];
+                    categories.forEach(function(cat) {
+                      if (preferIds.indexOf(cat.id) === -1) {
+                        $scope.otherCategories.push(cat);
+                      }
+                    });
                 });
             });
         }
@@ -58,6 +66,7 @@ angular.module('linkyApp')
                 } else {
                   $scope.canLoadMore = false;
                 }
+                console.log(res.data);
                 res.data.forEach(function(post) {
                     $scope.feeds.push(post);
                     $scope.shown = $scope.feeds;
@@ -141,6 +150,8 @@ angular.module('linkyApp')
         $scope.hideForm = function() {
             $scope.newPost.link = '';
             $scope.isFormShown = false;
+            $scope.isMetaShown = false;
+            $scope.metadata = null;
         };
         $scope.submitPost = function() {
             if ($scope.newPost.cate_id && $scope.newPost.meta_id && $scope.newPost.type_id && $scope.newPost.content) {
@@ -158,18 +169,24 @@ angular.module('linkyApp')
                     if (result.error) {
                         notify({
                             message: 'Cannot share your link. Please try again later.',
-                            duration: 5000,
+                            duration: 2000,
                             position: 'center'
                         });
                     } else {
                         reloadPosts();
                         notify({
                             message: 'Your link is successfully shared :-)',
-                            duration: 5000,
+                            duration: 2000,
                             position: 'center'
                         });
                     }
                 });
+            } else {
+              notify({
+                  message: 'Please fill in all fields',
+                  duration: 2000,
+                  position: 'center'
+              });
             }
         };
 

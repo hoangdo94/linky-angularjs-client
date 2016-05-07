@@ -107,7 +107,7 @@ angular.module('linkyApp')
           });
           notify({
             message: alert,
-            duration: 5000,
+            duration: 2000,
             position: 'center'
           });
         } else {
@@ -142,7 +142,7 @@ angular.module('linkyApp')
           });
           notify({
             message: alert,
-            duration: 5000,
+            duration: 2000,
             position: 'center'
           });
         } else {
@@ -171,7 +171,7 @@ angular.module('linkyApp')
           });
           notify({
             message: alert,
-            duration: 5000,
+            duration: 2000,
             position: 'center'
           });
         } else {

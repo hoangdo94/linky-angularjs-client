@@ -145,7 +145,7 @@ angular
                 } else {
                     notify({
                         message: 'Something going wrong with your comment! Please try again!',
-                        duration: '5000',
+                        duration: 2000,
                         position: 'center'
                     });
                 }
@@ -165,7 +165,7 @@ angular
                 if (res.message === 'already liked this post') {
                     notify({
                         message: 'You already liked this this post!',
-                        duration: '5000',
+                        duration: 2000,
                         position: 'right'
                     });
 
@@ -173,7 +173,7 @@ angular
                 } else if (res.status_code && res.status_code === '200'){
                     notify({
                         message: 'You just liked this post!',
-                        duration: '5000',
+                        duration: 2000,
                         position: 'right'
                     });
 

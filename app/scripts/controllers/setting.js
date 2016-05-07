@@ -129,14 +129,14 @@ angular.module('linkyApp')
                         prefercategoriesService.updateUserPreferCategories($scope.edit.preferedCategories, function() {
                             notify({
                                 message: 'Congratulation! You just updated information successfully!',
-                                duration: '5000',
+                                duration: 2000,
                                 position: 'center'
                             });
                         });
                     } else {
                         notify({
                             message: 'Congratulation! You just updated information successfully!',
-                            duration: '5000',
+                            duration: 2000,
                             position: 'center'
                         });
                     }
@@ -144,7 +144,7 @@ angular.module('linkyApp')
                 } else {
                     notify({
                         message: 'Please make sure your information is correct!',
-                        duration: '5000',
+                        duration: 2000,
                         position: 'center'
                     });
                 }
@@ -171,7 +171,7 @@ angular.module('linkyApp')
                             if (res.status_code === '200') {
                                 notify({
                                     message: 'Changed avatar!',
-                                    duration: '5000',
+                                    duration: 2000,
                                     position: 'center'
                                 });
                                 $rootScope.currentUser = res.data;
@@ -179,7 +179,7 @@ angular.module('linkyApp')
                             } else {
                                 notify({
                                     message: 'Failed to change avatar. Please try again.',
-                                    duration: '5000',
+                                    duration: 2000,
                                     position: 'center'
                                 });
                             }
@@ -187,7 +187,7 @@ angular.module('linkyApp')
                     } else { // cannot upload
                         notify({
                             message: 'Failed to upload file. Please try again.',
-                            duration: '5000',
+                            duration: 2000,
                             position: 'center'
                         });
                     }
@@ -202,7 +202,7 @@ angular.module('linkyApp')
                     if (_res === null) { // exceed image length
                         notify({
                             message: 'Your file is too large! Please upload <8MB file!',
-                            duration: '5000',
+                            duration: 2000,
                             position: 'center'
                         });
                     } else if (_res.data && _res.data.id) { //success
@@ -212,7 +212,7 @@ angular.module('linkyApp')
                             if (res.status_code === '200') {
                                 notify({
                                     message: 'Changed cover!',
-                                    duration: '5000',
+                                    duration: 2000,
                                     position: 'center'
                                 });
                                 $rootScope.currentUser = res.data;
@@ -220,7 +220,7 @@ angular.module('linkyApp')
                             } else {
                                 notify({
                                     message: 'Failed to change cover. Please try again.',
-                                    duration: '5000',
+                                    duration: 2000,
                                     position: 'center'
                                 });
                             }
@@ -228,7 +228,7 @@ angular.module('linkyApp')
                     } else { // cannot upload
                         notify({
                             message: 'Failed to upload file. Please try again.',
-                            duration: '5000',
+                            duration: 2000,
                             position: 'center'
                         });
                     }

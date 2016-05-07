@@ -9,10 +9,12 @@
             <span>Fetching link metadata...</span>
           </div>
           <div id="meta-data" ng-if="metadata">
-            <div class="thumbnail">
-              <img ng-src="{{apiUrl}}/files/{{metadata.thumb_id}}" alt="{{metadata.link}}">
-              <div class="caption">
-                <h3>{{metadata.title}}</h3>
+            <div class="panel panel-default panel-preview">
+              <div class="panel-body">
+                <div class="preview-thumb" style="background-image: url({{resolveImg(metadata.thumb_id, 'thumb')}})"></div>
+              </div>
+              <div class="panel-footer">
+                <h3 class="panel-title">{{metadata.title}}</h3>
                 <p>{{metadata.description}}</p>
               </div>
             </div>

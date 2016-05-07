@@ -94,9 +94,16 @@
             </h4>
         </div>
         <div class="modal-body">
-          <p>
-            <img class="img-responsive" ng-src="{{resolveImg(current.thumb_id, 'thumb')}}" alt="preview" style="margin: 10px auto;" />
-          </p>
+          <div class="panel panel-default panel-preview">
+            <div class="panel-body">
+              <div class="preview-thumb" style="background-image: url({{resolveImg(current.thumb_id, 'thumb')}})"></div>
+            </div>
+            <div class="panel-footer">
+              <h3 class="panel-title">{{current.title}}</h3>
+              <p>{{current.description}}</p>
+              <a href="{{current.link}}" title="{{current.title}}" target="_blank">{{current.link}}</a>
+            </div>
+          </div>
           <p>
             {{current.content}}
           </p>
@@ -133,6 +140,7 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
+
   <script type="text/ng-template" id="feed-details">
     <div class="panel-body">
       <div class="media">
@@ -148,17 +156,26 @@
         </div>
         <div class="media-body">
           <p><a href="#/profile/{{feed.user_id}}"><b>{{feed.username}}</b></a></p>
-          <p>{{feed.content}}</p>
+          <a href="{{feed.link}}" title="{{feed.title}}" target="_blank">{{feed.link}}</a>
+          <br/>
+          {{feed.content}}
         </div>
       </div>
     </div>
     <div clas="item-preview">
-      <a href="" ng-click="showDetails(feed)" data-toggle="modal" data-target="#details-modal">
-        <img class="img-responsive" ng-src="{{resolveImg(feed.thumb_id, 'thumb')}}" alt="preview" style="margin: 10px auto;" />
-      </a>
+      <div class="panel panel-default panel-preview">
+        <div class="panel-body">
+          <a ng-click="showDetails(feed)" data-toggle="modal" data-target="#details-modal">
+            <div class="preview-thumb" style="background-image: url({{resolveImg(feed.thumb_id, 'thumb')}})"></div>
+          </a>
+        </div>
+        <div class="panel-footer">
+          <h3 class="panel-title">{{feed.title}}</h3>
+          <p>{{feed.description}}</p>
+        </div>
+      </div>
     </div>
   </script>
-  </div>
 
   <!-- build:js(.) scripts/vendor.js -->
   <!-- bower:js -->
