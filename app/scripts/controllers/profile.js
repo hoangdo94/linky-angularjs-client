@@ -56,9 +56,16 @@ angular.module('linkyApp')
             });
         }
 
+        function reloadFollowingsOfCurrentUser() {
+            followsService.getFollowings($rootScope.currentUser.id, function(followings) {
+                $rootScope.followingsOfCurrentUser = followings.data;
+            });
+        }
+
         $scope.reloadFollow = function() {
             getUserFollowers();
             getUserFollowings();
+            reloadFollowingsOfCurrentUser();
         };
 
         // filter
@@ -85,4 +92,5 @@ angular.module('linkyApp')
         getUserPosts();
         getUserFollowers();
         getUserFollowings();
+        reloadFollowingsOfCurrentUser();
     });

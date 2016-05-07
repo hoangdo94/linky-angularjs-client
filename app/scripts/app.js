@@ -98,18 +98,18 @@ angular
         });
 
         $rootScope.resolveImg = function(id, type) {
-          if (id) {
-            return $rootScope.apiUrl + '/files/' + id;
-          } else {
-            switch (type) {
-              case 'avatar':
-                return 'images/default/default_avatar.png';
-              case 'cover':
-                return 'images/default/default_cover.png';
-              default:
-                return 'images/default/default_thumbnail.png';
+            if (id) {
+                return $rootScope.apiUrl + '/files/' + id;
+            } else {
+                switch (type) {
+                    case 'avatar':
+                        return 'images/default/default_avatar.png';
+                    case 'cover':
+                        return 'images/default/default_cover.png';
+                    default:
+                        return 'images/default/default_thumbnail.png';
+                }
             }
-          }
         };
 
         $rootScope.typeIconClass = function(type) {
@@ -195,10 +195,27 @@ angular
             $rootScope.authInited = true;
             if (isLoggedIn) {
                 $rootScope.currentUser = user;
+
+                // Get Followings of Current User to check follow status of this user
+                followsService.getFollowings($rootScope.currentUser.id, function(followings) {
+                    $rootScope.followingsOfCurrentUser = followings.data;
+                });
+
             } else {
                 $location.path('/login');
             }
         });
+
+        $rootScope.followedUser = function(followerId) {
+            var result = false;
+            $rootScope.followingsOfCurrentUser.forEach(function(row) {
+                if (row.id === followerId) {
+                    result = true;
+                }
+            });
+            return result;
+        };
+
         $rootScope.isLoggedIn = authService.isLoggedIn;
         $rootScope.logout = authService.logout;
     })

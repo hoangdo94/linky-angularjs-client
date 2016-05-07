@@ -59,7 +59,8 @@
 									<span>{{follower.num_followings}} followings &nbsp;</span>
 								</p>
 							</div>
-							<div class="media-right" ng-if="follower.id !== profileUser.id && follower.id !== currentUser.id">
+							<div class="media-right" ng-if="follower.id !== profileUser.id && follower.id !== currentUser.id && !followedUser(follower.id)">
+							<span>{{followedUser(follower.id)}}</span>
 								<button type="button" class="btn btn-info" ng-click="followUser(follower.id, follower.username, reloadFollow())"  title="Follow">
 								<span class="fa fa-eye"></span>
 								</button>

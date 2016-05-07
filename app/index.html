@@ -144,7 +144,7 @@
           <div class="item-addons">
             {{feed.cate_name}}&nbsp;&nbsp;
             <a><i ng-class="typeIconClass(feed.type_name)"></i></a>&nbsp;&nbsp;
-            <a ng-if="feed.user_id !== currentUser.id" ng-click="followUser(feed.user_id,feed.username)" style="text-decoration: none; cursor: pointer;"><i class="fa fa-eye" title="Follow"></i>&nbsp;&nbsp;</a>
+            <a ng-if="feed.user_id !== currentUser.id && !followedUser(feed.user_id)" ng-click="followUser(feed.user_id,feed.username)" style="text-decoration: none; cursor: pointer;"><i class="fa fa-eye" title="Follow"></i>&nbsp;&nbsp;</a>
             <a ng-click="likePost(feed.id)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
             <a href="{{feed.link}}" target="_blank"><i class="fa fa-share" title="Open link"></i></a>
           </div>
