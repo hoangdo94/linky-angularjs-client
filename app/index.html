@@ -44,8 +44,9 @@
     			<ul class="nav navbar-nav navbar-right">
     				<li class="dropdown" ng-if="isLoggedIn()">
     					<a class="dropdown-toggle" id="header-dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-    						<img class="img-rounded" ng-src="{{currentUser.avatar_url}}" height="32" width="32" alt="profile">
-    						<span class="caret"></span>
+    						<img class="img-rounded" ng-src="{{resolveImg(currentUser.avatar_id, 'avatar')}}" height="32" width="32" alt="profile">
+                <span>&nbsp;&nbsp;{{currentUser.username}}&nbsp;&nbsp;</span>
+                <span class="caret"></span>
     					</a>
     					<ul class="dropdown-menu">
     						<li><a href="#/profile/{{currentUser.id}}">Profile</a></li>
@@ -56,14 +57,6 @@
     					</ul>
     				</li>
     			</ul>
-    			<form class="navbar-form navbar-right" role="search">
-    				<div class="navbar-search">
-    					<input type="text" class="form-control" placeholder="Search for...">
-    					<button class="btn btn-default" type="button">
-    						<i class="fa fa-search"></i>
-    					</button>
-    				</div>
-    			</form>
     		</div>
     		<!-- /.navbar-collapse -->
     	</div>
@@ -93,7 +86,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">
             <a href="#/profile/{{current.user_id}}">
-              <img class="img-rounded" ng-src="{{current.avatar_url}}" alt="avatar" width="30px" height="30px">
+              <img class="img-rounded" ng-src="{{resolveImg(current.avatar_id, 'avatar')}}" alt="avatar" width="30px" height="30px">
             </a>
             <a href="#/profile/{{current.user_id}}">
               {{current.username}}
@@ -102,7 +95,7 @@
         </div>
         <div class="modal-body">
           <p>
-            <img class="img-responsive" ng-src="{{current.thumb_url}}" alt="preview" style="margin: 10px auto;" />
+            <img class="img-responsive" ng-src="{{resolveImg(current.thumb_id, 'thumb')}}" alt="preview" style="margin: 10px auto;" />
           </p>
           <p>
             {{current.content}}
@@ -121,7 +114,7 @@
           <div class="media" ng-repeat="comment in comments">
             <div class="media-left">
               <a href="#/profile/{{comment.user_id}}">
-                <img class="media-object img-rounded" ng-src="{{comment.avatar_url}}" alt="avatar" width="50px" height="50px">
+                <img class="media-object img-rounded" ng-src="{{resolveImg(comment.avatar_id, 'avatar')}}" alt="avatar" width="50px" height="50px">
               </a>
             </div>
             <div class="media-body">
@@ -146,7 +139,7 @@
       <div class="media">
         <div class="media-left">
           <a href="#/profile/{{feed.user_id}}">
-            <img class="media-object img-rounded" ng-src="{{feed.avatar_url}}" alt="avatar" width="50px" height="50px">
+            <img class="media-object img-rounded" ng-src="{{resolveImg(feed.avatar_id, 'avatar')}}" alt="avatar" width="50px" height="50px">
           </a>
           <div class="item-addons">
             {{feed.cate_name}}&nbsp;&nbsp;
@@ -164,7 +157,7 @@
     </div>
     <div clas="item-preview">
       <a href="" ng-click="showDetails(feed)" data-toggle="modal" data-target="#details-modal">
-        <img class="img-responsive" ng-src="{{feed.thumb_url}}" alt="preview" style="margin: 10px auto;" />
+        <img class="img-responsive" ng-src="{{resolveImg(feed.thumb_id, 'thumb')}}" alt="preview" style="margin: 10px auto;" />
       </a>
     </div>
   </script>

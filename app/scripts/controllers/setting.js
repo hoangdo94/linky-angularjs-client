@@ -22,20 +22,6 @@ angular.module('linkyApp')
                 }
                 $scope.edit = user;
                 $scope.profileUser = user;
-
-                // Get user avatar
-                if ($scope.profileUser.avatar_id !== null) {
-                    $scope.profileUser.avatar_url = $rootScope.apiUrl + '/files/' + $scope.profileUser.avatar_id;
-                } else {
-                    $scope.profileUser.avatar_url = '/images/default/default_avatar.png';
-                }
-
-                // Get user cover
-                if ($scope.profileUser.cover_id !== null) {
-                    $scope.profileUser.cover_url = $rootScope.apiUrl + '/files/' + $scope.profileUser.cover_id;
-                } else {
-                    $scope.profileUser.cover_url = '/images/default/default_cover.png';
-                }
             });
         }
 
@@ -141,7 +127,6 @@ angular.module('linkyApp')
                                     position: 'center'
                                 });
                                 $rootScope.currentUser = res.data;
-                                $rootScope.currentUser.avatar_url = $rootScope.apiUrl + '/files/' + $rootScope.currentUser.avatar_id;
                             } else {
                                 notify({
                                     message: 'Failed to change avatar. Please try again.',
@@ -182,7 +167,6 @@ angular.module('linkyApp')
                                     position: 'center'
                                 });
                                 $rootScope.currentUser = res.data;
-                                $rootScope.currentUser.cover_url = $rootScope.apiUrl + '/files/' + $rootScope.currentUser.cover_id;
                             } else {
                                 notify({
                                     message: 'Failed to change cover. Please try again.',

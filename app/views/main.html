@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row" id="header-row" style="background: url('{{profileUser.cover_url}}') no-repeat; background-size: 100% 100%;">
+  <div class="row" id="header-row">
     <div class="container">
       <div class="jumbotron container-narrow" id="new-link">
         <input type="text" placeholder="What do you want to SHARE?" ng-model="newPost.link" ng-change="showForm()" />
@@ -93,6 +93,11 @@
     </div>
     <div class="filter-nothing" ng-if="shown.length === 0">
       Nothing here :-(
+    </div>
+    <div class="container" ng-if="canLoadMore">
+      <div class="container-narrow" >
+        <button class="btn btn-block btn-info" ng-click="loadMore()">Load more Links...</button>
+      </div>
     </div>
   </div>
 </div>

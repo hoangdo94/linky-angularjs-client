@@ -100,6 +100,22 @@ angular
                 }
             }
         });
+
+        $rootScope.resolveImg = function(id, type) {
+          if (id) {
+            return $rootScope.apiUrl + '/files/' + id;
+          } else {
+            switch (type) {
+              case 'avatar':
+                return '/images/default/default_avatar.png';
+              case 'cover':
+                return '/images/default/default_cover.png';
+              default:
+                return '/images/default/default_thumbnail.png';
+            }
+          }
+        };
+
         $rootScope.typeIconClass = function(type) {
             if (type === 'article') {
                 return 'fa fa-newspaper-o';
@@ -118,13 +134,6 @@ angular
             commentsService.getComment(post.id, function(resComments) {
                 $rootScope.current = post;
                 $rootScope.comments = resComments;
-                $rootScope.comments.forEach(function(row, index) {
-                    if (row.avatar_id !== null) {
-                      $rootScope.comments[index].avatar_url = $rootScope.apiUrl + '/files/' + row.avatar_id;
-                    } else {
-                      $rootScope.comments[index].avatar_url = '/images/default/default_avatar.png';
-                    }
-                });
             });
         };
 
@@ -134,7 +143,6 @@ angular
                     var newComment = {
                         'username': $rootScope.currentUser.username,
                         'content': content,
-                        'avatar_url': $rootScope.currentUser.avatar_url,
                         'created_at': 'just now'
                     };
                     // Add to current Comments object, at first
@@ -178,12 +186,6 @@ angular
             $rootScope.authInited = true;
             if (isLoggedIn) {
                 $rootScope.currentUser = user;
-
-                if ($rootScope.currentUser.avatar_id !== null) {
-                    $rootScope.currentUser.avatar_url = $rootScope.apiUrl + '/files/' + $rootScope.currentUser.avatar_id;
-                } else {
-                    $rootScope.currentUser.avatar_url = '/images/default/default_avatar.png';
-                }
             } else {
                 $location.path('/login');
             }
@@ -191,7 +193,7 @@ angular
         $rootScope.isLoggedIn = authService.isLoggedIn;
         $rootScope.logout = authService.logout;
     })
-    .controller('linkyCtrl', function($rootScope, $sce) {
+    .controller('linkyCtrl', function() {
         // Press Enter to send comment
         $('#input_comment').on('keypress', function(event) {
             if (event.which === 13 || event.keyCode === 13) {
@@ -199,7 +201,4 @@ angular
                 $('#input_comment').val('');
             }
         });
-
-        // Fetch header profile image
-        $rootScope.currentUser.avatar_url = $sce.trustAsResourceUrl($rootScope.currentUser.avatar_url);
     });

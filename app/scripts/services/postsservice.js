@@ -11,8 +11,8 @@ angular.module('linkyApp')
     .factory('postsService', function($rootScope, $http) {
 
         return {
-            getUserPost: function(userId, callback) {
-            	$http.get($rootScope.apiUrl + '/posts?user_id=' + userId)
+            getUserPost: function(userId, page, perPage , callback) {
+            	$http.get($rootScope.apiUrl + '/posts?user_id=' + userId + '&page=' + page + '&perPage=' + perPage)
                     .success(function(data) {
                         if (callback) {
                             callback(data);
@@ -24,8 +24,8 @@ angular.module('linkyApp')
                         }
                     });
             },
-            getList: function(callback) {
-                $http.get($rootScope.apiUrl + '/posts')
+            getList: function(page, perPage, callback) {
+                $http.get($rootScope.apiUrl + '/posts?page=' + page + '&perPage=' + perPage)
                     .success(function(data) {
                         if (callback) {
                             callback(data);

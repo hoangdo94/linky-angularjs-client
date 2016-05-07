@@ -17,11 +17,6 @@ angular.module('linkyApp')
             authService.login($scope.username, $scope.password, function(isLoggedIn, user) {
                 if (isLoggedIn) {
                     $rootScope.currentUser = user;
-                    if ($rootScope.currentUser.avatar_id) {
-                        $rootScope.currentUser.avatar_url = $rootScope.apiUrl + '/files/' + $rootScope.currentUser.avatar_id;
-                    } else {
-                        $rootScope.currentUser.avatar_url = '/images/default/default_avatar.png';
-                    }
                     $location.path('/');
                 } else {
                     notify({

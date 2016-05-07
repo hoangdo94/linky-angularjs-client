@@ -11,6 +11,19 @@ angular.module('linkyApp')
   .factory('categoriesService', function ($rootScope, $http) {
 
     return {
+      getAll: function (callback) {
+        $http.get($rootScope.apiUrl + '/categories')
+          .success(function(data) {
+            if (callback) {
+              callback(data);
+            }
+          })
+          .error(function() {
+            if (callback) {
+              callback([]);
+            }
+          });
+      },
       getList: function (callback) {
         $http.get($rootScope.apiUrl + '/categories')
           .success(function(data) {

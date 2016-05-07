@@ -16,43 +16,35 @@ angular.module('linkyApp')
                 $location.path('/');
             }
             $scope.profileUser = user;
-
-            // Get user avatar
-            if ($scope.profileUser.avatar_id !== null) {
-                $scope.profileUser.avatar_url = $rootScope.apiUrl + '/files/' + $scope.profileUser.avatar_id;
+            console.log(user);
+            if (user.website && user.website.length > 0 && user.email && user.email.length > 0) {
+              $scope.showDelimiter = true;
             } else {
-                $scope.profileUser.avatar_url = '/images/default/default_avatar.png';
-            }
-
-            // Get user cover
-            if ($scope.profileUser.cover_id !== null) {
-                $scope.profileUser.cover_url = $rootScope.apiUrl + '/files/' + $scope.profileUser.cover_id;
-            } else {
-                $scope.profileUser.cover_url = '/images/default/default_cover.png';
+              $scope.showDelimiter = false;
             }
         });
+
+
+        $scope.feeds = [];
+        // pagination
+        $scope.currentPostPage = 1;
+        $scope.canLoadMorePosts = false;
 
         $scope.categories = ['Feeds', 'Followers', 'Following'];
 
-        postsService.getUserPost(userId, function(posts) {
+        function getUserPosts() {
+          postsService.getUserPost(userId, $scope.currentPage, 5 , function(res) {
+              if (res.next_page_url) {
+                $scope.canLoadMore = true;
+              } else {
+                $scope.canLoadMore = false;
+              }
+              res.data.forEach(function(post) {
+                $scope.feeds.push(post);
+              });
 
-            posts.forEach(function(row, index) {
-                // Update avatar_url for each post
-                if (row.avatar_id !== null) {
-                    posts[index].avatar_url = $rootScope.apiUrl + '/files/' + row.avatar_id;
-                } else {
-                    posts[index].avatar_url = '/images/default/default_avatar.png';
-                }
-
-                // Update thumb_url for each post
-                if (row.thumb_id !== null) {
-                    posts[index].thumb_url = $rootScope.apiUrl + '/files/' + row.thumb_id;
-                } else {
-                    posts[index].thumb_url = '/images/default/default_thumbnail.png';
-                }
-            });
-            $scope.feeds = posts;
-        });
+          });
+        }
 
         followsService.getFollowers(userId, function(followers) {
             $scope.followers = followers;
@@ -76,4 +68,12 @@ angular.module('linkyApp')
                 $scope.shown = 'Following';
             }
         };
+
+        // pagination
+        $scope.loadMorePosts = function() {
+          $scope.currentPostPage ++;
+          getUserPosts();
+        };
+
+        getUserPosts();
     });
