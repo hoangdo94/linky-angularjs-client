@@ -9,45 +9,88 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-    .controller('SettingCtrl', function($rootScope, $scope, usersService, filesService, notify) {
+    .controller('SettingCtrl', function($rootScope, $scope, usersService, filesService, prefercategoriesService, categoriesService, notify) {
 
         usersService.get($rootScope.currentUser.id, function(user) {
-          $scope.edit = user;
-          $scope.profileUser = user;
+            $scope.edit = user;
+            $scope.profileUser = user;
         });
 
-        $scope.categories = [{
-            name: 'Technology',
-            ticked: true,
-            disabled: true
-        }, {
-            name: 'Photography',
-            ticked: true,
-            disabled: true
-        }, {
-            name: 'Life',
-            ticked: true,
-            disabled: true
-        }, {
-            name: 'Economy',
-            ticked: false,
-            disabled: true
-        }, {
-            name: 'Joke',
-            ticked: false,
-            disabled: true
-        }];
+        // $scope.categories = [{
+        //     name: 'Technology',
+        //     ticked: true,
+        //     disabled: true
+        // }, {
+        //     name: 'Photography',
+        //     ticked: true,
+        //     disabled: true
+        // }, {
+        //     name: 'Life',
+        //     ticked: true,
+        //     disabled: true
+        // }, {
+        //     name: 'Economy',
+        //     ticked: false,
+        //     disabled: true
+        // }, {
+        //     name: 'Joke',
+        //     ticked: false,
+        //     disabled: true
+        // }];
 
-        $scope.preferedCategories = [{
-            'name': 'Technology',
-            ticked: true
-        }, {
-            'name': 'Photography',
-            ticked: true
-        }, {
-            'name': 'Life',
-            ticked: true
-        }];
+        prefercategoriesService.getUserPreferCategories(function(res) {
+            $scope.preferedCategories = res;
+            if (Array.isArray(res)) {
+                res.forEach(function(cate) {
+                    $scope.preferedCategories.push({
+                        name: cate.name,
+                        ticked: true
+                    });
+                });
+            } else if (res) {
+                $scope.preferedCategories.push({
+                    name: res.name,
+                    ticked: true
+                });
+            }
+        });
+
+        categoriesService.getAll(function(res) {
+            $scope.categories = [];
+            res.forEach(function(cate) {
+                $scope.categories.push({
+                    name: cate.name,
+                    ticked: checkPreferCategory(cate.name),
+                    disabled: true
+                });
+            });
+        });
+
+        function checkPreferCategory(cateName) {
+            var result = false;
+            if (Array.isArray($scope.preferedCategories)) {
+                $scope.preferedCategories.forEach(function(row) {
+                    if (row.name === cateName) {
+                        result = true;
+                    }
+                });
+            } else if ($scope.preferedCategories && $scope.preferedCategories.name === cateName) {
+                result = true;
+            }
+
+            return result;
+        }
+
+        // $scope.preferedCategories = [{
+        //     'name': 'Technology',
+        //     ticked: true
+        // }, {
+        //     'name': 'Photography',
+        //     ticked: true
+        // }, {
+        //     'name': 'Life',
+        //     ticked: true
+        // }];
 
         $scope.updateUser = function() {
             $('input').each(function() {
@@ -76,13 +119,27 @@ angular.module('linkyApp')
             $('.multiSelect > button').css('pointer-events', 'none');
             $('.multiSelect > button').css('background-color', '#eeeeee');
 
+
+
             usersService.update($rootScope.currentUser.id, $scope.edit, function(res) {
                 if (res.status_code === '200') {
-                    notify({
-                        message: 'Congratulation! You just updated information successfully!',
-                        duration: '5000',
-                        position: 'center'
-                    });
+                    if ($scope.edit.preferedCategories) {
+                        console.dir($scope.edit.preferedCategories);
+                        // Update preferedCategories
+                        prefercategoriesService.updateUserPreferCategories($scope.edit.preferedCategories, function() {
+                            notify({
+                                message: 'Congratulation! You just updated information successfully!',
+                                duration: '5000',
+                                position: 'center'
+                            });
+                        });
+                    } else {
+                        notify({
+                            message: 'Congratulation! You just updated information successfully!',
+                            duration: '5000',
+                            position: 'center'
+                        });
+                    }
                     $rootScope.currentUser = res.data;
                 } else {
                     notify({

@@ -5,13 +5,13 @@
 				<div id="follow-unfollow">
 					<div ng-if ="!isFollowing()">
 						<a title="Follow {{profileUser.username}}" ng-click="followUser()">
-							<i class="fa fa-lg fa-heart-o"></i>
+							<i class="fa fa-lg fa-heart-o" style="color: red;"></i>
 						</a>
 						<span>Not following</span>
 					</div>
 					<div ng-if="isFollowing()">
 						<a title="Unfollow {{profileUser.username}}" ng-click="unfollowUser()">
-							<i class="fa fa-lg fa-heart"></i>
+							<i class="fa fa-lg fa-heart" style="color: red;"></i>
 						</a>
 						<span>Following</span>
 					</div>

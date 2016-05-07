@@ -8,7 +8,7 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-    .controller('MainCtrl', function($rootScope, $scope, categoriesService, typesService, postsService, metaService, usersService, notify) {
+    .controller('MainCtrl', function($rootScope, $scope, categoriesService, prefercategoriesService, typesService, postsService, metaService, usersService, notify) {
 
         $scope.profileUser = {};
         $scope.profileUser = $rootScope.currentUser;
@@ -27,8 +27,17 @@ angular.module('linkyApp')
         function getCategories() {
             categoriesService.getAll(function(categories) {
                 $scope.categories = categories;
-                $scope.preferredCategories = $scope.categories.slice(0, 3);
-                $scope.otherCategories = $scope.categories.slice(3, $scope.categories.length);
+                var lengOfPrefer = 3;
+                prefercategoriesService.getUserPreferCategories(function(prefer) {
+                    console.dir(prefer);
+                    if (prefer) {
+                        $scope.preferredCategories = prefer;
+                        lengOfPrefer = prefer.length;
+                    } else {
+                        $scope.preferredCategories = $scope.categories.slice(0, 3);
+                    }
+                    $scope.otherCategories = $scope.categories.slice(lengOfPrefer, $scope.categories.length);
+                });
             });
         }
 
@@ -58,7 +67,6 @@ angular.module('linkyApp')
         }
 
         function reloadPosts() {
-          console.log('reload posts');
             $scope.feeds = [];
             $scope.currentPage = 1;
             getPosts();
