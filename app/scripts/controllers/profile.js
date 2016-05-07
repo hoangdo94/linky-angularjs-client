@@ -16,7 +16,6 @@ angular.module('linkyApp')
                 $location.path('/');
             }
             $scope.profileUser = user;
-            console.log(user);
             if (user.website && user.website.length > 0 && user.email && user.email.length > 0) {
               $scope.showDelimiter = true;
             } else {
@@ -35,9 +34,9 @@ angular.module('linkyApp')
         function getUserPosts() {
           postsService.getUserPost(userId, $scope.currentPage, 5 , function(res) {
               if (res.next_page_url) {
-                $scope.canLoadMore = true;
+                $scope.canLoadMorePosts = true;
               } else {
-                $scope.canLoadMore = false;
+                $scope.canLoadMorePosts = false;
               }
               res.data.forEach(function(post) {
                 $scope.feeds.push(post);
