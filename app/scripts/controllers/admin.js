@@ -200,7 +200,10 @@ angular.module('linkyApp')
       }
     };
 
-    $scope.reload = function() {
+    $scope.reload = function(perPage) {
+      if (perPage) {
+        $scope.perPage = perPage;
+      }
       getEntities();
     };
 
