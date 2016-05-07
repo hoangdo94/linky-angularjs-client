@@ -74,7 +74,8 @@ angular
         commentsService,
         metaService,
         postsService,
-        notify
+        notify,
+        moment
     ) {
         $rootScope.apiUrl = 'http://localhost:3000/api';
         $rootScope.viewMode = 'list';
@@ -111,6 +112,10 @@ angular
                         return 'images/default/default_thumbnail.png';
                 }
             }
+        };
+
+        $rootScope.timeFromNow = function(time) {
+          return moment(time).add(7, 'hours').fromNow();
         };
 
         // details
@@ -186,26 +191,10 @@ angular
               $rootScope.authInited = true;
               if (isLoggedIn) {
                   $rootScope.currentUser = user;
-
-                  // Get Followings of Current User to check follow status of this user
-                  followsService.getFollowings($rootScope.currentUser.id, function(followings) {
-                      $rootScope.followingsOfCurrentUser = followings.data;
-                  });
-
               } else {
                   $location.path('/login');
               }
           });
-        };
-
-        $rootScope.followedUser = function(followerId) {
-            var result = false;
-            $rootScope.followingsOfCurrentUser.forEach(function(row) {
-                if (row.id === followerId) {
-                    result = true;
-                }
-            });
-            return result;
         };
 
         $rootScope.isLoggedIn = authService.isLoggedIn;
