@@ -216,6 +216,7 @@ angular.module('linkyApp')
                                     position: 'center'
                                 });
                                 $rootScope.currentUser = res.data;
+                                $scope.profileUser = $rootScope.currentUser;
                             } else {
                                 notify({
                                     message: 'Failed to change cover. Please try again.',

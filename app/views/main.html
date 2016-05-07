@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row" id="header-row"  ng-style="{'background-image': 'url(' + resolveImg(profileUser.cover_id, 'cover') + ')'}">
+  <div class="row" id="header-row"  ng-style="{'background-image': 'url(' + resolveImg(currentUser.cover_id, 'cover') + ')'}">
     <div class="container">
       <div class="jumbotron container-narrow" id="new-link">
         <input type="text" placeholder="What do you want to SHARE?" ng-model="newPost.link" ng-change="showForm()" />
