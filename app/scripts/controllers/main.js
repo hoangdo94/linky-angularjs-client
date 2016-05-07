@@ -154,7 +154,7 @@ angular.module('linkyApp')
                         meta_id: null,
                         content: null
                     };
-                    getPosts();
+                    // getPosts();
                     if (result.error) {
                         notify({
                             message: 'Cannot share your link. Please try again later.',
