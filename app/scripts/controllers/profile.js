@@ -16,11 +16,10 @@ angular.module('linkyApp')
                 $location.path('/');
             }
             $scope.profileUser = user;
-            console.log(user);
             if (user.website && user.website.length > 0 && user.email && user.email.length > 0) {
-              $scope.showDelimiter = true;
+                $scope.showDelimiter = true;
             } else {
-              $scope.showDelimiter = false;
+                $scope.showDelimiter = false;
             }
         });
 
@@ -33,26 +32,35 @@ angular.module('linkyApp')
         $scope.categories = ['Feeds', 'Followers', 'Following'];
 
         function getUserPosts() {
-          postsService.getUserPost(userId, $scope.currentPage, 5 , function(res) {
-              if (res.next_page_url) {
-                $scope.canLoadMore = true;
-              } else {
-                $scope.canLoadMore = false;
-              }
-              res.data.forEach(function(post) {
-                $scope.feeds.push(post);
-              });
+            postsService.getUserPost(userId, $scope.currentPage, 5, function(res) {
+                if (res.next_page_url) {
+                    $scope.canLoadMore = true;
+                } else {
+                    $scope.canLoadMore = false;
+                }
+                res.data.forEach(function(post) {
+                    $scope.feeds.push(post);
+                });
 
-          });
+            });
         }
 
-        followsService.getFollowers(userId, function(followers) {
-            $scope.followers = followers;
-        });
+        function getUserFollowers() {
+            followsService.getFollowers(userId, function(followers) {
+                $scope.followers = followers.data;
+            });
+        }
 
-        followsService.getFollowings(userId, function(followings) {
-            $scope.followings = followings;
-        });
+        function getUserFollowings() {
+            followsService.getFollowings(userId, function(followings) {
+                $scope.followings = followings.data;
+            });
+        }
+
+        $scope.reloadFollow = function() {
+            getUserFollowers();
+            getUserFollowings();
+        };
 
         // filter
         $scope.filterValue = 'Feeds';
@@ -71,9 +79,11 @@ angular.module('linkyApp')
 
         // pagination
         $scope.loadMorePosts = function() {
-          $scope.currentPostPage ++;
-          getUserPosts();
+            $scope.currentPostPage++;
+            getUserPosts();
         };
 
         getUserPosts();
+        getUserFollowers();
+        getUserFollowings();
     });

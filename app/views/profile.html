@@ -12,26 +12,25 @@
 						<p>{{profileUser.title}}</p>
 					</div>
 					<div id="profile-webpage">
-					 <a href="mailto:{{profileUser.email}}">{{profileUser.email}}</a>
-					 <span style="color: white" ng-if="showDelimiter">&nbsp;|&nbsp;</span>
-					 <a href="{{profileUser.website}}" target="_blank">{{profileUser.website}}</a>
+						<a href="mailto:{{profileUser.email}}">{{profileUser.email}}</a>
+						<span style="color: white" ng-if="showDelimiter">&nbsp;|&nbsp;</span>
+						<a href="{{profileUser.website}}" target="_blank">{{profileUser.website}}</a>
 					</div>
 					<div class="container-narrow">
-				        <ul class="nav nav-custom">
-				            <li role="presentation" ng-repeat="cat in categories" ng-class="{'active': (filterValue == cat)}">
-				              <a ng-click="filter(cat)">
-												{{cat}}
-												<span ng-if="cat === 'Followers'">&nbsp;({{profileUser.num_followers}})</span>
-												<span ng-if="cat === 'Following'">&nbsp;({{profileUser.num_followings}})</span>
-											</a>
-				            </li>
-				        </ul>
-				    </div>
+						<ul class="nav nav-custom">
+							<li role="presentation" ng-repeat="cat in categories" ng-class="{'active': (filterValue == cat)}">
+								<a ng-click="filter(cat)">
+									{{cat}}
+									<span ng-if="cat === 'Followers'">&nbsp;({{profileUser.num_followers}})</span>
+									<span ng-if="cat === 'Following'">&nbsp;({{profileUser.num_followings}})</span>
+								</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<div class="row" id="body-row" ng-if="shown === 'Feeds'">
 		<div class="container">
 			<div class="container-narrow">
@@ -41,7 +40,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="row" id="followers-row" ng-if="shown === 'Followers'">
 		<div class="container">
 			<div class="container-narrow">
@@ -50,7 +48,7 @@
 						<div class="media">
 							<div class="media-left">
 								<a href="#/profile/{{follower.id}}">
-									<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+									<img class="media-object img-rounded" ng-src="{{resolveImg(follower.avatar_id, 'avatar')}}" alt="avatar" width="50px" height="50px">
 								</a>
 							</div>
 							<div class="media-body">
@@ -61,9 +59,9 @@
 									<span>{{follower.num_followings}} followings &nbsp;</span>
 								</p>
 							</div>
-							<div class="media-right">
-								<button type="button" class="btn btn-info" ng-click="followUser(follower.id,follower.username)">
-									<span class="fa fa-eye"></span>
+							<div class="media-right" ng-if="follower.id !== profileUser.id && follower.id !== currentUser.id">
+								<button type="button" class="btn btn-info" ng-click="followUser(follower.id, follower.username, reloadFollow())"  title="Follow">
+								<span class="fa fa-eye"></span>
 								</button>
 							</div>
 						</div>
@@ -80,7 +78,7 @@
 						<div class="media">
 							<div class="media-left">
 								<a href="#/profile/{{follow.id}}">
-									<img class="media-object img-rounded" src="http://placehold.it/150x150" alt="avatar" width="50px">
+									<img class="media-object img-rounded" ng-src="{{resolveImg(follow.avatar_id, 'avatar')}}" alt="avatar" width="50px" height="50px">
 								</a>
 							</div>
 							<div class="media-body">
@@ -91,11 +89,6 @@
 									<span>{{follow.num_followings}} followings &nbsp;</span>
 								</p>
 							</div>
-							<!-- <div class="media-right">
-								<button type="button" class="btn btn-info">
-									<span class="fa fa-eye"></span>
-								</button>
-							</div> -->
 						</div>
 					</div>
 				</div>

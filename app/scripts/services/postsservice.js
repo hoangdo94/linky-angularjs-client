@@ -37,6 +37,19 @@ angular.module('linkyApp')
                         }
                     });
             },
+            getPostById: function(postId, callback) {
+                $http.get($rootScope.apiUrl + '/posts/' + postId)
+                    .success(function(data) {
+                        if (callback) {
+                            callback(data);
+                        }
+                    })
+                    .error(function() {
+                        if (callback) {
+                            callback([]);
+                        }
+                    });
+            },
             createPost: function(post, callback) {
               $http.post($rootScope.apiUrl + '/posts', post)
                 .success(function(data) {

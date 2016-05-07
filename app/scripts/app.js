@@ -77,6 +77,7 @@ angular
         followsService,
         commentsService,
         metaService,
+        postsService,
         notify
     ) {
         $rootScope.apiUrl = 'http://localhost:3000/api';
@@ -135,6 +136,11 @@ angular
                 $rootScope.current = post;
                 $rootScope.comments = resComments;
             });
+
+            // Reload post for refreshing new likes
+            postsService.getPostById(post.id, function(newPost) {
+                post.num_likes = newPost.num_likes;
+            });
         };
 
         $rootScope.commentPost = function(postId, content) {
@@ -160,24 +166,32 @@ angular
         };
 
         // like post
-        $rootScope.likePost = function(postId) {
+        $rootScope.likePost = function(postId, reload) {
             likesService.likePost(postId, function() {
                 notify({
                     message: 'You just liked this post!',
                     duration: '5000',
                     position: 'right'
                 });
+
+                if (reload) {
+                    reload();
+                }
             });
         };
 
         // follow user
-        $rootScope.followUser = function(userId, userName) {
+        $rootScope.followUser = function(userId, userName, reload) {
             followsService.followUser(userId, function() {
                 notify({
                     message: 'You just followed ' + userName + '!',
                     duration: '5000',
                     position: 'right'
                 });
+
+                if (reload) {
+                    reload();
+                }
             });
         };
 
