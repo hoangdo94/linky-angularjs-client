@@ -33,7 +33,7 @@ angular
                 controller: 'ProfileCtrl',
                 controllerAs: 'profile'
             })
-            .when('/setting/:userId', {
+            .when('/setting', {
                 templateUrl: 'views/setting.html',
                 controller: 'SettingCtrl',
                 controllerAs: 'setting'
@@ -112,15 +112,6 @@ angular
             }
         };
 
-        $rootScope.typeIconClass = function(type) {
-            if (type === 'article') {
-                return 'fa fa-newspaper-o';
-            }
-            if (type === 'video') {
-                return 'fa fa-video-camera';
-            }
-            return 'fa fa-picture-o';
-        };
         // details
         $rootScope.showDetails = function(post) {
             // Refresh comment storage
@@ -165,21 +156,6 @@ angular
             likesService.likePost(postId, function() {
                 notify({
                     message: 'You just liked this post!',
-                    duration: '5000',
-                    position: 'right'
-                });
-
-                if (reload) {
-                    reload();
-                }
-            });
-        };
-
-        // follow user
-        $rootScope.followUser = function(userId, userName, reload) {
-            followsService.followUser(userId, function() {
-                notify({
-                    message: 'You just followed ' + userName + '!',
                     duration: '5000',
                     position: 'right'
                 });

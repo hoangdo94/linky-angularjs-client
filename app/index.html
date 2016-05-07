@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Linky - For sharers by sharers</title>
+  <title>Linky - By Sharers, for Sharers</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -50,7 +50,7 @@
     					</a>
     					<ul class="dropdown-menu">
     						<li><a href="#/profile/{{currentUser.id}}">Profile</a></li>
-    						<li><a href="#/setting/{{currentUser.id}}">Setting</a></li>
+    						<li><a href="#/setting">Setting</a></li>
     						<li role="separator" class="divider"></li>
                 <li ng-if="currentUser.isAdmin"><a href="#/admin">Admin</a></li>
     						<li><a href="#" ng-click="logout()">Log out</a></li>
@@ -104,8 +104,7 @@
             {{current.num_likes}} <a ng-click="likePost(current.id)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
             <a href="{{current.link}}" target="_blank"><i class="fa fa-share" title="Open link"></i></a>
             <span class="text-cat pull-right">
-                <a><i ng-class="typeIconClass(feed.type_name)"></i></a>&nbsp;&nbsp;
-                {{current.cate_name}}
+                {{current.cate_name}} {{current.type_name}}
               </span>
           </p>
         </div>
@@ -142,9 +141,7 @@
             <img class="media-object img-rounded" ng-src="{{resolveImg(feed.avatar_id, 'avatar')}}" alt="avatar" width="50px" height="50px">
           </a>
           <div class="item-addons">
-            {{feed.cate_name}}&nbsp;&nbsp;
-            <a><i ng-class="typeIconClass(feed.type_name)"></i></a>&nbsp;&nbsp;
-            <a ng-if="feed.user_id !== currentUser.id && !followedUser(feed.user_id)" ng-click="followUser(feed.user_id,feed.username)" style="text-decoration: none; cursor: pointer;"><i class="fa fa-eye" title="Follow"></i>&nbsp;&nbsp;</a>
+            {{feed.cate_name}} {{feed.type_name}}&nbsp;&nbsp;
             <a ng-click="likePost(feed.id)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
             <a href="{{feed.link}}" target="_blank"><i class="fa fa-share" title="Open link"></i></a>
           </div>

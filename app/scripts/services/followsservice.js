@@ -45,9 +45,22 @@ angular.module('linkyApp')
                             callback(data);
                         }
                     })
-                    .error(function() {
+                    .error(function(err) {
                         if (callback) {
-                            callback([]);
+                            callback(err);
+                        }
+                    });
+            },
+            unfollowUser: function(userId, callback) {
+                $http.delete($rootScope.apiUrl + '/follows/' + userId)
+                    .success(function(data) {
+                        if (callback) {
+                            callback(data);
+                        }
+                    })
+                    .error(function(err) {
+                        if (callback) {
+                            callback(err);
                         }
                     });
             }

@@ -1,6 +1,22 @@
 <div class="container-fluid">
 	<div class="row" id="header-row" ng-style="{'background-image': 'url(' + resolveImg(profileUser.cover_id, 'cover') + ')'}">
 		<div class="container">
+			<div class="container-narrow" id="follow-unfollow-container" ng-if="currentUser.id !== profileUser.id">
+				<div id="follow-unfollow">
+					<div ng-if ="!isFollowing()">
+						<a title="Follow {{profileUser.username}}" ng-click="followUser()">
+							<i class="fa fa-lg fa-heart-o"></i>
+						</a>
+						<span>Not following</span>
+					</div>
+					<div ng-if="isFollowing()">
+						<a title="Unfollow {{profileUser.username}}" ng-click="unfollowUser()">
+							<i class="fa fa-lg fa-heart"></i>
+						</a>
+						<span>Following</span>
+					</div>
+				</div>
+			</div>
 			<div id="profile">
 				<div id="profile-information">
 					<div id="profile-image" ng-style="{'background-image': 'url(' + resolveImg(profileUser.avatar_id, 'avatar') + ')'}">
@@ -21,8 +37,9 @@
 							<li role="presentation" ng-repeat="cat in categories" ng-class="{'active': (filterValue == cat)}">
 								<a ng-click="filter(cat)">
 									{{cat}}
-									<span ng-if="cat === 'Followers'">&nbsp;({{profileUser.num_followers}})</span>
-									<span ng-if="cat === 'Following'">&nbsp;({{profileUser.num_followings}})</span>
+									<span ng-if="cat === 'Shared Links'">&nbsp;({{postCount}})</span>
+									<span ng-if="cat === 'Followers'">&nbsp;({{followerCount}})</span>
+									<span ng-if="cat === 'Following'">&nbsp;({{followingCount}})</span>
 								</a>
 							</li>
 						</ul>
@@ -31,12 +48,15 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" id="body-row" ng-if="shown === 'Feeds'">
+	<div class="row" id="body-row" ng-if="shown === 'Shared Links'">
 		<div class="container">
 			<div class="container-narrow">
 				<div ng-repeat="feed in feeds" class="panel panel-default panel-feed" ng-include="'feed-details'">
 				</div>
 				<button ng-if="canLoadMorePosts" class="btn btn-block btn-info" ng-click="loadMorePosts()">Load more Links...</button>
+				<div class="filter-nothing" ng-if="feeds.length === 0">
+		      {{profileUser.username}} shared nothing.
+		    </div>
 			</div>
 		</div>
 	</div>
@@ -59,15 +79,12 @@
 									<span>{{follower.num_followings}} followings &nbsp;</span>
 								</p>
 							</div>
-							<div class="media-right" ng-if="follower.id !== profileUser.id && follower.id !== currentUser.id && !followedUser(follower.id)">
-							<span>{{followedUser(follower.id)}}</span>
-								<button type="button" class="btn btn-info" ng-click="followUser(follower.id, follower.username, reloadFollow())"  title="Follow">
-								<span class="fa fa-eye"></span>
-								</button>
-							</div>
 						</div>
 					</div>
 				</div>
+				<div class="filter-nothing" ng-if="followers.length === 0">
+		      	Nobody is following {{profileUser.username}}.
+		    </div>
 			</div>
 		</div>
 	</div>
@@ -93,6 +110,9 @@
 						</div>
 					</div>
 				</div>
+				<div class="filter-nothing" ng-if="followings.length === 0">
+		      	{{profileUser.username}} is following nobody.
+		    </div>
 			</div>
 		</div>
 	</div>

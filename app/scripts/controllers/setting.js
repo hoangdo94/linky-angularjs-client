@@ -9,21 +9,12 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-    .controller('SettingCtrl', function($rootScope, $scope, $routeParams, $location, usersService, filesService, notify) {
-        var userId = parseInt($routeParams.userId);
-        $scope.profileUser = {};
+    .controller('SettingCtrl', function($rootScope, $scope, usersService, filesService, notify) {
 
-        if ($rootScope.currentUser.id !== userId) {
-            $location.path('/setting/' + $rootScope.currentUser.id);
-        } else {
-            usersService.get(userId, function(user) {
-                if (user.id !== userId) {
-                    $location.path('/');
-                }
-                $scope.edit = user;
-                $scope.profileUser = user;
-            });
-        }
+        usersService.get($rootScope.currentUser.id, function(user) {
+          $scope.edit = user;
+          $scope.profileUser = user;
+        });
 
         $scope.categories = [{
             name: 'Technology',
