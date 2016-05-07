@@ -16,10 +16,6 @@
 			      		<div class="form-group left-inner-addon">
 			      			<input type="text" class="form-control input-lg" ng-model="user.username" alt="" tabindex="1" required>
 			      		</div>
-			      		<p class="description">Email:</p>
-			          	<div class="form-group left-inner-addon">
-			      			<input type="email" class="form-control input-lg" ng-model="user.email" alt="" tabindex="2" required>
-			      		</div>
 			      		<p class="description">Password:</p>
 			      		<div class="form-group left-inner-addon">
 			      			<input type="password" class="form-control input-lg" name="password" ng-model="user.password" alt="Password must be at least 6 characters long, contain at least 1 uppercase letter and 1 digit. It cannot contain @ # $ %" min="6" tabindex="3" required>
@@ -43,19 +39,11 @@
 		  		<hr>
 			  	<div class="row">
 			      	<div class="col-sm-10 col-sm-offset-1">
-			      		<p class="description">Gender:</p>
-			      		<div class="form-group left-inner-addon">
-			      			<select name="gender" class="form-control input-lg" ng-model="user.gender" tabindex="5">
-			      				<option value="None" disabled="disabled">--- Please select ---</option>
-			      				<option value="Male">Male</option>
-			      				<option value="Female">Female</option>
-			      			</select>
+								<p class="description">Email:</p>
+			          	<div class="form-group left-inner-addon">
+			      			<input type="email" class="form-control input-lg" ng-model="user.email" alt="" tabindex="2" required>
 			      		</div>
-			      		<p class="description">Birthday:</p>
-			      		<div class="form-group left-inner-addon">
-			      			<input type="date" name="birthday" class="form-control input-lg" ng-model="user.birthday" tabindex="6" required>
-			      		</div>
-			      		<p class="description">Mobile phone:</p>
+			      		<p class="description">Phone Number:</p>
 			      		<div class="form-group left-inner-addon">
 			      			<input type="tel" class="form-control input-lg" ng-model="user.phone" tabindex="7">
 			      		</div>
@@ -72,7 +60,7 @@
 			  	<button class="btn col-sm-2" ng-click="signUpUser(user)" tabindex="9" id="btn-register">Sign Up</button>
 			  	<button class="btn col-sm-2" ng-click="goToLogin()" tabindex="10" id="btn-back">Cancel</button>
 		  	</div>
-		  		
+
 	  	</form>
 	</div>
 </div>

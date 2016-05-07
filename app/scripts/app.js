@@ -19,7 +19,8 @@ angular
         'ngTouch',
         'LocalStorageModule',
         'isteven-multi-select',
-        'cgNotify'
+        'cgNotify',
+        'angularMoment'
     ])
     .config(function($routeProvider, localStorageServiceProvider) {
         $routeProvider
@@ -74,7 +75,8 @@ angular
         commentsService,
         metaService,
         postsService,
-        notify
+        notify,
+        moment
     ) {
         $rootScope.apiUrl = 'http://localhost:3000/api';
         $rootScope.viewMode = 'list';
@@ -113,6 +115,10 @@ angular
             }
         };
 
+        $rootScope.timeFromNow = function(time) {
+          return moment(time).add(7, 'hours').fromNow();
+        };
+
         // details
         $rootScope.showDetails = function(post) {
             // Refresh comment storage
@@ -131,14 +137,11 @@ angular
         };
 
         $rootScope.commentPost = function(postId, content) {
-            commentsService.commentPost(postId, content, function(data) {
-                if (data.status_code === '200') {
-                    var newComment = {
-                        'username': $rootScope.currentUser.username,
-                        'avatar_id': $rootScope.currentUser.avatar_id,
-                        'content': content,
-                        'created_at': 'just now'
-                    };
+            commentsService.commentPost(postId, content, function(res) {
+                if (res.status_code === '200') {
+                    var newComment = res.data;
+                    newComment.username = $rootScope.currentUser.username;
+                    newComment.avatar_id = $rootScope.currentUser.avatar_id;
                     // Add to current Comments object, at first
                     $rootScope.comments.push(newComment);
                     // Refresh currentUserComment
@@ -184,29 +187,15 @@ angular
         };
 
         // Init auth
-        authService.init(function(isLoggedIn, user) {
-            $rootScope.authInited = true;
-            if (isLoggedIn) {
-                $rootScope.currentUser = user;
-
-                // Get Followings of Current User to check follow status of this user
-                followsService.getFollowings($rootScope.currentUser.id, function(followings) {
-                    $rootScope.followingsOfCurrentUser = followings.data;
-                });
-
-            } else {
-                $location.path('/login');
-            }
-        });
-
-        $rootScope.followedUser = function(followerId) {
-            var result = false;
-            $rootScope.followingsOfCurrentUser.forEach(function(row) {
-                if (row.id === followerId) {
-                    result = true;
-                }
-            });
-            return result;
+        $rootScope.checkAuth = function() {
+          authService.init(function(isLoggedIn, user) {
+              $rootScope.authInited = true;
+              if (isLoggedIn) {
+                  $rootScope.currentUser = user;
+              } else {
+                  $location.path('/login');
+              }
+          });
         };
 
         $rootScope.finishEditPost = function() {
@@ -251,6 +240,7 @@ angular
 
         $rootScope.isLoggedIn = authService.isLoggedIn;
         $rootScope.logout = authService.logout;
+        $rootScope.checkAuth();
     })
     .controller('linkyCtrl', function() {
         // Press Enter to send comment

@@ -32,6 +32,8 @@ module.exports = function(config) {
       'bower_components/isteven-angular-multiselect/isteven-multi-select.js',
       'bower_components/angular-local-storage/dist/angular-local-storage.js',
       'bower_components/angular-notify/dist/angular-notify.js',
+      'bower_components/moment/moment.js',
+      'bower_components/angular-moment/angular-moment.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

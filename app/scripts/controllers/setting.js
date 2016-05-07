@@ -9,34 +9,12 @@
  * Controller of the linkyApp
  */
 angular.module('linkyApp')
-    .controller('SettingCtrl', function($rootScope, $scope, usersService, filesService, prefercategoriesService, categoriesService, notify) {
+    .controller('SettingCtrl', function($rootScope, $scope, usersService, filesService, prefercategoriesService, categoriesService, authService, notify) {
 
         usersService.get($rootScope.currentUser.id, function(user) {
             $scope.edit = user;
             $scope.profileUser = user;
         });
-
-        // $scope.categories = [{
-        //     name: 'Technology',
-        //     ticked: true,
-        //     disabled: true
-        // }, {
-        //     name: 'Photography',
-        //     ticked: true,
-        //     disabled: true
-        // }, {
-        //     name: 'Life',
-        //     ticked: true,
-        //     disabled: true
-        // }, {
-        //     name: 'Economy',
-        //     ticked: false,
-        //     disabled: true
-        // }, {
-        //     name: 'Joke',
-        //     ticked: false,
-        //     disabled: true
-        // }];
 
         prefercategoriesService.getUserPreferCategories(function(res) {
             $scope.preferedCategories = res;
@@ -55,17 +33,6 @@ angular.module('linkyApp')
             }
         });
 
-        categoriesService.getAll(function(res) {
-            $scope.categories = [];
-            res.forEach(function(cate) {
-                $scope.categories.push({
-                    name: cate.name,
-                    ticked: checkPreferCategory(cate.name),
-                    disabled: true
-                });
-            });
-        });
-
         function checkPreferCategory(cateName) {
             var result = false;
             if (Array.isArray($scope.preferedCategories)) {
@@ -81,16 +48,17 @@ angular.module('linkyApp')
             return result;
         }
 
-        // $scope.preferedCategories = [{
-        //     'name': 'Technology',
-        //     ticked: true
-        // }, {
-        //     'name': 'Photography',
-        //     ticked: true
-        // }, {
-        //     'name': 'Life',
-        //     ticked: true
-        // }];
+        categoriesService.getAll(function(res) {
+            $scope.categories = [];
+            res.forEach(function(cate) {
+                $scope.categories.push({
+                    name: cate.name,
+                    ticked: checkPreferCategory(cate.name),
+                    disabled: true
+                });
+            });
+        });
+
 
         $scope.updateUser = function() {
             $('input').each(function() {
@@ -119,31 +87,36 @@ angular.module('linkyApp')
             $('.multiSelect > button').css('pointer-events', 'none');
             $('.multiSelect > button').css('background-color', '#eeeeee');
 
-
-
             usersService.update($rootScope.currentUser.id, $scope.edit, function(res) {
                 if (res.status_code === '200') {
                     if ($scope.edit.preferedCategories) {
-                        console.dir($scope.edit.preferedCategories);
                         // Update preferedCategories
                         prefercategoriesService.updateUserPreferCategories($scope.edit.preferedCategories, function() {
                             notify({
-                                message: 'Congratulation! You just updated information successfully!',
+                                message: 'Updated information!',
                                 duration: 2000,
                                 position: 'center'
                             });
+                            if ($scope.edit.password) {
+                                authService.updateLocalPassword($scope.edit.password);
+                                delete $scope.edit.password;
+                            }
                         });
                     } else {
                         notify({
-                            message: 'Congratulation! You just updated information successfully!',
+                            message: 'Updated information!',
                             duration: 2000,
                             position: 'center'
                         });
+                        if ($scope.edit.password) {
+                            authService.updateLocalPassword($scope.edit.password);
+                            delete $scope.edit.password;
+                        }
                     }
                     $rootScope.currentUser = res.data;
                 } else {
                     notify({
-                        message: 'Please make sure your information is correct!',
+                        message: 'Some errors happened. Please try again!',
                         duration: 2000,
                         position: 'center'
                     });
