@@ -28,11 +28,6 @@ angular
                 controller: 'MainCtrl',
                 controllerAs: 'main'
             })
-            .when('/about', {
-                templateUrl: 'views/about.html',
-                controller: 'AboutCtrl',
-                controllerAs: 'about'
-            })
             .when('/profile/:userId', {
                 templateUrl: 'views/profile.html',
                 controller: 'ProfileCtrl',
@@ -108,11 +103,11 @@ angular
           } else {
             switch (type) {
               case 'avatar':
-                return '/images/default/default_avatar.png';
+                return 'images/default/default_avatar.png';
               case 'cover':
-                return '/images/default/default_cover.png';
+                return 'images/default/default_cover.png';
               default:
-                return '/images/default/default_thumbnail.png';
+                return 'images/default/default_thumbnail.png';
             }
           }
         };

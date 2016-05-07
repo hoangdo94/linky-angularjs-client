@@ -24,8 +24,8 @@ angular.module('linkyApp')
             }
           });
       },
-      getList: function (callback) {
-        $http.get($rootScope.apiUrl + '/categories')
+      getList: function (page, perPage, callback) {
+        $http.get($rootScope.apiUrl + '/categories?page=' + page + '&perPage=' + perPage)
           .success(function(data) {
             if (callback) {
               callback(data);

@@ -57,9 +57,12 @@ angular.module('linkyApp')
             });
         }
 
-        getCategories();
-        getTypes();
-        getPosts();
+        function reloadPosts() {
+          console.log('reload posts');
+            $scope.feeds = [];
+            $scope.currentPage = 1;
+            getPosts();
+        }
 
         // new post
         $scope.newPost = {
@@ -151,6 +154,7 @@ angular.module('linkyApp')
                             position: 'center'
                         });
                     } else {
+                        reloadPosts();
                         notify({
                             message: 'Your link is successfully shared :-)',
                             duration: 5000,
@@ -160,5 +164,9 @@ angular.module('linkyApp')
                 });
             }
         };
+
+        getCategories();
+        getTypes();
+        getPosts();
 
     });

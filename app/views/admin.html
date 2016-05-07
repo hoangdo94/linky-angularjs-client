@@ -1,65 +1,105 @@
 <div class="container" id="admin-view">
-  <div id="entity-list" class="col-md-3">
-    <div class="list-group">
-      <a class="list-group-item" ng-repeat="ett in entityTypes" ng-class="{'active': ett===entityType}" href="#/admin/{{ett}}">
-        <i class="fa {{iconClasses[$index]}}"></i>
-        {{ ett }}
-      </a>
-    </div>
-  </div>
-  <div class="col-md-9">
-    <div ng-if="addOrRemoveable">
-      <button class="btn btn-success" data-toggle="modal" data-target="#add-modal">
-        <i class="fa fa-plus"></i> Insert
-      </button>
-      <br/><br/>
-    </div>
-    <div>
-      <table class="table table-stripped table-hover">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th ng-repeat="field in fields">{{field}}</th>
-            <th>actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="ett in entities | orderBy:'id'">
-            <td>{{ett.id}}</td>
-            <td ng-repeat="field in fields">
-              {{ett[field]}}
-            </td>
-            <td>
-              <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit-modal" ng-click="startEdit(ett.id)">Edit</a>
-              <a ng-if="addOrRemoveable" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete-modal" ng-click="startDelete(ett.id)">Delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div id="add-modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add entity</h4>
+  <div class="row" ng-if="currentUser.isAdmin">
+    <div id="entity-list" class="col-md-3">
+      <div class="list-group">
+        <a class="list-group-item" ng-repeat="ett in entityTypes" ng-class="{'active': ett===entityType}" href="#/admin/{{ett}}">
+          <i class="fa {{iconClasses[$index]}}"></i>
+          {{ ett }}
+        </a>
       </div>
-      <div class="modal-body">
-        <div class="form-group" ng-repeat="field in fields">
-          <label>{{field}}</label>
-          <input type="text" class="form-control" ng-model="addData[field]">
+    </div>
+    <div class="col-md-9">
+      <div ng-if="addOrRemoveable" class="pull-left">
+        <a class="btn btn-success" data-toggle="modal" data-target="#add-modal">
+          <i class="fa fa-plus"></i> Insert
+        </a>
+        <br/><br/>
+      </div>
+      <div class="pull-right">
+        <select ng-model="perPage" ng-change="reload()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="25">25</option>
+        </select>
+        &nbsp;
+        entities per page
+      </div>
+      <div>
+        <table class="table table-stripped table-hover">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th ng-repeat="field in labels">{{field}}</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="ett in entities | orderBy:'id'">
+              <td>{{ett.id}}</td>
+              <td ng-repeat="field in fields">
+                {{ett[field]}}
+              </td>
+              <td>
+                <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit-modal" ng-click="startEdit(ett.id)">Edit</a>
+                <a ng-if="addOrRemoveable" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete-modal" ng-click="startDelete(ett.id)">Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <a class="btn btn-sm btn-info" ng-class="{'disabled': !canPrev}" ng-click="goPrev()">Prev</a>
+          &nbsp;&nbsp;
+          Page <b>{{currentPage}}</b>/{{totalPages}}
+          &nbsp;&nbsp;
+          <a class="btn btn-sm btn-info" ng-class="{'disabled': !canNext}" ng-click="goNext()">Next</a>
+          <span class="pull-right" ng-if="from !== to">
+            Showing from <b>{{from}}</b> to <b>{{to}}</b> of total <b>{{total}}</b> entities.
+          </span>
+          <span class="pull-right" ng-if="from === to">
+            Showing <b>{{from}}</b>
+              <sup>
+                <span ng-if="from===1">st</span>
+                <span ng-if="from===2">nd</span>
+                <span ng-if="from===3">rd</span>
+                <span ng-if="from>3">th</span>
+              </sup> &nbsp;of total <b>{{total}}</b> entities.
+          </span>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="finishAdd()">Save</button>
+    </div>
+  </div>
+
+  <div id="add-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add entity</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group" ng-repeat="field in fields">
+            <label>{{field}}</label>
+            <input type="text" class="form-control" ng-model="addData[field]">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="finishAdd()">Save</button>
+        </div>
       </div>
     </div>
+  </div>
 
+  <div ng-if="!currentUser.isAdmin">
+    <div class="jumbotron">
+      <h2>Restricted Area</h2>
+      <p>
+        You don't have access right to this page. <a href="#/">Back to Homepage</a>
+      </p>
+    </div>
   </div>
 </div>
 

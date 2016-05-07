@@ -41,7 +41,6 @@ angular.module('linkyApp')
                 res.data.forEach(function(post) {
                     $scope.feeds.push(post);
                 });
-
             });
         }
 

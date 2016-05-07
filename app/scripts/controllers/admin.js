@@ -21,28 +21,32 @@ angular.module('linkyApp')
     }
 
     var entityService = null;
+    $scope.currentPage = 1;
+    $scope.perPage = '5';
+    $scope.canNext = false;
+    $scope.canPrev = false;
+    $scope.from = 0;
+    $scope.to = 0;
+    $scope.total = 0;
+    $scope.totalPages = 0;
 
-    function getCategories() {
-      categoriesService.getList(function(categories) {
-        $scope.entities = categories;
-      });
+    function updatePaginationInfo(res) {
+      $scope.canNext = res.next_page_url !== null;
+      $scope.canPrev = res.prev_page_url !== null;
+      $scope.from = res.from;
+      $scope.to = res.to;
+      $scope.total = res.total;
+      $scope.totalPages = Math.ceil($scope.total/$scope.perPage);
     }
 
-    function getTypes() {
-      typesService.getList(function(types) {
-        $scope.entities = types;
-      });
-    }
-
-    function getPosts() {
-      postsService.getList(function(posts) {
-        $scope.entities = posts;
-      });
-    }
-
-    function getUsers() {
-      usersService.getList(function(users) {
-        $scope.entities = users;
+    function getEntities() {
+      entityService.getList($scope.currentPage, $scope.perPage, function(res) {
+        updatePaginationInfo(res);
+        if (res.data.length === 0 && $scope.canPrev) {
+          $scope.goPrev();
+        } else {
+          $scope.entities = res.data;
+        }
       });
     }
 
@@ -51,40 +55,41 @@ angular.module('linkyApp')
         case 'users':
           {
             entityService = usersService;
+            $scope.labels = ['Username', 'Email', 'Website', 'Phone', 'Title'];
             $scope.fields = ['username', 'email', 'website', 'phone', 'title'];
             $scope.editables = ['website', 'phone', 'title'];
             $scope.addOrRemoveable = false;
-            getUsers();
             break;
           }
         case 'links':
           {
             entityService = postsService;
-            $scope.fields = ['user_id', 'cate_id', 'type_id', 'link', 'content'];
+            $scope.labels = ['User', 'Category', 'Type', 'Link', 'Content'];
+            $scope.fields = ['username', 'cate_name', 'type_name', 'link', 'content'];
             $scope.editables = ['link', 'content'];
             $scope.addOrRemoveable = false;
-            getPosts();
             break;
           }
         case 'types':
           {
             entityService = typesService;
+            $scope.labels = ['Name'];
             $scope.fields = ['name'];
             $scope.editables = ['name'];
             $scope.addOrRemoveable = true;
-            getTypes();
             break;
           }
         default:
           {
             entityService = categoriesService;
+            $scope.labels = ['Name'];
             $scope.fields = ['name'];
             $scope.editables = ['name'];
             $scope.addOrRemoveable = true;
-            getCategories();
             break;
           }
       }
+      getEntities();
     }
 
     fetchData();
@@ -179,6 +184,24 @@ angular.module('linkyApp')
         }
         $scope.editData = {};
       });
+    };
+
+    $scope.goNext = function() {
+      if ($scope.canNext) {
+        $scope.currentPage++;
+        getEntities();
+      }
+    };
+
+    $scope.goPrev = function() {
+      if ($scope.canPrev) {
+        $scope.currentPage--;
+        getEntities();
+      }
+    };
+
+    $scope.reload = function() {
+      getEntities();
     };
 
   });

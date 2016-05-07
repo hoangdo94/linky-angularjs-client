@@ -11,8 +11,8 @@ angular.module('linkyApp')
   .factory('usersService', function ($rootScope, $http) {
 
     return {
-      getList: function (callback) {
-        $http.get($rootScope.apiUrl + '/users')
+      getList: function (page, perPage, callback) {
+        $http.get($rootScope.apiUrl + '/users?page=' + page + '&perPage=' + perPage)
           .success(function(data) {
             if (callback) {
               callback(data);
