@@ -134,6 +134,7 @@ angular
                 if (data.status_code === '200') {
                     var newComment = {
                         'username': $rootScope.currentUser.username,
+                        'avatar_id': $rootScope.currentUser.avatar_id,
                         'content': content,
                         'created_at': 'just now'
                     };
