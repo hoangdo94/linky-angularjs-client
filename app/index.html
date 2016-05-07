@@ -125,7 +125,7 @@
             </div>
             <div class="media-body">
               <p><a href="#/profile/{{comment.user_id}}"><b>{{comment.username}}</b></a></p>
-              <p>{{comment.content}}<span class="text-info pull-right">at {{comment.created_at}}</span></p>
+              <p>{{comment.content}}<span class="text-info pull-right" am-time-ago="comment.created_at"></span></p>
             </div>
           </div>
           <div class="input-group">
@@ -191,6 +191,8 @@
   <script src="bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
   <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
   <script src="bower_components/angular-notify/dist/angular-notify.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular-moment/angular-moment.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 

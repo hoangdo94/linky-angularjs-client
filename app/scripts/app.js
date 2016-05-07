@@ -19,7 +19,8 @@ angular
         'ngTouch',
         'LocalStorageModule',
         'isteven-multi-select',
-        'cgNotify'
+        'cgNotify',
+        'angularMoment'
     ])
     .config(function($routeProvider, localStorageServiceProvider) {
         $routeProvider
@@ -130,14 +131,11 @@ angular
         };
 
         $rootScope.commentPost = function(postId, content) {
-            commentsService.commentPost(postId, content, function(data) {
-                if (data.status_code === '200') {
-                    var newComment = {
-                        'username': $rootScope.currentUser.username,
-                        'avatar_id': $rootScope.currentUser.avatar_id,
-                        'content': content,
-                        'created_at': 'just now'
-                    };
+            commentsService.commentPost(postId, content, function(res) {
+                if (res.status_code === '200') {
+                    var newComment = res.data;
+                    newComment.username = $rootScope.currentUser.username;
+                    newComment.avatar_id = $rootScope.currentUser.avatar_id;
                     // Add to current Comments object, at first
                     $rootScope.comments.push(newComment);
                     // Refresh currentUserComment

@@ -89,10 +89,6 @@ angular.module('linkyApp')
 
             usersService.update($rootScope.currentUser.id, $scope.edit, function(res) {
                 if (res.status_code === '200') {
-                    if ($scope.edit.password) {
-                        authService.updateLocalPassword($scope.edit.password);
-                        delete $scope.edit.password;
-                    }
                     if ($scope.edit.preferedCategories) {
                         // Update preferedCategories
                         prefercategoriesService.updateUserPreferCategories($scope.edit.preferedCategories, function() {
@@ -101,6 +97,10 @@ angular.module('linkyApp')
                                 duration: 2000,
                                 position: 'center'
                             });
+                            if ($scope.edit.password) {
+                                authService.updateLocalPassword($scope.edit.password);
+                                delete $scope.edit.password;
+                            }
                         });
                     } else {
                         notify({
@@ -108,6 +108,10 @@ angular.module('linkyApp')
                             duration: 2000,
                             position: 'center'
                         });
+                        if ($scope.edit.password) {
+                            authService.updateLocalPassword($scope.edit.password);
+                            delete $scope.edit.password;
+                        }
                     }
                     $rootScope.currentUser = res.data;
                 } else {
