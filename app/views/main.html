@@ -11,7 +11,7 @@
           <div id="meta-data" ng-if="metadata">
             <div class="panel panel-default panel-preview">
               <div class="panel-body">
-                <div class="preview-thumb" style="background-image: url({{resolveImg(metadata.thumb_id, 'thumb')}})"></div>
+                <div class="preview-thumb" style="background-image: url({{metadata.thumb_url || resolveImg(metadata.thumb_id, 'thumb')}})"></div>
               </div>
               <div class="panel-footer">
                 <h3 class="panel-title">{{metadata.title}}</h3>

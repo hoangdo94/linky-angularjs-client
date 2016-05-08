@@ -104,7 +104,7 @@
           <div class="modal-body">
             <div class="panel panel-default panel-preview">
               <div class="panel-body">
-                <div class="preview-thumb" style="background-image: url({{resolveImg(current.thumb_id, 'thumb')}})"></div>
+                <div class="preview-thumb" style="background-image: url({{current.thumb_url || resolveImg(current.thumb_id, 'thumb')}})"></div>
               </div>
               <div class="panel-footer">
                 <h3 class="panel-title">{{current.title}}</h3>
@@ -213,7 +213,7 @@
         <div class="panel panel-default panel-preview">
           <div class="panel-body">
             <a ng-click="showDetails(feed)" data-toggle="modal" data-target="#details-modal">
-              <div class="preview-thumb" style="background-image: url({{resolveImg(feed.thumb_id, 'thumb')}})"></div>
+              <div class="preview-thumb" style="background-image: url({{feed.thumb_url || resolveImg(feed.thumb_id, 'thumb')}})"></div>
             </a>
           </div>
           <div class="panel-footer">
