@@ -67,7 +67,10 @@ angular.module('linkyApp')
             for (var i = $scope.categories.length - 1; i >= 0; i--) {
                 $scope.categories[i].disabled = false;
             }
+            $('#username').attr('readonly', true);
+            $('#email').attr('readonly', true);
             $('#re-pass').toggle();
+            $('#pass').toggle();
             $('.save').toggle();
             $('.edit').toggle();
             $('.multiSelect > button').css('pointer-events', 'all');
@@ -84,6 +87,7 @@ angular.module('linkyApp')
             $('.save').toggle();
             $('.edit').toggle();
             $('#re-pass').toggle();
+            $('#pass').toggle();
             $('.multiSelect > button').css('pointer-events', 'none');
             $('.multiSelect > button').css('background-color', '#eeeeee');
 
