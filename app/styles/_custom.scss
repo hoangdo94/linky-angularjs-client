@@ -193,10 +193,10 @@ a {
     height: 200px;
     background-repeat: no-repeat;
     background-position: center center;
-    -webkit-background-size: auto;
-    -moz-background-size: auto;
-    -o-background-size: auto;
-    background-size: auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 }
 .filter-nothing {
