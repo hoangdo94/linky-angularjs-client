@@ -198,6 +198,11 @@ angular
           });
         };
 
+        $rootScope.startEditPost = function() {
+            // Save current content for CANCEL purpose
+            $rootScope.currentPostContent = $rootScope.current.content;
+        };
+
         $rootScope.finishEditPost = function() {
             postsService.update($rootScope.current.id, $rootScope.current, function(res) {
                 if (res.status_code === '200') {
@@ -214,6 +219,10 @@ angular
                     });
                 }
             });
+        };
+
+        $rootScope.cancelEditPost = function() {
+            $rootScope.current.content = $rootScope.currentPostContent;
         };
 
         $rootScope.deletePost = function() {
