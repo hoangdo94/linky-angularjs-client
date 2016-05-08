@@ -50,14 +50,14 @@ angular.module('linkyApp')
 
         function getUserFollowers() {
             followsService.getFollowers(userId, function(res) {
-              $scope.followerCount = res.total;
+                $scope.followerCount = res.total;
                 $scope.followers = res.data;
             });
         }
 
         function getUserFollowings() {
             followsService.getFollowings(userId, function(res) {
-              $scope.followingCount = res.total;
+                $scope.followingCount = res.total;
                 $scope.followings = res.data;
             });
         }

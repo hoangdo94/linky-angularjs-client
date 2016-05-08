@@ -78,7 +78,7 @@ angular
         notify,
         moment
     ) {
-        $rootScope.apiUrl = 'http://localhost:3000/api';
+        $rootScope.apiUrl = 'http://api.linky.hoangdo.info/api';
         $rootScope.viewMode = 'list';
         $rootScope.notInLoginScreen = false;
         $rootScope.authInited = false;

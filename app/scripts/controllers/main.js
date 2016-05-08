@@ -133,14 +133,23 @@ angular.module('linkyApp')
                 $scope.isMetaShown = true;
                 $scope.isFormShown = false;
                 $scope.isMetaLoading = true;
+                $scope.metadata = null;
                 var link = $scope.newPost.link;
                 metaService.getLinkMeta(link, function(metadata) {
-                    $scope.isMetaLoading = false;
+                  $scope.isMetaLoading = false;
+                  if (metadata.error) {
+                    notify({
+                        message: 'Cannot fetch metadata. Please recheck your link',
+                        duration: 2000,
+                        position: 'center'
+                    });
+                  } else {
                     $scope.isFormShown = true;
                     if (metadata && link === $scope.newPost.link) {
                         $scope.metadata = metadata;
                         $scope.newPost.meta_id = metadata.id;
                     }
+                  }
                 });
             } else {
                 $scope.isFormShown = false;

@@ -66,7 +66,7 @@ angular.module('linkyApp')
             entityService = postsService;
             $scope.labels = ['User', 'Category', 'Type', 'Link', 'Content'];
             $scope.fields = ['username', 'cate_name', 'type_name', 'link', 'content'];
-            $scope.editables = ['link', 'content'];
+            $scope.editables = ['content'];
             $scope.addOrRemoveable = false;
             break;
           }

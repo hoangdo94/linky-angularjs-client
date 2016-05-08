@@ -14,14 +14,13 @@ angular.module('linkyApp')
       getLinkMeta: function (link, callback) {
           $http.post($rootScope.apiUrl + '/meta', {link: link})
             .success(function(data) {
-              console.log(data);
               if (callback) {
                 callback(data);
               }
             })
-            .error(function() {
+            .error(function(err) {
               if (callback) {
-                callback(null);
+                callback(err);
               }
             });
       }
