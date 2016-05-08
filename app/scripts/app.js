@@ -78,7 +78,7 @@ angular
         notify,
         moment
     ) {
-        $rootScope.apiUrl = 'http://api.linky.hoangdo.info/api';
+        $rootScope.apiUrl = 'http://api.linkies.xyz';
         $rootScope.viewMode = 'list';
         $rootScope.notInLoginScreen = false;
         $rootScope.authInited = false;
