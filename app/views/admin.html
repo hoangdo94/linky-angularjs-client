@@ -1,5 +1,5 @@
 <div class="container" id="admin-view">
-  <div class="row" ng-if="currentUser.isAdmin">
+  <div class="row" ng-if="isAdmin()">
     <div id="entity-list" class="col-md-3">
       <div class="list-group">
         <a class="list-group-item" ng-repeat="ett in entityTypes" ng-class="{'active': ett===entityType}" href="#/admin/{{ett}}">
@@ -93,7 +93,7 @@
     </div>
   </div>
 
-  <div ng-if="!currentUser.isAdmin">
+  <div ng-if="!isAdmin()">
     <div class="jumbotron">
       <h2>Restricted Area</h2>
       <p>

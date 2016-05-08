@@ -239,6 +239,7 @@ angular
         };
 
         $rootScope.isLoggedIn = authService.isLoggedIn;
+        $rootScope.isAdmin = authService.isAdmin;
         $rootScope.logout = authService.logout;
         $rootScope.checkAuth();
     })

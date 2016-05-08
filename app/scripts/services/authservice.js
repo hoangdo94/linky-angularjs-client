@@ -68,6 +68,9 @@ angular.module('linkyApp')
       isLoggedIn: function() {
         return isLoggedIn;
       },
+      isAdmin: function() {
+        return parseInt(currentUser.isAdmin);
+      },
       getCurrentUser: function() {
         return currentUser;
       }

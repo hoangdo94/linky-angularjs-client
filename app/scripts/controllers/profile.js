@@ -106,7 +106,6 @@ angular.module('linkyApp')
             return;
           }
           followsService.isFollowing(userId, function(res) {
-            console.log(res);
             $scope.isFollowing = res.following;
           });
         }

@@ -48,7 +48,7 @@
                   <li><a href="#/profile/{{currentUser.id}}">Profile</a></li>
                   <li><a href="#/setting">Setting</a></li>
                   <li role="separator" class="divider"></li>
-                  <li ng-if="currentUser.isAdmin"><a href="#/admin">Admin</a></li>
+                  <li ng-if="isAdmin()"><a href="#/admin">Admin</a></li>
                   <li><a href="#" ng-click="logout()">Log out</a></li>
                 </ul>
               </li>
