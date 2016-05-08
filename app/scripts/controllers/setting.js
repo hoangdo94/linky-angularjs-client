@@ -15,50 +15,31 @@ angular.module('linkyApp')
             $scope.edit = user;
             $scope.profileUser = user;
         });
-
-        prefercategoriesService.getUserPreferCategories(function(res) {
-            $scope.preferedCategories = res;
-            if (Array.isArray(res)) {
-                res.forEach(function(cate) {
-                    $scope.preferedCategories.push({
-                        name: cate.name,
-                        ticked: true
-                    });
-                });
-            } else if (res) {
-                $scope.preferedCategories.push({
-                    name: res.name,
-                    ticked: true
-                });
-            }
-        });
+        
+        $scope.preferedCategories = [];
+        $scope.categories = [];
 
         function checkPreferCategory(cateName) {
             var result = false;
-            if (Array.isArray($scope.preferedCategories)) {
-                $scope.preferedCategories.forEach(function(row) {
-                    if (row.name === cateName) {
-                        result = true;
-                    }
-                });
-            } else if ($scope.preferedCategories && $scope.preferedCategories.name === cateName) {
+            $scope.preferedCategories.forEach(function(cat) {
+              if (cat.name === cateName) {
                 result = true;
-            }
-
+              }
+            });
             return result;
         }
-
-        categoriesService.getAll(function(res) {
-            $scope.categories = [];
-            res.forEach(function(cate) {
-                $scope.categories.push({
-                    name: cate.name,
-                    ticked: checkPreferCategory(cate.name),
-                    disabled: true
+        prefercategoriesService.getUserPreferCategories(function(res) {
+            $scope.preferedCategories = res;
+            categoriesService.getAll(function(res) {
+                res.forEach(function(cate) {
+                    $scope.categories.push({
+                        name: cate.name,
+                        ticked: checkPreferCategory(cate.name),
+                        disabled: true
+                    });
                 });
             });
         });
-
 
         $scope.updateUser = function() {
             $('input').each(function() {
