@@ -3,13 +3,13 @@
 		<div class="container">
 			<div class="container-narrow" id="follow-unfollow-container" ng-if="currentUser.id !== profileUser.id">
 				<div id="follow-unfollow">
-					<div ng-if ="!isFollowing()">
+					<div ng-if ="!isFollowing">
 						<a title="Follow {{profileUser.username}}" ng-click="followUser()">
 							<i class="fa fa-lg fa-heart-o" style="color: red;"></i>
 						</a>
 						<span>Not following</span>
 					</div>
-					<div ng-if="isFollowing()">
+					<div ng-if="isFollowing">
 						<a title="Unfollow {{profileUser.username}}" ng-click="unfollowUser()">
 							<i class="fa fa-lg fa-heart" style="color: red;"></i>
 						</a>
@@ -82,6 +82,7 @@
 						</div>
 					</div>
 				</div>
+				<button ng-if="canLoadMoreFollowers" class="btn btn-block btn-info" ng-click="loadMoreFollowers()">Load more Followers...</button>
 				<div class="filter-nothing" ng-if="followers.length === 0">
 		      	Nobody is following {{profileUser.username}}.
 		    </div>
@@ -110,6 +111,7 @@
 						</div>
 					</div>
 				</div>
+				<button ng-if="canLoadMoreFollowings" class="btn btn-block btn-info" ng-click="loadMoreFollowings()">Load more Followings...</button>
 				<div class="filter-nothing" ng-if="followings.length === 0">
 		      	{{profileUser.username}} is following nobody.
 		    </div>

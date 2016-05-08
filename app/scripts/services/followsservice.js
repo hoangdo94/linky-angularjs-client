@@ -10,8 +10,8 @@
 angular.module('linkyApp')
     .factory('followsService', function($http, $rootScope) {
         return {
-            getFollowers: function(userId, callback) {
-                $http.get($rootScope.apiUrl + '/follows?type=1' + '&user_id=' + userId)
+            getFollowers: function(userId, page, perPage, callback) {
+                $http.get($rootScope.apiUrl + '/follows?type=1' + '&user_id=' + userId + '&page=' + page + '&perPage=' + perPage)
                     .success(function(data) {
                         if (callback) {
                             callback(data);
@@ -23,8 +23,8 @@ angular.module('linkyApp')
                         }
                     });
             },
-            getFollowings: function(userId, callback) {
-                $http.get($rootScope.apiUrl + '/follows?type=2' + '&user_id=' + userId)
+            getFollowings: function(userId, page, perPage, callback) {
+                $http.get($rootScope.apiUrl + '/follows?type=2' + '&user_id=' + userId + '&page=' + page + '&perPage=' + perPage)
                     .success(function(data) {
                         if (callback) {
                             callback(data);
@@ -63,6 +63,19 @@ angular.module('linkyApp')
                             callback(err);
                         }
                     });
+            },
+            isFollowing: function(userId, callback) {
+                $http.get($rootScope.apiUrl + '/follows/check/' + userId)
+                .success(function(data) {
+                    if (callback) {
+                        callback(data);
+                    }
+                })
+                .error(function(err) {
+                    if (callback) {
+                        callback(err);
+                    }
+                });
             }
         };
     });

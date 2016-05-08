@@ -25,11 +25,21 @@ angular.module('linkyApp')
 
 
         $scope.feeds = [];
+        $scope.followers = [];
+        $scope.followings = [];
+        $scope.isFollowing = false;
+
         // pagination
         $scope.currentPostPage = 1;
         $scope.canLoadMorePosts = false;
         $scope.postCount = 0;
+
+        $scope.currentFollowerPage = 1;
+        $scope.canLoadMoreFollowers = false;
         $scope.followerCount = 0;
+
+        $scope.currentFollowingPage = 1;
+        $scope.canLoadMoreFollowings = false;
         $scope.followingCount = 0;
 
         $scope.categories = ['Shared Links', 'Followers', 'Following'];
@@ -49,30 +59,57 @@ angular.module('linkyApp')
         }
 
         function getUserFollowers() {
-            followsService.getFollowers(userId, function(res) {
+            followsService.getFollowers(userId, $scope.currentFollowerPage, 5, function(res) {
                 $scope.followerCount = res.total;
-                $scope.followers = res.data;
+                if (res.next_page_url) {
+                    $scope.canLoadMoreFollowers = true;
+                } else {
+                    $scope.canLoadMoreFollowers = false;
+                }
+                res.data.forEach(function(f) {
+                    $scope.followers.push(f);
+                });
             });
         }
 
         function getUserFollowings() {
-            followsService.getFollowings(userId, function(res) {
+            followsService.getFollowings(userId, $scope.currentFollowingPage, 5, function(res) {
                 $scope.followingCount = res.total;
-                $scope.followings = res.data;
+                if (res.next_page_url) {
+                    $scope.canLoadMoreFollowings = true;
+                } else {
+                    $scope.canLoadMoreFollowings = false;
+                }
+                res.data.forEach(function(f) {
+                    $scope.followings.push(f);
+                });
             });
         }
 
-        function reloadFollowingsOfCurrentUser() {
-            followsService.getFollowings($rootScope.currentUser.id, function(followings) {
-                $rootScope.followingsOfCurrentUser = followings.data;
-            });
+        function reloadFollowers() {
+          $scope.followers = [];
+          followsService.getFollowers(userId, 1, $scope.currentFollowerPage*5, function(res) {
+              $scope.followerCount = res.total;
+              if (res.next_page_url) {
+                  $scope.canLoadMoreFollowers = true;
+              } else {
+                  $scope.canLoadMoreFollowers = false;
+              }
+              res.data.forEach(function(f) {
+                  $scope.followers.push(f);
+              });
+          });
         }
 
-        $scope.reloadFollow = function() {
-            getUserFollowers();
-            getUserFollowings();
-            reloadFollowingsOfCurrentUser();
-        };
+        function checkFollow() {
+          if (userId === $rootScope.currentUser.id) {
+            return;
+          }
+          followsService.isFollowing(userId, function(res) {
+            console.log(res);
+            $scope.isFollowing = res.following;
+          });
+        }
 
         // filter
         $scope.filterValue = 'Shared Links';
@@ -87,6 +124,14 @@ angular.module('linkyApp')
         $scope.loadMorePosts = function() {
             $scope.currentPostPage++;
             getUserPosts();
+        };
+        $scope.loadMoreFollowers = function() {
+            $scope.currentFollowerPage++;
+            getUserFollowers();
+        };
+        $scope.loadMoreFollowings = function() {
+            $scope.currentFollowingPage++;
+            getUserFollowings();
         };
 
         // followings
@@ -107,7 +152,8 @@ angular.module('linkyApp')
         $scope.followUser = function() {
           followsService.followUser($scope.profileUser.id, function(res) {
             if (res.status_code === '200') {
-              $scope.reloadFollow();
+              $scope.isFollowing = true;
+              reloadFollowers();
               notify({
                 message: 'Followed ' + $scope.profileUser.username,
                 duration: 2000,
@@ -126,7 +172,8 @@ angular.module('linkyApp')
         $scope.unfollowUser = function() {
           followsService.unfollowUser($scope.profileUser.id, function(res) {
             if (res.status_code === '200') {
-              $scope.reloadFollow();
+              $scope.isFollowing = false;
+              reloadFollowers();
               notify({
                 message: 'Unfollowed ' + $scope.profileUser.username,
                 duration: 2000,
@@ -142,8 +189,8 @@ angular.module('linkyApp')
           });
         };
 
+        checkFollow();
         getUserPosts();
         getUserFollowers();
         getUserFollowings();
-        reloadFollowingsOfCurrentUser();
     });
