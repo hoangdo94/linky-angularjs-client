@@ -190,7 +190,8 @@
             </a>
             <div class="item-addons">
               {{feed.cate_name}} {{feed.type_name}}&nbsp;&nbsp;
-              <a ng-click="likePost(feed)"><i class="fa fa-heart" style="cursor: pointer;" title="Like"></i></a>&nbsp;&nbsp;
+              <a ng-click="likePost(feed)" style="cursor: pointer;" title="Like this link"><i class="fa fa-heart"></i></a>&nbsp;&nbsp;
+              <a ng-click="showDetails(feed)" style="cursor: pointer;" title="Comment on this link" data-toggle="modal" data-target="#details-modal"><i class="fa fa-comment"></i></a>&nbsp;&nbsp;
               <a href="{{feed.link}}" target="_blank"><i class="fa fa-share" title="Open link"></i></a>
             </div>
           </div>
